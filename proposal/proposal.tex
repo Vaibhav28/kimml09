@@ -7,7 +7,7 @@
 \usepackage{mathptmx}
 \usepackage{graphicx}
 
-\title{\Large Bayes network classifiers for fRMI}
+\title{\Large Bayes network classifiers for fMRI}
 \author{\small Mattijs Meiboom (s1398342), Robin Mills (s1544179)\\
 			\small Tijn Schouten (s1836560), Spyros Ioakeimidis (s2144603)}
 \date{\small \today}
@@ -27,25 +27,23 @@ This project is about classifying fMRI data in order to detect the cognitive sta
 \section{Application}
 \label{sec:application}
 
-For our project, we are using a collection of data from the StarPlus project\footnote{StarPlus project - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-81/www/}. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al}.
+For our project, we are using a collection of data from the StarPlus project. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al} \cite{StarPlus:2004kx}.
 
-The dataset contains data on 6 subjects that each completed a number of trials. For each trial (see section \ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each snapshot consists of a list of approximately 5000 voxels (three dimensional pixels), of predefined regions of the brain.
+The dataset contains data on 6 subjects that each completed a number of trials. For each trial (cf. Section~\ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each scan consists of a list of approximately 5000 voxels (three dimensional pixels), of predefined regions of the brain. Along with each trial, metadata is available on the type of trial (e.g. what stimulus was shown), the result of the trial, and to which subject the scans belong.
 
-Along with each snapshot, metadata is available on the state of the trial (e.g. what stimulus was shown) and what user the snapshot belongs to. For each entire trial, we also have data on the trial specifics and the result of the trial.
-
-Since we will be trying to classify trial snapshots to determine what stimulus was active when the snapshot was taken, our application deals with a typical classification problem.
+Since we will be trying to classify brain patterns to determine what stimulus was active when the scan was taken, our application deals with a typical classification problem.
 
 \section{Methods}
 \label{sec:methods}
 
 The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature\cite{Friedman:1997gw}, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
 
-To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare them to our TAN results.
+To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare it to our TAN results.
 
 \section{Setup of Experiments}
 \label{sec:setup}
 
-Participants performed an experiment while laying in an fMRI scanner. The experiment consisted of sets of trials where participants were shown a first stimulus for four seconds, then a blank screen for another four seconds, and then a second stimulus for four seconds, which was followed by a rest period of 15 seconds. For the first half of the trials, a picture was used as first stimulus and a sentence was used as second stimulus, while the second half of trials showed a sentence as the first stimulus and a picture as the second. Participants had four seconds after the second stimulus appeared to indicate that the sentence and picture belonged together, after which the stimulus disappeared. If participants did not press a button the stimulus would disappear after four seconds.
+Participants performed an experiment while laying in an fMRI scanner. The experiment consisted of a sets of trials where participants were presented a first stimulus for four seconds, followed by a blank screen lasting four seconds, and then a second stimulus for four seconds, followed by a rest period of 15 seconds. For the first half of the trials, a picture was presented as the first stimulus and a sentence as the second stimulus, while for the second half of trials, a sentence was presented as the first stimulus and a picture as the second. Participants had four seconds after the second stimulus appeared to indicate that the sentence and picture belonged together, after which the stimulus disappeared. If participants did not press a button the stimulus would disappear after four seconds.
 
 \section{Programming Language}
 \label{sec:language}
@@ -58,20 +56,21 @@ Note that in the end, the specific choice is trivial with respect to our results
 
 \section{Planning}
 
-Describe the different phases and the planning deadlines (until November)
+In this section we describe the various phases and the planning deadlines that the group will follow.
 
 \begin{description}
 	\item[11th - 21st September]\-\\
 	During this time period, the group members will conduct an initial research. The research will focus on the Bayes network classifiers and especially on the TAN tree algorithm.
 	\item[22nd - 28th September]\-\\
-	During this time period, the definition of the model will be realised. \cite{CV:2009kl}
+	During this time period, the definition of the various models will be realised.
 	\item[29th - 19th October]\-\\
 	Implementation and Parameter estimation ...
 	\item[20th - 22nd October]\-\\
-	Preparing the presentation ...
+	During this time period the group members will prepare the presentation of the project.
 	\item[28th October]\-\\
-	Final delivery of the document and the implementation
+	Until the aforementioned date the final version of the document and the implementation will be delivered.
 \end{description}
+
 
 \nocite{*} %DO NOT UNCOMMENT, only for test purpose
 \bibliographystyle{IEEEtran}
