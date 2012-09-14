@@ -27,7 +27,7 @@ This project is about classifying fMRI data in order to detect the cognitive sta
 \section{Application}
 \label{sec:application}
 
-For our project, we are using a collection of data from the StarPlus project\footnote{StarPlus project - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-81/www/}. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al}.
+For our project, we are using a collection of data from the StarPlus project. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al} \cite{StarPlus:2004kx}.
 
 The dataset contains data on 6 subjects that each completed a number of trials. For each trial (see section \ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each scan consists of a list of approximately 5000 voxels (three dimensional pixels), of predefined regions of the brain. Along with each trial, metadata is available on the type of trial (e.g. what stimulus was shown), the result of the trial, and to which subject the scan belongs.
 
@@ -36,7 +36,7 @@ Since we will be trying to classify brain patterns to determine what stimulus wa
 \section{Methods}
 \label{sec:methods}
 
-The dataset we use originated from a project that investigated classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN\footnote{Bayesian network classifiers - N. Friedman, D. Geiger, and M. Goldszmidt}. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
+The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN\cite{Friedman:1997gw}. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
 
 To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare it to our TAN results.
 
@@ -56,20 +56,21 @@ Note that in the end, the specific choice is trivial with respect to our results
 
 \section{Planning}
 
-Describe the different phases and the planning deadlines (until November)
+In this section we describe the various phases and the planning deadlines that the group will follow.
 
 \begin{description}
 	\item[11th - 21st September]\-\\
 	During this time period, the group members will conduct an initial research. The research will focus on the Bayes network classifiers and especially on the TAN tree algorithm.
 	\item[22nd - 28th September]\-\\
-	During this time period, the definition of the model will be realised. \cite{CV:2009kl}
+	During this time period, the definition of the various models will be realised.
 	\item[29th - 19th October]\-\\
 	Implementation and Parameter estimation ...
 	\item[20th - 22nd October]\-\\
-	Preparing the presentation ...
+	During this time period the group members will prepare the presentation of the project.
 	\item[28th October]\-\\
-	Final delivery of the document and the implementation
+	Until the aforementioned date the final version of the document and the implementation will be delivered.
 \end{description}
+
 
 \nocite{*} %DO NOT UNCOMMENT, only for test purpose
 \bibliographystyle{IEEEtran}
