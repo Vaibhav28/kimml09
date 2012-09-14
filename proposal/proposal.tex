@@ -23,21 +23,29 @@
 
 \section{Introduction}
 
-This project is about classifying fMRI data in order to detect the cognitive states associated with viewing different stimuli. Specifically, viewing sentences versus viewing pictures will evoke different patterns of activity in the brain. By using classifiers we will try to capture these patterns by predicting which stimuli a participant is looking at, based on the brain activity during that time.
+This project is about classifying fMRI data in order to detect the cognitive states of subjects associated with viewing different stimuli. Specifically, viewing sentences versus viewing pictures will evoke different patterns of activity in the brain. By using classifiers we will try to capture these patterns by predicting which stimuli a participant is looking at, based on the brain activity during that time.
 
 \section{Application}
 
-Explain how you get data or simulator, how many examples, how many inputs, outputs, whether it is an RL, classification, or regression problem.
+For our project, we are using a collection of data from the StarPlus project\footnote{StarPlus project - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-81/www/}. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected my Marcel Just \textit{et al}.
+
+The dataset contains data on 6 test subjects that each completed a number of trials. For each trial (see section \ref{sec:setup}), 54 fMRI snapshots were made of specific regions of their brain. Each snapshot consists of a list of 3d pixels (so called voxels). The dimensions of these snapshots are 64x64x8 voxels, amounting to a total of 5700 voxels per snapshot (this is less than 64 * 64 * 8 because only specific regions were recorded).
+
+Along with each snapshot, metadata is available on the state of the trial (e.g. what stimulus was active?) and what user the snapshot belongs to. For each entire trial, we also have data on the trial specifics and the result of the trial.
+
+Since we will be trying to classify trial snapshots to determine what stimulus was active when the snapshot was taken, our application deals with a typical classification problem.
 
 \section{Methods}
 
 Explain the methods that you will compare. Identify the learning algorithm and the optimisation method.
 
 \section{Setup of Experiments}
+\label{sec:setup}
 
 Participants performed an experiment while laying in an fMRI scanner. The experiment consisted of sets of trials where participants were shown a first stimulus for four seconds, then a blank screen for another four seconds, and then a second stimulus for four seconds, which was followed by a rest period of 15 seconds. For the first half of the trials, a picture was used as first stimulus and a sentence was used as second stimulus, while the second half of trials showed a sentence as the first stimulus and a picture as the second. Participants had four seconds after the second stimulus appeared to indicate that the sentence and picture belonged together, after which the stimulus disappeared. If participants did not press a button the stimulus would disappear after four seconds.
 
 \section{Programming Language}
+\label{sec:language}
 
 We have chosen to implement our classification algorithms using Python. To be specific,  the well-known SciPy library. SciPy is open-source software for mathematics, science, and engineering and offers similar functionality compared to MatLab. Even though our datasets have been stored in MatLab's \textit{.mat} format, SciPy can work with this as well.
 
@@ -48,5 +56,18 @@ Note that in the end, the specific choice is trivial with respect to our results
 \section{Planning}
 
 Describe the different phases and the planning deadlines (until November)
+
+\begin{description}
+	\item[11th - 21st September]\-\\
+	Research ...
+	\item[22nd - 28th September]\-\\
+	Model definition ...
+	\item[29th - 19th October]\-\\
+	Implementation and Parameter estimation ...
+	\item[20th - 22nd October]\-\\
+	Preparing the presentation ...
+	\item[28th October]\-\\
+	Final delivery of the document and the implementation
+\end{description}
 
 \end{document}
