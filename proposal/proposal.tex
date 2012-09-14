@@ -1,9 +1,9 @@
 \documentclass[a4paper, 11pt]{scrartcl}
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=3cm, a4paper]{geometry}
 \usepackage{hyperref}
-\usepackage[pdftex]{graphics} 
+\usepackage[pdftex]{graphics}
 \usepackage{mathptmx}
 \usepackage{graphicx}
 
@@ -12,7 +12,7 @@
 			\small Tijn Schouten (s1836560), Spyros Ioakeimidis (s2144603)}
 \date{\small \today}
 
-\setlength{\parindent}{0pt} 
+\setlength{\parindent}{0pt}
 
 \begin{document}
 
@@ -38,7 +38,7 @@ Since we will be trying to classify trial snapshots to determine what stimulus w
 \section{Methods}
 \label{sec:methods}
 
-The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature\footnote{Bayesian network classifiers - N. Friedman, D. Geiger, and M. Goldszmidt}, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
+The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature\cite{Friedman:1997gw}, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
 
 To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare them to our TAN results.
 
@@ -52,7 +52,7 @@ Participants performed an experiment while laying in an fMRI scanner. The experi
 
 We have chosen to implement our classification algorithms using Python. To be specific,  the well-known SciPy library. SciPy is open-source software for mathematics, science, and engineering and offers similar functionality compared to MatLab. Even though our datasets have been stored in MatLab's \textit{.mat} format, SciPy can work with this as well.
 
-The main motivation for choosing Python over MatLab is our familiarity with Python, its performance and its clean coding style. As an added benefit, anyone is able to reproduce our classification results even if they don't own a MatLab license. 
+The main motivation for choosing Python over MatLab is our familiarity with Python, its performance and its clean coding style. As an added benefit, anyone is able to reproduce our classification results even if they don't own a MatLab license.
 
 Note that in the end, the specific choice is trivial with respect to our results. Both MatLab and Python (with some added libraries) support similar functionality.
 
