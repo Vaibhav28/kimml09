@@ -26,6 +26,7 @@
 This project is about classifying fMRI data in order to detect the cognitive states of subjects associated with viewing different stimuli. Specifically, viewing sentences versus viewing pictures will evoke different patterns of activity in the brain. By using classifiers we will try to capture these patterns by predicting which stimuli a participant is looking at, based on the brain activity during that time.
 
 \section{Application}
+\label{sec:application}
 
 For our project, we are using a collection of data from the StarPlus project\footnote{StarPlus project - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-81/www/}. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al}.
 
@@ -36,8 +37,11 @@ Along with each snapshot, metadata is available on the state of the trial (e.g. 
 Since we will be trying to classify trial snapshots to determine what stimulus was active when the snapshot was taken, our application deals with a typical classification problem.
 
 \section{Methods}
+\label{sec:methods}
 
-Explain the methods that you will compare. Identify the learning algorithm and the optimisation method.
+The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature\footnote{Bayesian network classifiers - N. Friedman, D. Geiger, and M. Goldszmidt}, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
+
+To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare them to our TAN results.
 
 \section{Setup of Experiments}
 \label{sec:setup}
