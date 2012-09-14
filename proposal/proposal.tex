@@ -29,18 +29,16 @@ This project is about classifying fMRI data in order to detect the cognitive sta
 
 For our project, we are using a collection of data from the StarPlus project\footnote{StarPlus project - http://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-81/www/}. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al}.
 
-The dataset contains data on 6 subjects that each completed a number of trials. For each trial (see section \ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each snapshot consists of a list of approximately 5000 voxels (three dimensional pixels), of predefined regions of the brain.
+The dataset contains data on 6 subjects that each completed a number of trials. For each trial (see section \ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each scan consists of a list of approximately 5000 voxels (three dimensional pixels), of predefined regions of the brain. Along with each trial, metadata is available on the type of trial (e.g. what stimulus was shown), the result of the trial, and to which subject the scan belongs.
 
-Along with each snapshot, metadata is available on the state of the trial (e.g. what stimulus was shown) and what user the snapshot belongs to. For each entire trial, we also have data on the trial specifics and the result of the trial.
-
-Since we will be trying to classify trial snapshots to determine what stimulus was active when the snapshot was taken, our application deals with a typical classification problem.
+Since we will be trying to classify brain patterns to determine what stimulus was active when the scan was taken, our application deals with a typical classification problem.
 
 \section{Methods}
 \label{sec:methods}
 
-The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature\footnote{Bayesian network classifiers - N. Friedman, D. Geiger, and M. Goldszmidt}, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
+The dataset we use originated from a project that investigated classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN\footnote{Bayesian network classifiers - N. Friedman, D. Geiger, and M. Goldszmidt}. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
 
-To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare them to our TAN results.
+To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare it to our TAN results.
 
 \section{Setup of Experiments}
 \label{sec:setup}
