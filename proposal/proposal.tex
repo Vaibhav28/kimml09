@@ -29,7 +29,7 @@ The proposed project is about classifying fMRI data in order to detect the cogni
 
 For our project, we are using a collection of data from the StarPlus project. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et al} \cite{StarPlus:2004kx}.
 
-The dataset contains data on 6 subjects that each completed a number of trials. For each trial (cf. Section~\ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each scan consists of a list of approximately 5000 voxels (three dimensional pixels), of predefined regions of the brain. Along with each trial, metadata is available on the type of trial (e.g. what stimulus was shown), the result of the trial, and to which subject the scans belong.
+The dataset contains data on 6 subjects that each completed a number of trials. For each trial (cf. Section~\ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each scan consists of a list of approximately 5000 voxels (three dimensional pixels), containing information on the activation of predefined regions of the brain. Along with each trial, metadata is available on the type of trial (e.g. what stimulus was shown), the result of the trial, and to which subject the scans belong.
 
 Since we will be trying to classify brain patterns to determine what stimulus was active when the scan was taken, our application deals with a typical classification problem.
 
@@ -48,9 +48,9 @@ Participants performed an experiment while laying in an fMRI scanner. The experi
 \section{Programming Language}
 \label{sec:language}
 
-We have chosen to implement our classification algorithms using Python. To be specific,  the well-known SciPy library. SciPy is open-source software for mathematics, science, and engineering and offers similar functionality compared to MatLab. Even though our datasets have been stored in MatLab's \textit{.mat} format, SciPy can work with this as well.
+We have chosen to implement our classification algorithms using Python. To be specific,  the well-known SciPy library. SciPy is open-source software for mathematics, science, and engineering and offers similar functionality as MatLab. Additionally, SciPy supports the MatLab's \textit{.mat} format, in which our data is stored.
 
-The main motivation for choosing Python over MatLab is our familiarity with Python, its performance and its clean coding style. As an added benefit, anyone is able to reproduce our classification results even if they don't own a MatLab license.
+The main motivation for choosing Python over MatLab is our familiarity with Python, its performance and its clean coding style. As an added benefit, no MatLab license is required to reproduce our results.
 
 Note that in the end, the specific choice is trivial with respect to our results. Both MatLab and Python (with some added libraries) support similar functionality.
 
