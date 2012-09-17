@@ -27,7 +27,7 @@ The proposed project is about classifying fMRI data in order to detect the cogni
 \section{Application}
 \label{sec:application}
 
-For our project, we are using a collection of data from the StarPlus project. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \textit{et a.l} \cite{StarPlus:2004kx}.
+For our project, we are using a collection of data from the StarPlus project. This dataset contains the results from a trial experiment performed at Carnegie Mellon University. The data was originally collected by Marcel Just \emph{et al.} \cite{StarPlus:2004kx}.
 
 The dataset contains data on 6 subjects that each completed a number of trials. For each trial (cf. Section~\ref{sec:setup}), a brain scan was made every 500 ms, totalling to approximately 54 scans per trial. Each scan consists of a list of approximately 5000 voxels (three dimensional pixels), containing information on the activation of predefined regions of the brain. Along with each trial, metadata is available on the type of trial (e.g. what stimulus was shown), the result of the trial, and to which subject the scans belong.
 
@@ -36,25 +36,26 @@ Since we will be trying to classify brain patterns to determine what stimulus wa
 \section{Methods}
 \label{sec:methods}
 
-The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature \cite{Friedman:1997gw}, a higher accuracy could be obtained by using a so-called \textit{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
+The dataset we use originated from a project that researched classifying cognitive state using Gaussian Naive Bayes classifiers. This resulted in an accuracy of approximately 85\%. According to literature \cite{Friedman:1997gw}, a higher accuracy could be obtained by using a so-called \emph{Tree Augmented Naive Bayesian network classifier}, or TAN. We will use this classification method to investigate whether we are indeed able to reach a higher accuracy.
 
 To verify our results, we will use the original Naive Bayesian classifier as a benchmark and compare it to our TAN results.
 
 \section{Setup of Experiments}
 \label{sec:setup}
 
-Participants performed an experiment while laying in an fMRI scanner. The experiment consisted of a set of trials in which participants were presented a first stimulus for four seconds, followed by a blank screen lasting four seconds, and then a second stimulus for four seconds, followed by a rest period of 15 seconds. For the first half of the trials, a picture was presented as the first stimulus and a sentence as the second stimulus, while for the second half of trials, a sentence was presented as the first stimulus and a picture as the second. Participants had four seconds after the second stimulus appeared to indicate that the sentence and picture belonged together, after which the stimulus disappeared. If participants did not press the button the stimulus would disappear after those four seconds.
+Participants performed an experiment while laying in an fMRI scanner. The experiment consisted of a set of trials in which participants were presented a first stimulus for four seconds, followed by a blank screen lasting four seconds, and then a second stimulus for four seconds, followed by a rest period of 15 seconds. For the first half of the trials, a picture was presented as the first stimulus and a sentence as the second stimulus, while for the second half of trials, a sentence was presented as the first stimulus and a picture as the second. Participants had four seconds after the second stimulus appeared to indicate that the sentence and picture belonged together, after which the stimulus disappeared. If participants did not press the button the stimulus would disappear after four seconds.
 
 \section{Programming Language}
 \label{sec:language}
 
-We have chosen to implement our classification algorithms using Python. To be specific,  the well-known SciPy library. SciPy is open-source software for mathematics, science, and engineering and offers similar functionality as MatLab. Additionally, SciPy supports the MatLab's \textit{.mat} format, in which our data is stored.
+We have chosen to implement our classification algorithms using Python. To be specific,  the well-known SciPy library. SciPy is open-source software for mathematics, science, and engineering and offers similar functionality as MatLab. Additionally, SciPy supports the MatLab's \emph{.mat} format, in which our data is stored.
 
 The main motivation for choosing Python over MatLab is our familiarity with Python, its performance and its clean coding style. As an added benefit, no MatLab license is required to reproduce our results.
 
 Note that in the end, the specific choice is trivial with respect to our results. Both MatLab and Python (with some added libraries) support similar functionality.
 
 \section{Planning}
+\label{sec:planning}
 
 In this section we describe the various phases and the planning deadlines that the group will follow.
 
@@ -64,7 +65,7 @@ In this section we describe the various phases and the planning deadlines that t
 	\item[22nd - 28th September]\-\\
 	During this time period, the definition of the various models will be realised. A set of models is needed to approximate the output function.
 	\item[29th - 19th October]\-\\
-	Choosing and implementing a learning algorithm. This phase contains also the estimation of the parameters of the learning algorithm.
+	During this time period we will choose and implement a learning algorithm. Furthermore, this phase contains the estimation of the parameters of the algorithm.
 	\item[20th - 22nd October]\-\\
 	During this time period the group members will prepare the presentation of the project.
 	\item[28th October]\-\\
