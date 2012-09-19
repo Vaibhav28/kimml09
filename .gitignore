@@ -38,3 +38,5 @@ pip-log.txt
 *.bbl
 *.blg
 *.out
+
+*.DS_Store
