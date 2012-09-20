@@ -40,3 +40,6 @@ pip-log.txt
 *.out
 
 *.DS_Store
+
+# Matlab files
+*.mat
