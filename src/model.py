@@ -22,10 +22,10 @@ class NaiveBayes:
 
 	def __init__(self, subject):
 		self.subject = subject
-		self.num_of_trials = 0
-		self.num_of_voxels = 0
-		self.valid_trial_indexes = 0
-		self.valid_voxel_indexes = 0
+		self.num_of_trials = None
+		self.num_of_voxels = None
+		self.valid_trial_indexes = None
+		self.valid_voxel_indexes = None
 		self.features = []
 		self.priori_probabilities = {}
 		self.conditional_probabilities = []
