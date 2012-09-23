@@ -12,8 +12,8 @@ subject['data'][19][0][10][1566]
 '''
 
 from __future__ import division
-import math
 from collections import namedtuple
+import math
 
 Observation = namedtuple('Observation', 'klass voxels')
 CondProbability = namedtuple('CondProbability', 'klass value')
@@ -40,7 +40,7 @@ class NaiveBayes:
 					if self.subject['info'][0]['cond'][index] > 1]
 
 	def _get_valid_voxels(self):
-		'''Returns the valid indexes of voxels for a subject according to rois'''
+		'''Returns the valid indexes of voxels for a subject according to rois.'''
 		return [index for index in range(self.num_of_voxels)
 					if self.subject['meta']['colToROI'][0][0][index] in self.rois]
 
@@ -126,6 +126,17 @@ class NaiveBayes:
 		self._compute_priori_probabilities()
 		self._compute_conditional_probabilities()
 
-	def classify(self, scan):
-		'''Classifies a new scan of data.'''
-		pass
+	def classify(self):
+		'''Classifies a new scan of data. The following code is just an example as for classification
+		training data are used. This needs to be modified.'''
+		scan = self._get_voxel_vector(trial_index=4, stimulus=0) # It must show `Picture'
+		valid_scan = []
+		for index, trial_index in enumerate(self.valid_voxel_indexes):
+			valid_scan.append(math.fabs(scan[trial_index]))
+		p_picture_scan = math.log(self.priori_probabilities['P']) + \
+							math.fsum([voxel_value * math.log(self.conditional_probabilities[0][index][1]) for index, voxel_value in enumerate(valid_scan)])
+		p_sentence_scan = math.log(self.priori_probabilities['S']) + \
+							math.fsum([voxel_value * math.log(self.conditional_probabilities[1][index][1]) for index, voxel_value in enumerate(valid_scan)])
+		print "P(P|Scan): ", p_picture_scan
+		print "P(S|Scan): ", p_sentence_scan
+		print "Max: ", max(p_picture_scan, p_sentence_scan)

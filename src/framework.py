@@ -13,4 +13,4 @@ naive_bayes.train()
 
 #scan = subject['data'][10][0][16]
 
-#naive_bayes.classify(scan)
+naive_bayes.classify()
