@@ -16,7 +16,7 @@ from collections import namedtuple
 import math
 
 Observation = namedtuple('Observation', 'klass voxels')
-CondProbability = namedtuple('CondProbability', 'klass value')
+ConditionalProbability = namedtuple('ConditionalProbability', 'klass value')
 
 class NaiveBayes:
 
@@ -111,10 +111,10 @@ class NaiveBayes:
 		sen_cond_probabilities = []
 		for index, voxel_index in enumerate(self.valid_voxel_indexes):
 			pic_voxels_sum = math.fsum(self._get_voxels_of_same_index(voxel_index=voxel_index, c='P'))
-			cond_prob = CondProbability('P', pic_voxels_sum / total_sum_picture)
+			cond_prob = ConditionalProbability('P', pic_voxels_sum / total_sum_picture)
 			pic_cond_probabilities.append(cond_prob)
 			sen_voxels_sum = math.fsum(self._get_voxels_of_same_index(voxel_index=voxel_index, c='S'))
-			cond_prob = CondProbability('S', sen_voxels_sum / total_sum_sentence)
+			cond_prob = ConditionalProbability('S', sen_voxels_sum / total_sum_sentence)
 			sen_cond_probabilities.append(cond_prob)
 		self.conditional_probabilities.append(pic_cond_probabilities)
 		self.conditional_probabilities.append(sen_cond_probabilities)
