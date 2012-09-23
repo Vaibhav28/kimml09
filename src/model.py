@@ -97,7 +97,7 @@ class NaiveBayes:
 		self.priori_probabilities['S'] = total_sentence_observations / total_observations
 
 	def _compute_conditional_probabilities(self):
-		'''Computes the conditional probabilities of the each voxel. Only for these voxesl that
+		'''Computes the conditional probabilities of each voxel. Only for these voxels that
 		we define as valid. '''
 		total_sum_picture = 0
 		total_sum_sentence = 0
@@ -120,12 +120,12 @@ class NaiveBayes:
 		self.conditional_probabilities.append(sen_cond_probabilities)
 
 	def train(self):
-		''''''
+		'''Trains the classifier.'''
 		self._init_values()
 		self._extract_values()
 		self._compute_priori_probabilities()
 		self._compute_conditional_probabilities()
 
 	def classify(self, scan):
-		''''''
+		'''Classifies a new scan of data.'''
 		pass
