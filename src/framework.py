@@ -11,6 +11,4 @@ naive_bayes.train()
 
 #subject2 = sio.loadmat('data-starplus-04820-v7.mat')
 
-#scan = subject['data'][10][0][16]
-
 naive_bayes.classify()
