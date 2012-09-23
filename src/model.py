@@ -134,9 +134,11 @@ class NaiveBayes:
 		for index, trial_index in enumerate(self.valid_voxel_indexes):
 			valid_scan.append(math.fabs(scan[trial_index]))
 		p_picture_scan = math.log(self.priori_probabilities['P']) + \
-							math.fsum([voxel_value * math.log(self.conditional_probabilities[0][index][1]) for index, voxel_value in enumerate(valid_scan)])
+							math.fsum([voxel_value * math.log(self.conditional_probabilities[0][index][1]) \
+								for index, voxel_value in enumerate(valid_scan)])
 		p_sentence_scan = math.log(self.priori_probabilities['S']) + \
-							math.fsum([voxel_value * math.log(self.conditional_probabilities[1][index][1]) for index, voxel_value in enumerate(valid_scan)])
+							math.fsum([voxel_value * math.log(self.conditional_probabilities[1][index][1]) \
+								for index, voxel_value in enumerate(valid_scan)])
 		print "P(Picture|Scan): ", p_picture_scan
 		print "P(Sentence|Scan): ", p_sentence_scan
 		print "Max: ", max(p_picture_scan, p_sentence_scan)
