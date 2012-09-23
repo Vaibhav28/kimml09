@@ -15,8 +15,8 @@ from __future__ import division
 from collections import namedtuple
 import math
 
-Observation = namedtuple('Observation', 'klass voxels')
-ConditionalProbability = namedtuple('ConditionalProbability', 'klass value')
+Observation = namedtuple('Observation', 'klass voxels_vector')
+ConditionalProbability = namedtuple('ConditionalProbability', 'klass voxel_value')
 
 class NaiveBayes:
 
@@ -90,8 +90,8 @@ class NaiveBayes:
 	def _compute_priori_probabilities(self):
 		'''Computes the priori probabilities of the two classes P and S according to the formula:
 		P(Ci) = number of observations in class / number of all observations'''
-		total_picture_observations = len([obs for obs in self.features if obs[0] == 'P'])
-		total_sentence_observations = len([obs for obs in self.features if obs[0] == 'S'])
+		total_picture_observations = len([voxels_vector for klass, voxels_vector in self.features if klass == 'P'])
+		total_sentence_observations = len([voxels_vector for klass, voxels_vector in self.features if klass == 'S'])
 		total_observations = total_picture_observations + total_sentence_observations
 		self.priori_probabilities['P'] = total_picture_observations / total_observations
 		self.priori_probabilities['S'] = total_sentence_observations / total_observations
