@@ -98,7 +98,7 @@ class NaiveBayes:
 
 	def _compute_conditional_probabilities(self):
 		'''Computes the conditional probabilities of each voxel. Only for these voxels that
-		we define as valid. '''
+		we define as valid.'''
 		total_sum_picture = 0
 		total_sum_sentence = 0
 		for index, voxel_index in enumerate(self.valid_voxel_indexes):
