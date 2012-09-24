@@ -43,13 +43,13 @@ class DataWrapper:
 
 	def _get_first_stimulus(self, trial_index):
 		'''Returns the first stimulus of a trial with index trial_index. This will
-		be either P if the subject saw a picture, or S if the subject saw a sentence.'''
+		be either `P' if the subject saw a picture, or `S' if the subject saw a sentence.'''
 		return self.subject['info'][0][trial_index]['firstStimulus'][0]
 
 	# non_private for now
 	def get_voxels_of_same_scan(self, trial_index, scan_index):
 		'''Returns the voxel vector data for the trial with index trial_index
-		and scan index as defined by stimulus.'''
+		and scan with index scan_index.'''
 		return self.subject['data'][trial_index][0][scan_index]
 
 	def _extract_features(self):

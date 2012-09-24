@@ -55,7 +55,11 @@ class NaiveBayes:
 		self._compute_means()
 		self._compute_standard_deviations()
 
-	def classify(self, scan):
+	def _classification_result(self, sum_log_picture, sum_log_sentence):
+		''''''
+		return "Picture" if max(sum_log_picture, sum_log_sentence) == sum_log_picture else "Sentence"
+
+	def classify(self, scan, scan_index):
 		'''Classifies a new scan of data.'''
 		valid_scan = []
 		for index, trial_index in enumerate(self.data_wrapper.valid_voxel_indexes):
@@ -74,6 +78,7 @@ class NaiveBayes:
 		self.distributions['S'] = [math.log(value) for value in distribution_sentence]
 		sum_log_picture = math.fsum(self.distributions['P'])
 		sum_log_sentence = math.fsum(self.distributions['S'])
+		print "CLASSIFICATION OF SCAN: ", (scan_index + 1)
 		print "P(Picture|Scan) = ", sum_log_picture
 		print "P(Sentence|Scan) = ", sum_log_sentence
-		print "Class: ", "Picture" if max(sum_log_picture, sum_log_sentence) == sum_log_picture else "Sentence"
+		print "Class: ", self._classification_result(sum_log_picture, sum_log_sentence)
