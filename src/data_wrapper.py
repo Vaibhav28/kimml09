@@ -1,3 +1,16 @@
+'''
+This is the structure of the data corresponding to every subject.
+t = Trial
+s = Scan
+v = Voxel
+subject['data'][t][0][s][v]
+
+For example if we want to access the value of the 1567th voxel of the 20th trial
+and the 11th scan then we would have the following:
+
+subject['data'][19][0][10][1566]
+'''
+
 from collections import namedtuple
 
 Observation = namedtuple('Observation', 'klass voxels')
@@ -38,12 +51,6 @@ class DataWrapper:
 		and scan index as defined by stimulus.'''
 		return self.subject['data'][trial_index][0][scan_index]
 
-	def _get_voxels_of_same_index(self, voxel_index, k):
-		'''Returns the voxel values of the same index. For example we want all the voxel
-		values with index 0 (means the first voxel value of each voxel vector) in order to
-		compute the conditional probability of this voxel: P(V1|Ci).'''
-		return [voxels[voxel_index] for klass, voxels in self.features if klass == k]
-
 	def _extract_features(self):
 		''''''
 		features = []
@@ -55,9 +62,9 @@ class DataWrapper:
 				features.append(Observation('S', self._get_voxels_of_same_scan(trial_index,
 																				self.second_stimulus_index)))
 			else:
-				features.append(Observation('S', self._get_voxels_of_same_index(trial_index,
+				features.append(Observation('S', self._get_voxels_of_same_scan(trial_index,
 																				self.first_stimulus_index)))
-				features.append(Observation('P', self._get_voxels_of_same_index(trial_index,
+				features.append(Observation('P', self._get_voxels_of_same_scan(trial_index,
 																				self.second_stimulus_index)))
 		return features
 
@@ -69,4 +76,8 @@ class DataWrapper:
 		self.valid_voxel_indexes = self._get_valid_voxel_indexes()
 		self.features = self._extract_features()
 
-	
+	def get_voxels_of_same_index(self, voxel_index, k):
+		'''Returns the voxel values of the same index. For example we want all the voxel
+		values with index 0 (means the first voxel value of each voxel vector) in order to
+		compute the conditional probability of this voxel: P(V1|Ci).'''
+		return [voxels[voxel_index] for klass, voxels in self.features if klass == k]
