@@ -14,6 +14,7 @@ subject['data'][19][0][10][1566]
 from __future__ import division
 from collections import namedtuple
 import scipy.io as sio
+import scipy.stats as sis
 import math
 
 Observation = namedtuple('Observation', 'klass voxels_vector')
@@ -32,8 +33,10 @@ class NaiveBayes:
 		self.priori_probabilities = {}
 		self.conditional_probabilities = []
 		self.rois = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
-		self.first_stimulus_index = 0
-		self.second_stimulus_index = 16
+		#
+		self.first_stimulus_index = 20
+		#
+		self.second_stimulus_index = 40
 
 	def _get_valid_trials(self):
 		'''Returns the valid indexes of trials for a subject accoring to condition.
@@ -63,7 +66,7 @@ class NaiveBayes:
 		'''Returns the voxel absolute values of the same index. For example we want all the voxel
 		values with index 0 (means the first voxel value of each voxel vector) in order to
 		compute the conditional probability of this voxel: P(V1|Ci).'''
-		return [math.fabs(voxels[voxel_index]) for klass, voxels in self.features if klass == c]
+		return [voxels[voxel_index] for klass, voxels in self.features if klass == c]
 
 	def _init_values(self):
 		'''Extract some basic values that the classifier needs.'''
@@ -125,28 +128,68 @@ class NaiveBayes:
 		'''Trains the classifier.'''
 		self._init_values()
 		self._extract_values()
-		self._compute_priori_probabilities()
-		self._compute_conditional_probabilities()
+		#self._compute_priori_probabilities()
+		#self._compute_conditional_probabilities()
 
-	def classify(self):
+	def classify(self, subject):
 		'''Classifies a new scan of data. The following code is just an example as for classification
 		training data are used. This needs to be modified.'''
-		scan = self._get_voxel_vector(trial_index=4, stimulus=0) # It must show `Picture'
+		#####
+		#scan = self._get_voxel_vector(trial_index=25, stimulus=34)
+		#####
 		valid_scan = []
 		for index, trial_index in enumerate(self.valid_voxel_indexes):
-			valid_scan.append(math.fabs(scan[trial_index]))
-		p_picture_scan = math.log(self.priori_probabilities['P']) + \
-							math.fsum([voxel_value * math.log(self.conditional_probabilities[0][index][1]) \
-								for index, voxel_value in enumerate(valid_scan)])
-		p_sentence_scan = math.log(self.priori_probabilities['S']) + \
-							math.fsum([voxel_value * math.log(self.conditional_probabilities[1][index][1]) \
-								for index, voxel_value in enumerate(valid_scan)])
-		print "P(Picture|Scan): ", p_picture_scan
-		print "P(Sentence|Scan): ", p_sentence_scan
-		print "Max: ", max(p_picture_scan, p_sentence_scan)
+			valid_scan.append(scan[trial_index])
+		self.distributions = {}
+		distribution_picture = []
+		distribution_sentence = []
+		for index, voxel_value in enumerate(valid_scan):
+			distribution_picture.append(sis.norm.pdf(voxel_value,
+													 self.means_picture[index],
+													 self.standard_deviations_picture[index]))
+			distribution_sentence.append(sis.norm.pdf(voxel_value,
+													  self.means_sentence[index],
+													  self.standard_deviations_sentence[index]))
+		self.distributions['P'] = [math.log(value) for value in distribution_picture]
+		self.distributions['S'] = [math.log(value) for value in distribution_sentence]
+		#
+		#
+		#
+		sum_log_picture = math.fsum(self.distributions['P'])
+		sum_log_sentence = math.fsum(self.distributions['S'])
+		print "P(Picture|Scan) = ", sum_log_picture
+		print "P(Sentence|Scan) = ", sum_log_sentence
+		print "Class: ", "Picture" if max(sum_log_picture, sum_log_sentence) == sum_log_picture else "Sentence"
+
+	def practice(self):
+		''''''
+		self.means_picture = []
+		self.means_sentence = []
+		for voxel_index in self.valid_voxel_indexes:
+			voxel_vector = self._get_voxels_of_same_index(voxel_index, 'P')
+			self.means_picture.append(math.fsum(voxel_vector) / len(voxel_vector))
+			voxel_vector = self._get_voxels_of_same_index(voxel_index, 'S')
+			self.means_sentence.append(math.fsum(voxel_vector) / len(voxel_vector))
+		self.standard_deviations_picture = []
+		self.standard_deviations_sentence = []
+		for index, voxel_index in enumerate(self.valid_voxel_indexes):
+			voxel_vector = self._get_voxels_of_same_index(voxel_index, 'P')
+			variance = 0
+			for voxel_value in voxel_vector:
+				variance += ((voxel_value - self.means_picture[index])**2) / (len(voxel_vector)-1)
+			self.standard_deviations_picture.append(math.sqrt(variance))
+		for index, voxel_index in enumerate(self.valid_voxel_indexes):
+			voxel_vector = self._get_voxels_of_same_index(voxel_index, 'S')
+			variance = 0
+			for voxel_value in voxel_vector:
+				variance += ((voxel_value - self.means_sentence[index])**2) / (len(voxel_vector)-1)
+			self.standard_deviations_sentence.append(math.sqrt(variance))
 
 if __name__ == "__main__":
 	subject = sio.loadmat('data-starplus-04799-v7.mat')
 	naive_bayes = NaiveBayes(subject)
 	naive_bayes.train()
+	naive_bayes.practice()
+	subject = sio.loadmat('data-starplus-04820-v7.mat')
+
 	naive_bayes.classify()

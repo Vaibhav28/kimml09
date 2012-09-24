@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{array}
+\setlength\parindent{0pt}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\textbf{Data Structure}\\
+
+$t =$ Total number of trials\\
+
+$s =$ Total number of scans\\
+
+$v =$ Total number of voxels\\
+
+\begin{center}
+\begin{tabular}{ C{1cm} | C{1cm} | C{1cm} | C{1cm} | C{1cm} | C{1cm} | }
+\multicolumn{6}{ C{1cm} }{$T_1$} \\
+& & $V_1$ & $V_2$ & \dots & $V_v$ \\
+& $S_1$ & & & & \\
+& $S_2$ & & & & \\
+& \vdots & & & & \\
+& $S_s$ & & & & \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ C{1cm} | C{1cm} | C{1cm} | C{1cm} | C{1cm} | C{1cm} | }
+\multicolumn{6}{ C{1cm} }{$T_2$} \\
+& & $V_1$ & $V_2$ & \dots & $V_v$ \\
+& $S_1$ & & & & \\
+& $S_2$ & & & & \\
+& \vdots & & & & \\
+& $S_s$ & & & & \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ C{1cm} | C{1cm} | C{1cm} | C{1cm} | C{1cm} | C{1cm} | }
+\multicolumn{6}{ C{1cm} }{$T_t$} \\
+& & $V_1$ & $V_2$ & \dots & $V_v$ \\
+& $S_1$ & & & & \\
+& $S_2$ & & & & \\
+& \vdots & & & & \\
+& $S_s$ & & & & \\
+\end{tabular}
+\end{center}
+
+\end{document}
