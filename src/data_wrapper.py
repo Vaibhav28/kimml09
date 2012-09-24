@@ -46,7 +46,8 @@ class DataWrapper:
 		be either P if the subject saw a picture, or S if the subject saw a sentence.'''
 		return self.subject['info'][0][trial_index]['firstStimulus'][0]
 
-	def _get_voxels_of_same_scan(self, trial_index, scan_index):
+	# non_private for now
+	def get_voxels_of_same_scan(self, trial_index, scan_index):
 		'''Returns the voxel vector data for the trial with index trial_index
 		and scan index as defined by stimulus.'''
 		return self.subject['data'][trial_index][0][scan_index]
@@ -57,14 +58,14 @@ class DataWrapper:
 		for index, trial_index in enumerate(self.valid_trial_indexes):
 			klass = self._get_first_stimulus(trial_index)
 			if klass == 'P':
-				features.append(Observation('P', self._get_voxels_of_same_scan(trial_index,
+				features.append(Observation('P', self.get_voxels_of_same_scan(trial_index,
 																				self.first_stimulus_index)))
-				features.append(Observation('S', self._get_voxels_of_same_scan(trial_index,
+				features.append(Observation('S', self.get_voxels_of_same_scan(trial_index,
 																				self.second_stimulus_index)))
 			else:
-				features.append(Observation('S', self._get_voxels_of_same_scan(trial_index,
+				features.append(Observation('S', self.get_voxels_of_same_scan(trial_index,
 																				self.first_stimulus_index)))
-				features.append(Observation('P', self._get_voxels_of_same_scan(trial_index,
+				features.append(Observation('P', self.get_voxels_of_same_scan(trial_index,
 																				self.second_stimulus_index)))
 		return features
 

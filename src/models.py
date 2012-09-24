@@ -55,14 +55,10 @@ class NaiveBayes:
 		self._compute_means()
 		self._compute_standard_deviations()
 
-	def classify(self, subject):
-		'''Classifies a new scan of data. The following code is just an example as for classification
-		training data are used. This needs to be modified.'''
-		#####
-		#scan = self._get_voxel_vector(trial_index=25, stimulus=34)
-		#####
+	def classify(self, scan):
+		'''Classifies a new scan of data.'''
 		valid_scan = []
-		for index, trial_index in enumerate(self.valid_voxel_indexes):
+		for index, trial_index in enumerate(self.data_wrapper.valid_voxel_indexes):
 			valid_scan.append(scan[trial_index])
 		self.distributions = {}
 		distribution_picture = []
@@ -76,9 +72,6 @@ class NaiveBayes:
 													  self.standard_deviations_sentence[index]))
 		self.distributions['P'] = [math.log(value) for value in distribution_picture]
 		self.distributions['S'] = [math.log(value) for value in distribution_sentence]
-		#
-		#
-		#
 		sum_log_picture = math.fsum(self.distributions['P'])
 		sum_log_sentence = math.fsum(self.distributions['S'])
 		print "P(Picture|Scan) = ", sum_log_picture
