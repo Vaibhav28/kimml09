@@ -13,6 +13,7 @@ subject['data'][19][0][10][1566]
 
 from __future__ import division
 from collections import namedtuple
+import scipy.io as sio
 import math
 
 Observation = namedtuple('Observation', 'klass voxels_vector')
@@ -142,3 +143,9 @@ class NaiveBayes:
 		print "P(Picture|Scan): ", p_picture_scan
 		print "P(Sentence|Scan): ", p_sentence_scan
 		print "Max: ", max(p_picture_scan, p_sentence_scan)
+
+if __name__ == "__main__":
+	subject = sio.loadmat('data-starplus-04799-v7.mat')
+	naive_bayes = NaiveBayes(subject)
+	naive_bayes.train()
+	naive_bayes.classify()
