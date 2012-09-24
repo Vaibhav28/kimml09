@@ -20,6 +20,7 @@ Observation = namedtuple('Observation', 'klass voxels_vector')
 ConditionalProbability = namedtuple('ConditionalProbability', 'klass voxel_value')
 
 class NaiveBayes:
+	'''This class implements a naive bayes classifier.'''
 
 	def __init__(self, subject):
 		self.subject = subject
