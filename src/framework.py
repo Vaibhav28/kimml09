@@ -5,6 +5,7 @@ from models import NaiveBayes
 import scipy.io as sio
 
 # Loadmat should use $PATH, but somehow it fails for me (Mattijs)
+# subject = sio.loadmat('../../fmri_project/data-starplus-04799-ROI.mat')
 subject = sio.loadmat('data-starplus-04799-v7.mat')
 
 data_wrapper = DataWrapper(subject)
