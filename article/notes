@@ -7,3 +7,4 @@ random notes
     - Should help for classifying multiple subjects, but not for one single subject
 
 - Tried some running, comparing outcomes.
+- What is actually the 'expected' class? We should only classify scans that are equal to 1st/2nd stimulus index

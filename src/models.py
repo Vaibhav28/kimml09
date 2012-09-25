@@ -79,7 +79,9 @@ class NaiveBayes:
         self.distributions['S'] = [math.log(value) for value in distribution_sentence]
         sum_log_picture = math.fsum(self.distributions['P'])
         sum_log_sentence = math.fsum(self.distributions['S'])
+        klass = self._classification_result(sum_log_picture, sum_log_sentence)
         print "CLASSIFICATION OF SCAN: ", (scan_index + 1)
         print "P(Picture|Scan) = ", sum_log_picture
         print "P(Sentence|Scan) = ", sum_log_sentence
-        print "Class: ", self._classification_result(sum_log_picture, sum_log_sentence)
+        print "Class: ", klass
+        return klass
