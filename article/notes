@@ -1,0 +1,9 @@
+random notes
+
+25th september (practical)
+- Discussed optimal time vs response, see also: http://nih.academia.edu/PeterBandettini/Papers/232419/Detection_Versus_Estimation_In_Event-Related_FMRI_Choosing_the_Optimal_Stimulus_Timing
+
+- Discuss preprocessing data (by using the matlab functions) to avg ROI and compare results, so that we may compare between subjects (region may better represent than voxels?)
+    - Should help for classifying multiple subjects, but not for one single subject
+
+- Tried some running, comparing outcomes.
