@@ -4,6 +4,7 @@ from data_wrapper import DataWrapper
 from models import NaiveBayes
 import scipy.io as sio
 
+# Loadmat should use $PATH, but somehow it fails for me (Mattijs)
 subject = sio.loadmat('data-starplus-04799-v7.mat')
 
 data_wrapper = DataWrapper(subject)
@@ -15,5 +16,5 @@ naive_bayes.train()
 # Classification starts here
 trial_index = 3
 for scan_index in range(54):
-	scan = subject['data'][trial_index][0][scan_index]
-	naive_bayes.classify(scan, scan_index)
+    scan = subject['data'][trial_index][0][scan_index]
+    naive_bayes.classify(scan, scan_index)
