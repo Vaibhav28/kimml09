@@ -13,9 +13,9 @@ from models import NaiveBayes
 import scipy.io as sio
 
 subjects = [
-	sio.loadmat('../matlab/matlab_avergage_rois_04799.mat'),
-	sio.loadmat('../matlab/matlab_avergage_rois_04820.mat'),
-	sio.loadmat('../matlab/matlab_avergage_rois_04847.mat')
+    sio.loadmat('../matlab/matlab_avergage_rois_04799.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_04820.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_04847.mat')
 ]
 
 data_wrapper = DataWrapper(subjects)
@@ -23,6 +23,7 @@ data_wrapper.extract_values()
 
 naive_bayes = NaiveBayes(data_wrapper)
 naive_bayes.train()
+
 
 def get_expected_class(subject, trial_index, scan_index):
     '''
@@ -59,10 +60,10 @@ if __name__ == '__main__':
     valid_trials = data_wrapper.get_valid_trial_indexes(class_subject, num_of_trials)
     score = 0
     for trial_index in valid_trials:
-    	for scan_index in [FIRST_STIMULUS_SCAN, SECOND_STIMULUS_SCAN]:
-    		scan = data_wrapper.get_voxels_of_same_scan(class_subject, trial_index, scan_index)
-        	expected_class = get_expected_class(class_subject, trial_index, scan_index)
-        	predicted_class = naive_bayes.classify(scan)
-        	if expected_class == predicted_class:
-        		score += 1
+        for scan_index in [FIRST_STIMULUS_SCAN, SECOND_STIMULUS_SCAN]:
+            scan = data_wrapper.get_voxels_of_same_scan(class_subject, trial_index, scan_index)
+            expected_class = get_expected_class(class_subject, trial_index, scan_index)
+            predicted_class = naive_bayes.classify(scan)
+            if expected_class == predicted_class:
+                score += 1
     print "Correctly classified %s out of %s scans" % (score, len(scanset))

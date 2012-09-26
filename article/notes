@@ -1,10 +1,16 @@
-random notes
+random notes / log
 
-25th september (practical)
+25TH SEPTEMBER
 - Discussed optimal time vs response, see also: http://nih.academia.edu/PeterBandettini/Papers/232419/Detection_Versus_Estimation_In_Event-Related_FMRI_Choosing_the_Optimal_Stimulus_Timing
 
 - Discuss preprocessing data (by using the matlab functions) to avg ROI and compare results, so that we may compare between subjects (region may better represent than voxels?)
     - Should help for classifying multiple subjects, but not for one single subject
 
 - Tried some running, comparing outcomes.
-- What is actually the 'expected' class? We should only classify scans that are equal to 1st/2nd stimulus index
+- What is actually the 'expected' class? We should only classify scans that are equal to 1st/2nd stimulus index\
+
+
+26TH SEPTEMBER
+- added some basic scoring function to log our results
+- tried to use avg+stddev on regions. Train on 3 subjects, then classify another subject. Only using scan ~17 and ~37 (assuming the optimal response is in there). Results are quite mediocre, approximating a 50/50 result.
+- next up: try the given functions from the project
