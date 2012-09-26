@@ -15,8 +15,8 @@ from collections import namedtuple
 
 Observation = namedtuple('Observation', 'klass voxels')
 
-FIRST_STIMULUS_SCAN = 20
-SECOND_STIMULUS_SCAN = 40
+FIRST_STIMULUS_SCAN = 17
+SECOND_STIMULUS_SCAN = 34
 
 class DataWrapper:
     ''''''
@@ -24,10 +24,6 @@ class DataWrapper:
     def __init__(self, subjects):
         ''''''
         self.subjects = subjects
-        #self.num_of_voxels = None
-        #self.num_of_trials = None
-        #self.valid_trial_indexes = None
-        #self.valid_voxel_indexes = None
         self.rois = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
         self.first_stimulus_index = FIRST_STIMULUS_SCAN
         self.second_stimulus_index = SECOND_STIMULUS_SCAN
@@ -78,9 +74,7 @@ class DataWrapper:
         ''''''
         for subject in self.subjects:
             num_of_trials = subject['meta']['ntrials'][0][0][0][0]
-            #num_of_voxels = subject['meta']['nvoxels'][0][0][0][0]
             valid_trial_indexes = self.get_valid_trial_indexes(subject, num_of_trials)
-            #valid_voxel_indexes = self._get_valid_voxel_indexes(num_of_voxels)
             self._extract_features(subject, valid_trial_indexes)
 
     def get_voxels_of_same_index(self, voxel_index, k):
