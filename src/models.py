@@ -5,11 +5,13 @@ import math
 
 ConditionalProbability = namedtuple('ConditionalProbability', 'klass voxel_value')
 
+NUM_OF_VOXELS = 7
 
 class NaiveBayes:
     '''This class implements a naive bayes classifier.'''
 
     def __init__(self, data_wrapper):
+        ''''''
         self.data_wrapper = data_wrapper
         self.priori_probabilities = {}
         self.means_picture = []
@@ -28,7 +30,7 @@ class NaiveBayes:
 
     def _compute_means(self):
         ''''''
-        for voxel_index in self.data_wrapper.valid_voxel_indexes:
+        for voxel_index in range(NUM_OF_VOXELS):
             voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'P')
             self.means_picture.append(math.fsum(voxel_vector) / len(voxel_vector))
             voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'S')
@@ -36,14 +38,14 @@ class NaiveBayes:
 
     def _compute_standard_deviations(self):
         ''''''
-        for index, voxel_index in enumerate(self.data_wrapper.valid_voxel_indexes):
-            voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'P')
+        for index in range(NUM_OF_VOXELS):
+            voxel_vector = self.data_wrapper.get_voxels_of_same_index(index, 'P')
             variance = 0
             for voxel_value in voxel_vector:
                 variance += ((voxel_value - self.means_picture[index]) ** 2) / (len(voxel_vector) - 1)
             self.standard_deviations_picture.append(math.sqrt(variance))
-        for index, voxel_index in enumerate(self.data_wrapper.valid_voxel_indexes):
-            voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'S')
+        for index in range(NUM_OF_VOXELS):
+            voxel_vector = self.data_wrapper.get_voxels_of_same_index(index, 'S')
             variance = 0
             for voxel_value in voxel_vector:
                 variance += ((voxel_value - self.means_sentence[index]) ** 2) / (len(voxel_vector) - 1)
