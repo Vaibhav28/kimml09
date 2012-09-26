@@ -12,9 +12,6 @@ from data_wrapper import DataWrapper
 from models import NaiveBayes
 import scipy.io as sio
 
-FIRST_STIMULUS_SCAN = 20
-SECOND_STIMULUS_SCAN = 40
-
 subjects = [
 	sio.loadmat('../matlab/matlab_avergage_rois_04799.mat'),
 	sio.loadmat('../matlab/matlab_avergage_rois_04820.mat'),
@@ -52,16 +49,20 @@ def get_expected_class(subject, trial_index, scan_index):
         else:
             return 'Picture'
 
+FIRST_STIMULUS_SCAN = 20
+SECOND_STIMULUS_SCAN = 40
+
 # Classification starts here
 if __name__ == '__main__':
     class_subject = sio.loadmat('../matlab/matlab_avergage_rois_05675.mat')
+    num_of_trials = class_subject['meta']['ntrials'][0][0][0][0]
+    valid_trials = data_wrapper.get_valid_trial_indexes(class_subject, num_of_trials)
     score = 0
-    scanset = range(54)  # We probably want only certain scans classified
-    for scan_index in scanset:
-        scan = class_subject['data'][trial_index][0][scan_index]
-        # Obviously, expected should be derived
-        expected_class = get_expected_class(class_subject, trial_index, scan_index)
-        predicted_class = naive_bayes.classify(scan, scan_index)
-        if expected_class == predicted_class:
-            score += 1
+    for trial_index in valid_trials:
+    	for scan_index in [FIRST_STIMULUS_SCAN, SECOND_STIMULUS_SCAN]:
+    		scan = data_wrapper.get_voxels_of_same_scan(class_subject, trial_index, scan_index)
+        	expected_class = get_expected_class(class_subject, trial_index, scan_index)
+        	predicted_class = naive_bayes.classify(scan)
+        	if expected_class == predicted_class:
+        		score += 1
     print "Correctly classified %s out of %s scans" % (score, len(scanset))

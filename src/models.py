@@ -62,15 +62,15 @@ class NaiveBayes:
         ''''''
         return "Picture" if max(sum_log_picture, sum_log_sentence) == sum_log_picture else "Sentence"
 
-    def classify(self, scan, scan_index):
+    def classify(self, scan):
         '''Classifies a new scan of data.'''
-        valid_scan = []
-        for index, trial_index in enumerate(self.data_wrapper.valid_voxel_indexes):
-            valid_scan.append(scan[trial_index])
+        # valid_scan = []
+        # for index, trial_index in range(NUM_OF_VOXELS):
+        #     valid_scan.append(scan[trial_index])
         self.distributions = {}
         distribution_picture = []
         distribution_sentence = []
-        for index, voxel_value in enumerate(valid_scan):
+        for index, voxel_value in enumerate(scan):
             distribution_picture.append(sis.norm.pdf(voxel_value,
                                                      self.means_picture[index],
                                                      self.standard_deviations_picture[index]))
@@ -82,8 +82,9 @@ class NaiveBayes:
         sum_log_picture = math.fsum(self.distributions['P'])
         sum_log_sentence = math.fsum(self.distributions['S'])
         klass = self._classification_result(sum_log_picture, sum_log_sentence)
-        print "CLASSIFICATION OF SCAN: ", (scan_index + 1)
+        print "##########"
         print "P(Picture|Scan) = ", sum_log_picture
         print "P(Sentence|Scan) = ", sum_log_sentence
         print "Class: ", klass
+        print "##########"
         return klass

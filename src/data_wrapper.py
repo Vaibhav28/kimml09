@@ -33,7 +33,7 @@ class DataWrapper:
         self.second_stimulus_index = SECOND_STIMULUS_SCAN
         self.features = []
 
-    def _get_valid_trial_indexes(self, subject, num_of_trials):
+    def get_valid_trial_indexes(self, subject, num_of_trials):
         '''Returns the valid indexes of trials for a subject accoring to condition.
         We care only about conditions with value 2 or 3.'''
         return [index for index in range(num_of_trials)
@@ -79,7 +79,7 @@ class DataWrapper:
         for subject in self.subjects:
             num_of_trials = subject['meta']['ntrials'][0][0][0][0]
             #num_of_voxels = subject['meta']['nvoxels'][0][0][0][0]
-            valid_trial_indexes = self._get_valid_trial_indexes(subject, num_of_trials)
+            valid_trial_indexes = self.get_valid_trial_indexes(subject, num_of_trials)
             #valid_voxel_indexes = self._get_valid_voxel_indexes(num_of_voxels)
             self._extract_features(subject, valid_trial_indexes)
 
