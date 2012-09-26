@@ -5,7 +5,7 @@ from models import NaiveBayes
 import scipy.io as sio
 
 files = [
-	'matlab_avergage_rois_04799.mat',
+	'../matlab/matlab_avergage_rois_04799.mat',
 	# 'matlab_avergage_rois_04820.mat',
 	# 'matlab_avergage_rois_04847.mat'
 ]
