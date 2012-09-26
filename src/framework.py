@@ -1,5 +1,13 @@
 #!/usr/bin/env python
+'''
+Framework for training and classifying FMRI data.
 
+This framework offers a set of functions to train a classification algorithm
+and then use this to classify test data. For more info, please see the article
+accompanying this framework.
+
+@since September 2012
+'''
 from data_wrapper import DataWrapper
 from models import NaiveBayes
 import scipy.io as sio
@@ -19,17 +27,41 @@ data_wrapper.extract_values()
 naive_bayes = NaiveBayes(data_wrapper)
 naive_bayes.train()
 
-class_subject = sio.loadmat('../matlab/matlab_avergage_rois_05675.mat')
+def get_expected_class(subject, trial_index, scan_index):
+    '''
+    Checks the subject's info to see what class is expected when
+    classifying a scan from a certain trial. Trial index runs from 1 to 54.
+    Since we only know 'firstStimulus' for a trial, we'll map all scans before
+    [...] to firstStimulus and the rest to the secondStimulus.
+
+    According to data, trial_index 1..27 all have firstStimulus = 'P'.
+    Each trial has ~54 scans, so we'll asume that 27 is the halfwayPoint/
+
+    Returns either 'Picture' or 'Sentence'
+    '''
+    halfwayPoint = 27
+    first_stimulus = subject['info'][0][1][trial_index][0]
+    if first_stimulus == 'P':
+        if scan_index < halfwayPoint:
+            return 'Picture'
+        else:
+            return 'Sentence'
+    else:
+        if scan_index < halfwayPoint:
+            return 'Sentence'
+        else:
+            return 'Picture'
 
 # Classification starts here
 if __name__ == '__main__':
+    class_subject = sio.loadmat('../matlab/matlab_avergage_rois_05675.mat')
     score = 0
     scanset = range(54)  # We probably want only certain scans classified
     for scan_index in scanset:
         scan = class_subject['data'][trial_index][0][scan_index]
         # Obviously, expected should be derived
-        expected_klass = "Picture"
-        predicted_klass = naive_bayes.classify(scan, scan_index)
-        if expected_klass == predicted_klass:
+        expected_class = get_expected_class(class_subject, trial_index, scan_index)
+        predicted_class = naive_bayes.classify(scan, scan_index)
+        if expected_class == predicted_class:
             score += 1
     print "Correctly classified %s out of %s scans" % (score, len(scanset))
