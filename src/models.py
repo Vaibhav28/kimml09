@@ -64,9 +64,6 @@ class NaiveBayes:
 
     def classify(self, scan):
         '''Classifies a new scan of data.'''
-        # valid_scan = []
-        # for index, trial_index in range(NUM_OF_VOXELS):
-        #     valid_scan.append(scan[trial_index])
         self.distributions = {}
         distribution_picture = []
         distribution_sentence = []
@@ -86,5 +83,4 @@ class NaiveBayes:
         print "P(Picture|Scan) = ", sum_log_picture
         print "P(Sentence|Scan) = ", sum_log_sentence
         print "Class: ", klass
-        print "##########"
         return klass
