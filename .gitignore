@@ -43,3 +43,7 @@ pip-log.txt
 
 # Matlab files
 *.mat
+
+# Sublime
+sublime-project
+sublime-workspace
