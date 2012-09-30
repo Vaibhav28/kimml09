@@ -15,8 +15,8 @@ class CoordDataWrapper:
 		for subject_index in range(len(self.subjects)):
 			subject_coord = []
 			for z in range(8):
-				for x in range(64):
-					for y in range(64):
+				for y in range(64):
+					for x in range(64):
 						subject_coord.append(self.subjects[subject_index]['meta']['coordToCol'][0][0][x][y][z])
 			subjects_coords.append(subject_coord)
 
@@ -32,5 +32,6 @@ class CoordDataWrapper:
 			if not 0 in coord:
 				valid_coords.append(coord)
 
-		for valid_coords_list in valid_coords:
-			print valid_coords_list
+		# now we have all the valid voxel indexes for each subject
+		# the valid_coords contains lists (605), every list is a coordinate
+		# which contains the 6 valid voxel indexes one for each subject
