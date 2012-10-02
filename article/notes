@@ -14,3 +14,23 @@ random notes / log
 - added some basic scoring function to log our results
 - tried to use avg+stddev on regions. Train on 3 subjects, then classify another subject. Only using scan ~17 and ~37 (assuming the optimal response is in there). Results are quite mediocre, approximating a 50/50 result.
 - next up: try the given functions from the project
+
+September 28th
+- added mapping between xyz and indices so that we can compare similar voxels from subject
+
+October 2nd
+- continued on prepping subject data to compare single voxels. Made some performance improvements.
+- experiments we want to do:
+    - Single voxel cross-subject
+    - ROI cross subject
+    - Leave-one-out
+
+    Steps for current experiment:
+    - Train on list of subjects
+        - Extract voxels to use (creating a list for each subject)
+        - Train trial/scans
+    - Classify another subject
+        - How to extract voxels!!? Should do this beforehand for intersecting non-zero and aligning with training data. This is ugly... even worse, we should not remove training data because test data is zero... instead, maybe keep a list after training and use that to intersect test data?
+
+- Looked at some imagery of our data, make sure to put some in the report
+- 1 by 1 comparison seems a bit silly, since xyz does not always map to same region voxels
