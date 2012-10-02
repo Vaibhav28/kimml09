@@ -45,7 +45,6 @@ class DataWrapper:
         be either `P' if the subject saw a picture, or `S' if the subject saw a sentence.'''
         return subject['info'][0][trial_index]['firstStimulus'][0]
 
-    # non_private for now
     def get_voxels_of_same_scan(self, subject, trial_index, scan_index):
         '''Returns the voxel vector data for the trial with index trial_index
         and scan with index scan_index.'''
