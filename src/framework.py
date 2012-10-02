@@ -8,45 +8,52 @@ accompanying this framework.
 
 @since September 2012
 '''
-import scipy.io as sio
+from __future__ import division
 
+import scipy.io as sio
 from data_wrapper import DataWrapper
-from coord_data_wrapper import CoordDataWrapper
 from models import NaiveBayes
 from functions import get_expected_class
 from data_wrapper import FIRST_STIMULUS_SCAN
 from data_wrapper import SECOND_STIMULUS_SCAN
 
-# List of matlab data files
-subjects = [
-    sio.loadmat('../matlab/matlab_avergage_rois_04799.mat'),
-    sio.loadmat('../matlab/matlab_avergage_rois_04820.mat'),
-    sio.loadmat('../matlab/matlab_avergage_rois_04847.mat'),
-    sio.loadmat('../matlab/matlab_avergage_rois_05675.mat'),
-    sio.loadmat('../matlab/matlab_avergage_rois_05680.mat'),
-    # sio.loadmat('../matlab/matlab_avergage_rois_05710.mat'),
-    # sio.loadmat('../matlab/data-starplus-04799-v7.mat'),
-    # sio.loadmat('../matlab/data-starplus-04820-v7.mat'),
-    # sio.loadmat('../matlab/data-starplus-04847-v7.mat'),
-    # sio.loadmat('../matlab/data-starplus-05675-v7.mat'),
-    # sio.loadmat('../matlab/data-starplus-05680-v7.mat'),
-    # sio.loadmat('../matlab/data-starplus-05710-v7.mat')
+files = [
+    '../matlab/matlab_avergage_rois_04799.mat',
+    '../matlab/matlab_avergage_rois_04820.mat',
+    '../matlab/matlab_avergage_rois_04847.mat',
+    '../matlab/matlab_avergage_rois_05675.mat',
+    '../matlab/matlab_avergage_rois_05680.mat',
+    '../matlab/matlab_avergage_rois_05710.mat'
 ]
 
-# coord_data_wrapper = CoordDataWrapper(subjects)
-# coord_data_wrapper.extract_values()
+'''
+For our model, we first train it using a subset of data and then
+classify it on some (other) subset of data. Make sure to
+split these sets at the top of the following loop.
+'''
+tscore = 0
+tcount = 0
+for i in range(len(files)):
+    # Select 1 file for testing
+    test_data = files[i]
+    subjects = []
 
-data_wrapper = DataWrapper(subjects)
-data_wrapper.extract_values()
+    # Use the rest for training
+    for j in range(len(files)):
+        if j != i:
+            subjects.append(sio.loadmat(files[j]))
 
-naive_bayes = NaiveBayes(data_wrapper)
-naive_bayes.train()
+    data_wrapper = DataWrapper(subjects)
+    data_wrapper.extract_values()
 
-if __name__ == '__main__':
+    naive_bayes = NaiveBayes(data_wrapper)
+    naive_bayes.train()
+    print "Classifier trained using %s subjects:" % (len(subjects))
+
     '''
     From here on, we start classification
     '''
-    class_subject = sio.loadmat('../matlab/matlab_avergage_rois_05710.mat')
+    class_subject = sio.loadmat(test_data)
     num_of_trials = class_subject['meta']['ntrials'][0][0][0][0]
     valid_trials = data_wrapper.get_valid_trial_indexes(class_subject, num_of_trials)
     score = 0
@@ -60,3 +67,9 @@ if __name__ == '__main__':
                 score += 1
             counter += 1
     print "Correctly classified %s out of %s scans" % (score, counter)
+    print "Score: %s%%" % (score / counter * 100.0)
+    tscore += score
+    tcount += counter
+
+print "Overall classified %s out of %s scans" % (tscore, tcount)
+print "Total score: %s%%" % (tscore / tcount * 100.0)
