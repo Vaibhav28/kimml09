@@ -7,7 +7,7 @@ subjects = [
     sio.loadmat('../matlab/data-starplus-04847-v7.mat'),
     sio.loadmat('../matlab/data-starplus-05675-v7.mat'),
     sio.loadmat('../matlab/data-starplus-05680-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05710-v7.mat')   
+    # sio.loadmat('../matlab/data-starplus-05710-v7.mat')   
 ]
 
 coord = CoordDataWrapper(subjects)
