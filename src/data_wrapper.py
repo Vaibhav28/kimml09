@@ -21,10 +21,9 @@ SECOND_STIMULUS_SCAN = 34
 class DataWrapper:
     ''''''
 
-    def __init__(self, subjects, coord_data_wrapper):
+    def __init__(self, subjects):
         ''''''
         self.subjects = subjects
-        self.coord_data_wrapper = coord_data_wrapper
         self.rois = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
         self.first_stimulus_index = FIRST_STIMULUS_SCAN
         self.second_stimulus_index = SECOND_STIMULUS_SCAN
@@ -47,46 +46,36 @@ class DataWrapper:
         return subject['info'][0][trial_index]['firstStimulus'][0]
 
     # non_private for now
-    def get_voxels_of_same_scan(self, subject, subject_index, trial_index, scan_index):
+    def get_voxels_of_same_scan(self, subject, trial_index, scan_index):
         '''Returns the voxel vector data for the trial with index trial_index
         and scan with index scan_index.'''
-        # print subject_index, trial_index, scan_index
-        empty = []
-        for voxel_index in self.coord_data_wrapper.features[subject_index]:
-            # print voxel_index
-            empty.append(subject['data'][trial_index][0][scan_index][voxel_index - 1])
-        return empty
+        return subject['data'][trial_index][0][scan_index]
 
-
-    def _extract_features(self, subject, subject_index, valid_trial_indexes):
+    def _extract_features(self, subject, valid_trial_indexes):
         ''''''
         for index, trial_index in enumerate(valid_trial_indexes):
             klass = self._get_first_stimulus(subject, trial_index)
             if klass == 'P':
                 self.features.append(Observation('P', self.get_voxels_of_same_scan(subject,
-                                                                                    subject_index,
                                                                                     trial_index,
                                                                                     self.first_stimulus_index)))
                 self.features.append(Observation('S', self.get_voxels_of_same_scan(subject,
-                                                                                    subject_index,
                                                                                     trial_index,
                                                                                     self.second_stimulus_index)))
             else:
                 self.features.append(Observation('S', self.get_voxels_of_same_scan(subject,
-                                                                                    subject_index,
                                                                                     trial_index,
                                                                                     self.first_stimulus_index)))
                 self.features.append(Observation('P', self.get_voxels_of_same_scan(subject,
-                                                                                    subject_index,
                                                                                     trial_index,
                                                                                     self.second_stimulus_index)))
 
     def extract_values(self):
         ''''''
-        for subject_index, subject in enumerate(self.subjects):
+        for subject in self.subjects:
             num_of_trials = subject['meta']['ntrials'][0][0][0][0]
             valid_trial_indexes = self.get_valid_trial_indexes(subject, num_of_trials)
-            self._extract_features(subject, subject_index, valid_trial_indexes)
+            self._extract_features(subject, valid_trial_indexes)
 
     def get_voxels_of_same_index(self, voxel_index, k):
         '''Returns the voxel values of the same index. For example we want all the voxel
