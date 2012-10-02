@@ -53,8 +53,7 @@ if __name__ == '__main__':
     counter = 0
     for trial_index in valid_trials:
         for scan_index in [FIRST_STIMULUS_SCAN, SECOND_STIMULUS_SCAN]:
-            # print len(data_wrapper.subjects[5]['data'][trial_index][0][scan_index])
-            scan = data_wrapper.get_voxels_of_same_scan(class_subject, 5, trial_index, scan_index)
+            scan = data_wrapper.get_voxels_of_same_scan(class_subject, trial_index, scan_index)
             expected_class = get_expected_class(class_subject, trial_index, scan_index)
             predicted_class = naive_bayes.classify(scan)
             if expected_class == predicted_class:
