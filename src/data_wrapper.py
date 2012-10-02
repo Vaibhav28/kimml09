@@ -15,8 +15,8 @@ from collections import namedtuple
 
 Observation = namedtuple('Observation', 'klass voxels')
 
-FIRST_STIMULUS_SCAN = 17
-SECOND_STIMULUS_SCAN = 34
+FIRST_STIMULUS_SCAN = range(10, 20)
+SECOND_STIMULUS_SCAN = range(27, 37)
 
 class DataWrapper:
     ''''''
@@ -55,19 +55,23 @@ class DataWrapper:
         for index, trial_index in enumerate(valid_trial_indexes):
             klass = self._get_first_stimulus(subject, trial_index)
             if klass == 'P':
-                self.features.append(Observation('P', self.get_voxels_of_same_scan(subject,
-                                                                                    trial_index,
-                                                                                    self.first_stimulus_index)))
-                self.features.append(Observation('S', self.get_voxels_of_same_scan(subject,
-                                                                                    trial_index,
-                                                                                    self.second_stimulus_index)))
+                for index in self.first_stimulus_index:
+                    self.features.append(Observation('P', self.get_voxels_of_same_scan(subject,
+                                                                                        trial_index,
+                                                                                        index)))
+                for index in self.second_stimulus_index:
+                    self.features.append(Observation('S', self.get_voxels_of_same_scan(subject,
+                                                                                        trial_index,
+                                                                                        index)))
             else:
-                self.features.append(Observation('S', self.get_voxels_of_same_scan(subject,
-                                                                                    trial_index,
-                                                                                    self.first_stimulus_index)))
-                self.features.append(Observation('P', self.get_voxels_of_same_scan(subject,
-                                                                                    trial_index,
-                                                                                    self.second_stimulus_index)))
+                for index in self.first_stimulus_index:
+                    self.features.append(Observation('S', self.get_voxels_of_same_scan(subject,
+                                                                                        trial_index,
+                                                                                        index)))
+                for index in self.second_stimulus_index:
+                    self.features.append(Observation('P', self.get_voxels_of_same_scan(subject,
+                                                                                        trial_index,
+                                                                                        index)))
 
     def extract_values(self):
         ''''''
