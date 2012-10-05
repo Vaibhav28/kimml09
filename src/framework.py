@@ -16,6 +16,7 @@ from models import NaiveBayes
 from functions import get_expected_class
 from data_wrapper import FIRST_STIMULUS_SCAN
 from data_wrapper import SECOND_STIMULUS_SCAN
+import math
 
 files = [
     '../matlab/matlab_avergage_rois_04799.mat',
@@ -59,10 +60,16 @@ for i in range(len(files)):
     score = 0
     counter = 0
     for trial_index in valid_trials:
-        for scan_index in [FIRST_STIMULUS_SCAN, SECOND_STIMULUS_SCAN]:
-            scan = data_wrapper.get_voxels_of_same_scan(class_subject, trial_index, scan_index)
-            expected_class = get_expected_class(class_subject, trial_index, scan_index)
-            predicted_class = naive_bayes.classify(scan)
+        for scan_index_vector in [FIRST_STIMULUS_SCAN, SECOND_STIMULUS_SCAN]:
+            sum_sum_log_picture = 0
+            sum_sum_log_sentence = 0
+            expected_class = get_expected_class(class_subject, trial_index, scan_index_vector[int(math.floor(len(scan_index_vector)/2))])
+            for scan_index in scan_index_vector:
+                scan = data_wrapper.get_voxels_of_same_scan(class_subject, trial_index, scan_index)
+                sum_log_picture, sum_log_sentence = naive_bayes.classify(scan)
+                sum_sum_log_picture += sum_log_picture
+                sum_sum_log_sentence += sum_log_sentence
+            predicted_class = "Picture" if max(sum_sum_log_picture, sum_sum_log_sentence) == sum_sum_log_picture else "Sentence"
             if expected_class == predicted_class:
                 score += 1
             counter += 1

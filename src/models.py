@@ -1,5 +1,6 @@
 from __future__ import division
 from collections import namedtuple
+import scipy
 import scipy.stats as sis
 import math
 
@@ -31,25 +32,19 @@ class NaiveBayes:
     def _compute_means(self):
         ''''''
         for voxel_index in range(NUM_OF_VOXELS):
-            voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'P')
-            self.means_picture.append(math.fsum(voxel_vector) / len(voxel_vector))
+            voxel_vector = self.data_wrapper.get_voxels_of_same_index(  voxel_index, 'P')
+            self.means_picture.append(scipy.mean(voxel_vector))
             voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'S')
-            self.means_sentence.append(math.fsum(voxel_vector) / len(voxel_vector))
+            self.means_sentence.append(scipy.mean(voxel_vector))
 
     def _compute_standard_deviations(self):
         ''''''
         for index in range(NUM_OF_VOXELS):
             voxel_vector = self.data_wrapper.get_voxels_of_same_index(index, 'P')
-            variance = 0
-            for voxel_value in voxel_vector:
-                variance += ((voxel_value - self.means_picture[index]) ** 2) / (len(voxel_vector) - 1)
-            self.standard_deviations_picture.append(math.sqrt(variance))
+            self.standard_deviations_picture.append(scipy.std(voxel_vector))
         for index in range(NUM_OF_VOXELS):
             voxel_vector = self.data_wrapper.get_voxels_of_same_index(index, 'S')
-            variance = 0
-            for voxel_value in voxel_vector:
-                variance += ((voxel_value - self.means_sentence[index]) ** 2) / (len(voxel_vector) - 1)
-            self.standard_deviations_sentence.append(math.sqrt(variance))
+            self.standard_deviations_sentence.append(scipy.std(voxel_vector))
 
     def train(self):
         '''Trains the classifier by computing the priori probabilities of the classes,
@@ -78,9 +73,10 @@ class NaiveBayes:
         self.distributions['S'] = [math.log(value) for value in distribution_sentence]
         sum_log_picture = math.fsum(self.distributions['P'])
         sum_log_sentence = math.fsum(self.distributions['S'])
-        klass = self._classification_result(sum_log_picture, sum_log_sentence)
+        return (sum_log_picture, sum_log_sentence)
+        # klass = self._classification_result(sum_log_picture, sum_log_sentence)
         # print "##########"
         # print "P(Picture|Scan) = ", sum_log_picture
         # print "P(Sentence|Scan) = ", sum_log_sentence
         # print "Class: ", klass
-        return klass
+        # return klass
