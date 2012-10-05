@@ -8,12 +8,14 @@ ConditionalProbability = namedtuple('ConditionalProbability', 'klass voxel_value
 
 NUM_OF_VOXELS = 7
 
+
 class NaiveBayes:
     '''This class implements a naive bayes classifier.'''
 
     def __init__(self, data_wrapper):
         ''''''
         self.data_wrapper = data_wrapper
+        self.NUM_OF_VOXELS = len(data_wrapper.features[0][1])
         self.priori_probabilities = {}
         self.means_picture = []
         self.means_sentence = []
@@ -32,7 +34,7 @@ class NaiveBayes:
     def _compute_means(self):
         ''''''
         for voxel_index in range(NUM_OF_VOXELS):
-            voxel_vector = self.data_wrapper.get_voxels_of_same_index(  voxel_index, 'P')
+            voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'P')
             self.means_picture.append(scipy.mean(voxel_vector))
             voxel_vector = self.data_wrapper.get_voxels_of_same_index(voxel_index, 'S')
             self.means_sentence.append(scipy.mean(voxel_vector))

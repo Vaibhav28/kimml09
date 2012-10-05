@@ -38,3 +38,16 @@ October 2nd
 
 Results:
 NP+PS, Scan17+34, AllSubs, Rotate: 63.13% avg.
+
+
+05-10: PCA
+- Try and see if we can do single-voxel learning by first reducing the matrix (voxel x scan) for each subject with PCA. Luckily we have a nice module from scipy to help us.
+
+~250 comps = 80%
+~500 comps = 100%
+
+Where to do PCA for classification
+- per scan?
+- per stimulus (half a trial)?
+    --- Somehow, limited to n comps where n = nr of trials? results in to few components to classify decently
+- per trial?
