@@ -1,0 +1,61 @@
+Loading subjects...
+Loaded subjects!
+Constructing nonempty coordinates across subjects
+Appending scans for subject 0
+9.49609314793e-15
+Appending scans for subject 1
+-5.63351448823e-15
+Appending scans for subject 2
+-1.83377618646e-14
+Appending scans for subject 3
+-1.1609636863e-15
+Appending scans for subject 4
+-1.61242547092e-14
+Appending scans for subject 5
+-1.60538628832e-14
+Explained variance: 0.828216636267
+Reduced input data to 200 components using PCA
+Classification using leave-one-out
+Leaving out subject 1
+Split PCA data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+48.75 %
+Leaving out subject 2
+Split PCA data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+51.375 %
+Leaving out subject 3
+Split PCA data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+55.25 %
+Leaving out subject 4
+Split PCA data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+52.0 %
+Leaving out subject 5
+Split PCA data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+50.375 %
+Leaving out subject 6
+Split PCA data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+49.75 %
+Final result: 51.25%

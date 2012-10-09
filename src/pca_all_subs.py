@@ -1,17 +1,29 @@
 from __future__ import division
 import scipy.io as sio
+from scipy import std as sstd
+from scipy import mean as smean
 from functions import *
 from sklearn.naive_bayes import GaussianNB
+#from sklearn.preprocessing import normalize
+from math import fsum
 
 # Data
 print "Loading subjects..."
+# subjects = [
+#     sio.loadmat('../matlab/data-starplus-04799-v7.mat'),
+#     sio.loadmat('../matlab/data-starplus-04820-v7.mat'),
+#     sio.loadmat('../matlab/data-starplus-04847-v7.mat'),
+#     sio.loadmat('../matlab/data-starplus-05675-v7.mat'),
+#     sio.loadmat('../matlab/data-starplus-05680-v7.mat'),
+#     sio.loadmat('../matlab/data-starplus-05710-v7.mat')
+# ]
 subjects = [
-    sio.loadmat('../matlab/data-starplus-04799-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-04820-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-04847-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05675-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05680-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05710-v7.mat')
+    sio.loadmat('../matlab/matlab_avergage_rois_04799.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_04820.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_04847.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_05675.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_05680.mat'),
+    sio.loadmat('../matlab/matlab_avergage_rois_05710.mat')
 ]
 print "Loaded subjects!"
 
@@ -19,7 +31,16 @@ print "Loaded subjects!"
 FIRST_STIMULUS_SCAN_INDICES = range(10, 20)
 SECOND_STIMULUS_SCAN_INDICES = range(27, 37)
 COMPONENTS = 200
+
+# Rois are ignored if filter coords is false
 ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
+
+FLAG_PCA = False
+FLAG_NORM = False
+FLAG_FILTER_COORDS = False
+
+# If true, average the prediction per set of scans
+FLAG_PER_SCAN = False
 
 # Just some debugging output
 # for coord in validCoords:
@@ -40,38 +61,51 @@ PCA ALGORITHM
 6) Use the other part for testing
 '''
 # 1: Get list of coordinates
-print "Constructing nonempty coordinates across subjects"
-coords = getCoordinatesForSubject(subjects[0], ROIS)
 validCoords = []
-for coord in coords:
-    voxels = getVoxelsForCoordinate(coord[0], coord[1], coord[2], subjects)
-    if voxels:
-        validCoords.append(coord)
 trials = getValidTrialIndices(subjects[0])
+if FLAG_FILTER_COORDS:
+    print "Constructing nonempty coordinates across subjects"
+    coords = getCoordinatesForSubject(subjects[0], ROIS)
+    for coord in coords:
+        voxels = getVoxelsForCoordinate(coord[0], coord[1], coord[2], subjects)
+        if voxels:
+            validCoords.append(coord)
 
 # 2: Construct Matrix based on those coordinates
 scans = []
 labels = []
 for subject_index, subject in enumerate(subjects):
+    subject_scans = []
     voxel_indices = getVoxelsForCoordinates(subject, validCoords)
     print "Appending scans for subject %s" % subject_index
     for trial_index in trials:
         for scan_index in FIRST_STIMULUS_SCAN_INDICES:
-            scans.append(getVoxelsForScan(subject, trial_index, scan_index, voxel_indices))
+            subject_scans.append(getVoxelsForScan(subject, trial_index, scan_index, voxel_indices))
             labels.append(subject['info'][0][trial_index]['firstStimulus'][0])
         for scan_index in SECOND_STIMULUS_SCAN_INDICES:
-            scans.append(getVoxelsForScan(subject, trial_index, scan_index, voxel_indices))
+            subject_scans.append(getVoxelsForScan(subject, trial_index, scan_index, voxel_indices))
             labels.append(u'S') if subject['info'][0][trial_index]['firstStimulus'][0] == 'P' else labels.append(u'P')
 
-# 2b: Normalize / subtract mean?
+    # 2b: Normalize / subtract mean?
+    if FLAG_NORM:
+        mean = smean([scan[0] for scan in subject_scans])
+        std = sstd([scan[0] for scan in subject_scans])
+        for scan_index, scan in enumerate(subject_scans):
+            for voxel_index, voxel in enumerate(scan):
+                subject_scans[scan_index][voxel_index] = (voxel - mean) / std
 
+    # Add scans to complete set
+    scans += subject_scans
 
 # 3: PCA
-scans_reduced = applyPCA(scans, COMPONENTS)
-print "Reduced input data to %s components using PCA" % (len(scans_reduced[0]))
-#print "Explained variance is %s" % scans_reduced.explained_variance
+if FLAG_PCA:
+    scans = applyPCA(scans, COMPONENTS)
+    print "Reduced input data to %s components using PCA" % (len(scans[0]))
+    #print "Explained variance is %s" % scans_reduced.explained_variance
 
 # 4: Split last subject...
+total_correct = 0
+total_scans = 0
 print "Classification using leave-one-out"
 for i in range(len(subjects)):
     print "Leaving out subject %s" % (i + 1)
@@ -80,18 +114,18 @@ for i in range(len(subjects)):
     labels_training = []
     labels_testing = []
 
-    scans_per_subject = (len(scans_reduced) / len(subjects))
-    for j in range(len(scans_reduced)):
+    scans_per_subject = (len(scans) / len(subjects))
+    for j in range(len(scans)):
         training_index_min = i * scans_per_subject
         training_index_max = i * scans_per_subject + scans_per_subject
         if j >= training_index_min and j < training_index_max:
-            scans_testing.append(scans_reduced[j])
+            scans_testing.append(scans[j])
             labels_testing.append(labels[j])
         else:
-            scans_training.append(scans_reduced[j])
+            scans_training.append(scans[j])
             labels_training.append(labels[j])
 
-    print "Split PCA data for training and testing:"
+    print "Split data for training and testing:"
     print len(scans_training)
     print len(scans_testing)
 
@@ -102,11 +136,39 @@ for i in range(len(subjects)):
     nb = GaussianNB()
     nb.fit(X, Y)
 
-    # 6: Classify
-    print "Classifying using test data"
-    correct = 0
-    for i in range(len(scans_testing)):
-        prediction = nb.predict(scans_testing[i])
-        if prediction == labels_testing[i]:
-            correct += 1
-    print (correct / len(scans_testing)) * 100, "%"
+    if FLAG_PER_SCAN:
+        # 6: Classify per scan
+        print "Classifying using test data"
+        correct = 0
+        for i in range(len(scans_testing)):
+            prediction = nb.predict(scans_testing[i])
+            if prediction == labels_testing[i]:
+                correct += 1
+        print (correct / len(scans_testing)) * 100, "%"
+        total_correct += correct
+        total_scans += len(scans_testing)
+    else:
+        # 6: Classify per group
+        print "Classifying using test data"
+        correct = 0
+        count = 0
+        sum_p = 0
+        sum_s = 0
+        for i in range(len(scans_testing)):
+            prediction = nb.predict_log_proba(scans_testing[i])
+            sum_p += prediction[0][0]
+            sum_s += prediction[0][1]
+
+            if i % 10 == 9:
+                group_prediction = 'P' if sum_p > sum_s else 'S'
+                sum_p = 0
+                sum_s = 0
+                count += 1
+                if group_prediction == labels_testing[i]:
+                    correct += 1
+
+        print (correct / count) * 100, "%"
+        total_correct += correct
+        total_scans += count
+
+print "Final result: %s%%" % ((total_correct / total_scans) * 100)

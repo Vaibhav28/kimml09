@@ -21,3 +21,5 @@ Total score: 71.0416666667%
 
 Comments:
 Experiment used all subjects except one to train. Each rotation left out another subject. Scans 10 through 20, and 27-37 where used for training and all valid trials where used for both training and validation (SP+PS).
+
+~The reason this outperforms basic classification is that we combine results for 10 scans and let the result be defined by the class with highest total probability~
