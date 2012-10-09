@@ -51,3 +51,15 @@ Where to do PCA for classification
 - per stimulus (half a trial)?
     --- Somehow, limited to n comps where n = nr of trials? results in to few components to classify decently
 - per trial?
+
+
+Oct 9.
+- Did some extra data analysis on coords vs regions:
+    - Some coords are in different regions xsubject, though they are adjacent and only a fraction , thus Seems legit to compare coord by coord.
+    - The set has 4949 voxels (For subject 1)
+    - If we reduce the set by taking only valid voxels (ie that have a value for ALL subjects), we are left with 1397 voxels
+    - If we further reduce by only looking at a set of ROIs, we are left with 598 voxels (out of 1874 for those ROIs)
+
+- Found some interesting articles. May also try ICA and some other reduction techniques
+    - http://gael-varoquaux.info/scientific_computing/ica_pca/index.html
+    - http://blog.explainmydata.com/2012/07/should-you-apply-pca-to-your-data.html

@@ -1,0 +1,6 @@
+Classifier trained using 5 subjects:
+Correctly classified 54 out of 80 scans
+Score: 67.5%
+
+Comments:
+Experiment used all subjects except one to train. No rotation was done. Scans 17, 34 where used for training and all valid trials where used for both training and validation (SP+PS).
