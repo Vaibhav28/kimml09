@@ -1,0 +1,23 @@
+Classifier trained using 5 subjects:
+Correctly classified 45 out of 80 scans
+Score: 56.25%
+Classifier trained using 5 subjects:
+Correctly classified 57 out of 80 scans
+Score: 71.25%
+Classifier trained using 5 subjects:
+Correctly classified 70 out of 80 scans
+Score: 87.5%
+Classifier trained using 5 subjects:
+Correctly classified 47 out of 80 scans
+Score: 58.75%
+Classifier trained using 5 subjects:
+Correctly classified 61 out of 80 scans
+Score: 76.25%
+Classifier trained using 5 subjects:
+Correctly classified 61 out of 80 scans
+Score: 76.25%
+Overall classified 341 out of 480 scans
+Total score: 71.0416666667%
+
+Comments:
+Experiment used all subjects except one to train. Each rotation left out another subject. Scans 10 through 20, and 27-37 where used for training and all valid trials where used for both training and validation (SP+PS).
