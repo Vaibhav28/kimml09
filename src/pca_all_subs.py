@@ -9,6 +9,7 @@ from math import fsum
 
 # Data
 print "Loading subjects..."
+
 # subjects = [
 #     sio.loadmat('../matlab/data-starplus-04799-v7.mat'),
 #     sio.loadmat('../matlab/data-starplus-04820-v7.mat'),
