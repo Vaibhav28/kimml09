@@ -1,11 +1,13 @@
-class NaiveBayes:
+
+
+class Multivariate:
     ''''''
 
     def __init__(self):
         ''''''
         pass
 
-    def train(self):
+    def train(self, data):
         ''''''
         pass
 

@@ -1,43 +1,47 @@
 #!/usr/bin/env python
 
 import scipy.io as sio
-from features.extractor import Extractor
-from classifiers.naive_bayes import NaiveBayes
+from subject import Subject
+from extractor import Extractor
+from classifiers.multivariate import Multivariate
+from settings import NUM_OF_SUBJECTS
+from settings import FILE_NAMES
 
 class Framework:
-	''''''
-	file_names = {
-		'Original': '../../matlab/data%d-original.mat',
-		'NormROIS': '../../matlab/data%d-norm-roi.mat',
-		'NormAvergageROIS': '../../matlab/data%d_avergage_rois_norm',
-		'AverageROIS': '../../matlab/data%d_avergage_rois',
-	}
-	num_files = 6
+    """"""
 
-	def __init__(self, classifier, extractor):
-		''''''
-		self.classifier = classifier
-		self.extractor = extractor
+    def __init__(self, classifier):
+        """"""
+        self.classifier = classifier
+        self.extractor = Extractor()
 
-	def _load_files(self):
-		''''''
-		return [sio.loadmat(self.file_names['NormROIS'] % (file_index + 1)) 
-					for file_index in range(self.num_files)]
+    def _create_subjects(self):
+        """"""
+        return [Subject(FILE_NAMES['NormROIS'] % (file_index + 1)) 
+                    for file_index in range(NUM_OF_SUBJECTS)]
 
-	def execute(self):
-		''''''
-		# 1) Load the data files
-		subject_data = self._load_files()
-		# 2) Extract the features
-		feature_data = self.extractor.extract_features(subject_data)
-		# 3) Train the classifier
-		self.classifier.train(feature_data)
-		# 4) Classify some data
-		self.classifier.classify()	
+    def _train(self, classifier, features):
+        """"""
+        classifier.train(features)
+
+    def _classify(self, classifier):
+        """"""
+        classifier.classify()
+
+    def execute(self):
+        """"""
+        # 1) Load the data files
+        subjects = self._create_subjects()
+        # 2) Extract the features
+        self.extractor.extract_features(subjects)
+        print len(self.extractor.features['P']), exit()
+        # 3) Train the classifier
+        self._train(self.classifier, self.extractor.features)
+        # 4) Classify some data
+        self._classify(self.classifier)
 
 if __name__ == "__main__":
-	# Create a classifier and execute the framework
-	nb = NaiveBayes()
-	extractor = Extractor()
-	framework = Framework(nb, extractor)
-	framework.execute()
+    # Create a classifier, a features extractor, and execute the framework
+    classifier = Multivariate()
+    framework = Framework(classifier)
+    framework.execute()
