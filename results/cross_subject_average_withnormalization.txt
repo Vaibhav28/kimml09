@@ -1,0 +1,52 @@
+Loading subjects...
+Loaded subjects!
+Appending scans for subject 0
+Appending scans for subject 1
+Appending scans for subject 2
+Appending scans for subject 3
+Appending scans for subject 4
+Appending scans for subject 5
+Classification using leave-one-out
+Leaving out subject 1
+Split data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+51.25 %
+Leaving out subject 2
+Split data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+72.5 %
+Leaving out subject 3
+Split data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+92.5 %
+Leaving out subject 4
+Split data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+66.25 %
+Leaving out subject 5
+Split data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+77.5 %
+Leaving out subject 6
+Split data for training and testing:
+4000
+800
+Train GaussianNB on training data
+Classifying using test data
+82.5 %
+Final result: 73.75%
