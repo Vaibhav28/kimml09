@@ -1,106 +1,153 @@
-#!/usr/bin/env python
-
 from __future__ import division
 import scipy.io as sio
-import mdp
-import numpy as np
-from array import array
+from scipy import std as sstd
+from scipy import mean as smean
+from functions import *
 from sklearn.naive_bayes import GaussianNB
+from math import fsum
 
+# Data
+print "Loading subjects..."
+subjects = [sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (index + 1)) for index in range(6)]
+print "Loaded subjects!"
+
+# Configuration
+FIRST_STIMULUS_SCAN_INDICES = range(10, 20)
+SECOND_STIMULUS_SCAN_INDICES = range(22, 32)
+COMPONENTS = 200
+
+# Rois are ignored if filter coords is false
 ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
-FIRST_STIMULUS_SCAN_INDEXES = range(10, 20)
-SECOND_STIMULUS_SCAN_INDEXES = range(22, 32)
 
-def get_number_of_trials(subject):
-    ''''''
-    return subject['meta']['ntrials']
+FLAG_PCA = False
+FLAG_NORM = False
+FLAG_FILTER_COORDS = False
 
-def get_number_of_voxels(subject):
-    ''''''
-    return subject['meta']['nvoxels']
+# If true, average the prediction per set of scans
+FLAG_PER_SCAN = False
 
-def get_valid_trial_indexes(subject, ntrials):
-    '''Returns the valid indexes of trials for a subject accoring to condition.
-    We care only about conditions with value 2 or 3.'''
-    return [index for index in range(ntrials)
-            if subject['info'][0]['cond'][index] > 1]
+'''
+PCA ALGORITHM
+1) Apply filtering on voxels (for each subject)
+2) Construct data matrix for PCA:
+- each row is a scan from the range of applicable scans (split for type of trial - PS, SP, PS+SP?)
+- each column is a value for a certain coordinate
+3) PCA
+4) Split matrix based on subject
+5) Use one part for training
+6) Use the other part for testing
+'''
+# 1: Get list of coordinates
+validCoords = []
+trials = getValidTrialIndices(subjects[0])
+if FLAG_FILTER_COORDS:
+    print "Constructing nonempty coordinates across subjects"
+    coords = getCoordinatesForSubject(subjects[0], ROIS)
+    for coord in coords:
+        voxels = getVoxelsForCoordinate(coord[0], coord[1], coord[2], subjects)
+        if voxels:
+            validCoords.append(coord)
 
-def get_voxels_of_same_scan(subject, trial_index, scan_index):
-    '''Returns the voxel vector data for the trial with index trial_index
-    and scan with index scan_index.'''
-    return subject['data'][trial_index][0][scan_index]
+# 2: Construct Matrix based on those coordinates
+scans = []
+labels = []
+for subject_index, subject in enumerate(subjects):
+    subject_scans = []
+    voxel_indices = getVoxelsForCoordinates(subject, validCoords)
+    print "Appending scans for subject %s" % subject_index
+    for trial_index in trials:
+        for scan_index in FIRST_STIMULUS_SCAN_INDICES:
+            subject_scans.append(getVoxelsForScan(subject, trial_index, scan_index, voxel_indices))
+            label = 0 if subject['info'][0][trial_index]['firstStimulus'][0] == 'P' else 1
+            labels.append(label)
+        for scan_index in SECOND_STIMULUS_SCAN_INDICES:
+            subject_scans.append(getVoxelsForScan(subject, trial_index, scan_index, voxel_indices))
+            label = 1 if subject['info'][0][trial_index]['firstStimulus'][0] == 'P' else 0
+            labels.append(label)
 
-def get_first_stimulus_class(subject, trial_index):
-    '''Returns the first stimulus class of a trial with index trial_index. This will
-    be either `P' if the subject saw a picture first and then a sentence, or `S' if
-    the subject saw a sentence first and then a picture.'''
-    return subject['info'][0][trial_index]['firstStimulus'][0]
+    # 2b: Normalize / subtract mean?
+    if FLAG_NORM:
+        mean = smean([scan[0] for scan in subject_scans])
+        std = sstd([scan[0] for scan in subject_scans])
+        for scan_index, scan in enumerate(subject_scans):
+            for voxel_index, voxel in enumerate(scan):
+                subject_scans[scan_index][voxel_index] = (voxel - mean) / std
 
-def extract_features(subject, valid_trial_indexes):
-    ''''''
-    features_p = []
-    features_s = []
-    for trial_index in valid_trial_indexes:
-        klass = get_first_stimulus_class(subject, trial_index)
-        if klass == 'P':
-            for scan_index in FIRST_STIMULUS_SCAN_INDEXES:
-                voxels = get_voxels_of_same_scan(subject, trial_index, scan_index)
-                features_p.append(voxels)
-            for scan_index in SECOND_STIMULUS_SCAN_INDEXES:
-                voxels = get_voxels_of_same_scan(subject, trial_index, scan_index)
-                features_s.append(voxels)
+    # Add scans to complete set
+    scans += subject_scans
+
+# 3: PCA
+if FLAG_PCA:
+    scans = applyPCA(scans, COMPONENTS)
+    print "Reduced input data to %s components using PCA" % (len(scans[0]))
+    #print "Explained variance is %s" % scans_reduced.explained_variance
+
+# 4: Split last subject...
+total_correct = 0
+total_scans = 0
+print "Classification using leave-one-out"
+for i in range(len(subjects)):
+    print "Leaving out subject %s" % (i + 1)
+    scans_training = []
+    scans_testing = []
+    labels_training = []
+    labels_testing = []
+
+    scans_per_subject = (len(scans) / len(subjects))
+    for j in range(len(scans)):
+        training_index_min = i * scans_per_subject
+        training_index_max = i * scans_per_subject + scans_per_subject
+        if j >= training_index_min and j < training_index_max:
+            scans_testing.append(scans[j])
+            labels_testing.append(labels[j])
         else:
-            for scan_index in FIRST_STIMULUS_SCAN_INDEXES:
-                voxels = get_voxels_of_same_scan(subject, trial_index, scan_index)
-                features_s.append(voxels)
-            for scan_index in SECOND_STIMULUS_SCAN_INDEXES:
-                voxels = get_voxels_of_same_scan(subject, trial_index, scan_index)
-                features_p.append(voxels)
-    return features_p, features_s
+            scans_training.append(scans[j])
+            labels_training.append(labels[j])
 
-def main(subjects, c_subject):
-    ''''''
-    # TRAINING
-    X_P = []
-    X_S = []
+    print "Split data for training and testing:"
+    print len(scans_training)
+    print len(scans_testing)
+
+    # 5: Train
+    print "Train GaussianNB on training data"
+    X = np.array(scans_training)
+    Y = np.array(labels_training)
     nb = GaussianNB()
-    for subject in subjects:
-        # 1) Feature extraction on training data
-        ntrials = get_number_of_trials(subject)
-        valid_trial_indexes = get_valid_trial_indexes(subject, ntrials)
-        features_p, features_s = extract_features(subject, valid_trial_indexes)
-        features_p = np.array(features_p)
-        features_s = np.array(features_s)
-        # 2) Fit data to naive bayes classifier
-        X = np.vstack((features_p, features_s))
-        Y = np.concatenate((np.array([0 for i in range(int(len(X)/2))]), np.array([1 for i in range(int(len(X)/2))])))
-        nb.fit(X, Y)
+    nb.fit(X, Y)
 
-    # CLASSIFICATION
-    # 1) Feature extraction on classification data
-    c_ntrials = get_number_of_trials(c_subject)
-    c_valid_trial_indexes = get_valid_trial_indexes(c_subject, c_ntrials)
-    c_features_p, c_features_s = extract_features(c_subject, c_valid_trial_indexes)
-    c_features_p = np.array(c_features_p)
-    c_features_s = np.array(c_features_s)
-    # 2) Prediction
-    X = np.vstack((c_features_p, c_features_s))
-    Y = np.concatenate((np.array([0 for i in range(int(len(X)/2))]), np.array([1 for i in range(int(len(X)/2))])))
-    correct = 0
-    for i in range(len(X)):
-        prediction = nb.predict(X[i])
-        if prediction == Y[i]:
-            correct += 1
-    return ((correct / len(X)) * 100)
-    
-if __name__ == "__main__":
-    total_result = 0
-    for excl_index in range(6):
-        subjects = [(sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (index + 1))) for index in range(6) if index is not excl_index]
-        print "CLassification excluding subject %d" % (excl_index + 1)
-        c_subject = sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (excl_index + 1))
-        result = main(subjects, c_subject)
-        total_result += result
-        print "Result: %s %%" % result
-    print "Total result: %s %%" % (total_result / 6)
+    if FLAG_PER_SCAN:
+        # 6: Classify per scan
+        print "Classifying using test data"
+        correct = 0
+        for i in range(len(scans_testing)):
+            prediction = nb.predict(scans_testing[i])
+            if prediction == labels_testing[i]:
+                correct += 1
+        print (correct / len(scans_testing)) * 100, "%"
+        total_correct += correct
+        total_scans += len(scans_testing)
+    else:
+        # 6: Classify per group
+        print "Classifying using test data"
+        correct = 0
+        count = 0
+        sum_p = 0
+        sum_s = 0
+        for i in range(len(scans_testing)):
+            prediction = nb.predict_log_proba(scans_testing[i])
+            sum_p += prediction[0][0]
+            sum_s += prediction[0][1]
 
+            if i % 10 == 9:
+                group_prediction = 0 if sum_p > sum_s else 1
+                sum_p = 0
+                sum_s = 0
+                count += 1
+                if group_prediction == labels_testing[i]:
+                    correct += 1
+
+        print (correct / count) * 100, "%"
+        total_correct += correct
+        total_scans += count
+
+print "Final result: %s%%" % ((total_correct / total_scans) * 100)
