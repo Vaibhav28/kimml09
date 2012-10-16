@@ -66,9 +66,8 @@ for iteration in range(0, 6):
         for scan in scans:
             counter = counter + 1
             for trial in range(0, 53):
-                if data[subject]['info'][0,trial]['cond'][0] > 1:
-                    if (data[subject]['info'][0,trial]['firstStimulus'][0]=='P' and scan in firstRange) or \
-                       (data[subject]['info'][0,trial]['firstStimulus'][0]=='S' and scan in secondRange):
+                if data[subject]['info'][0, trial]['cond'][0] > 1:
+                    if data[subject]['info'][0, trial]['firstStimulus'][0] == 'P':
                         if not subject == exclude:
                             arrr[counter][0].append(data[subject]['data'][trial][0][scan])
                         else:
@@ -88,9 +87,9 @@ for iteration in range(0, 6):
     # test phase
     for ps in range(0, 2):
         for trial in range(0, 20):
-            logprob_perscan_pic = [0]*20
-            logprob_perscan_sent = [0]*20
-            for scan in range(0,20):
+            logprob_perscan_pic = [0] * 20
+            logprob_perscan_sent = [0] * 20
+            for scan in range(0, 20):
                 # calculate covariance matrix
 
                     if scan < 10:
