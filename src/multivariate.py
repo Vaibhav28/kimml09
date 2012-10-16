@@ -66,8 +66,8 @@ for iteration in range(0, 6):
         for scan in scans:
             counter = counter + 1
             for trial in range(0, 53):
-                if data[subject]['info'][0,trial]['cond'][0]>1:
-                    if (data[subject]['info'][0,trial]['firstStimulus'][0]=='P' and scan in firstRange) or
+                if data[subject]['info'][0,trial]['cond'][0] > 1:
+                    if (data[subject]['info'][0,trial]['firstStimulus'][0]=='P' and scan in firstRange) or \
                        (data[subject]['info'][0,trial]['firstStimulus'][0]=='S' and scan in secondRange):
                         if not subject == exclude:
                             arrr[counter][0].append(data[subject]['data'][trial][0][scan])
