@@ -62,22 +62,22 @@ for iteration in range(0, 6):
     #import data into arrr and excl
     exclude = iteration
     for subject in range(len(data)):
-        counter=-1
+        counter = -1
         for scan in scans:
             counter = counter + 1
-			for trial in range(0,53):
-				if data[subject]['info'][0,trial]['cond'][0]>1:
-					if (data[subject]['info'][0,trial]['firstStimulus'][0]=='P' and scan in firstRange) or
+            for trial in range(0, 53):
+                if data[subject]['info'][0,trial]['cond'][0]>1:
+                    if (data[subject]['info'][0,trial]['firstStimulus'][0]=='P' and scan in firstRange) or
                        (data[subject]['info'][0,trial]['firstStimulus'][0]=='S' and scan in secondRange):
-						if not subject == exclude:
-							arrr[counter][0].append(data[subject]['data'][trial][0][scan])
-						else:
-							excl[counter][0].append(data[subject]['data'][trial][0][scan])
-					else:
-						if not subject == exclude:
-							arrr[counter][1].append(data[subject]['data'][trial][0][scan])
-						else:
-							excl[counter][1].append(data[subject]['data'][trial][0][scan])
+                        if not subject == exclude:
+                            arrr[counter][0].append(data[subject]['data'][trial][0][scan])
+                        else:
+                            excl[counter][0].append(data[subject]['data'][trial][0][scan])
+                    else:
+                        if not subject == exclude:
+                            arrr[counter][1].append(data[subject]['data'][trial][0][scan])
+                        else:
+                            excl[counter][1].append(data[subject]['data'][trial][0][scan])
 
 	#set %correct per subject to 0
 	correct_per_subject1 = 0
