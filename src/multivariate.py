@@ -3,7 +3,6 @@
 import scipy.io as sio
 import numpy as np
 import math as m
-import scipy.stats as sis
 
 # load the matlab files
 # file = [
