@@ -107,7 +107,7 @@ Traditionally, it has been a challenge to relate between a simple cognitive stat
 - basic terms introduced (fmri, classification, ...)
 - related work and results
 - briefly build up to state of the art, mention methods we tried?
-- state of the art: multivariate pattern analysis (\cite{Haxby2012852})
+- state of the art: probably multivariate pattern analysis! (\cite{Haxby2012852})
 
 In the rest of this paper, we will discuss a number of machine learning techniques and their ability to classify our test data. In section~\ref{sec:methods} we will discuss the setup of our experiments and the analysis performed on our data. After that, in sections~\ref{sec:results} and ~\ref{sec:discussion}, we will present the results from these experiments and discuss them. We conclude this paper with a discussion on possible improvements and suggest some additional experiments that could be done.
 
@@ -123,6 +123,15 @@ What can we do with it now?
 - cognitive state
 \section{Methods}
 \label{sec:methods}
+General approach consisting of three steps, plus basic data acquisition and preprocessing.
+\begin{enumerate}
+  \item Feature selection
+  \item Training
+  \item Testing
+\end{enumerate}
+
+
+
 - comparison
 - classifying subtrials vs trials (ie 54 vs 27)
 - analysis / tools (python etc)
@@ -138,23 +147,23 @@ In total, we have data available for approximately 4000 voxels per scan, 54 scan
 Here we will need a nice picture, perhaps a pagewide one with labels of data for 1 trial?
 
 \subsection{Feature selection}
-%Inspired by: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
+%Useful background info: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
 Typical input for the machine learning algorithms discussed in this paper consists of a number of feature vectors, one for each fMRI scan. Such a feature vector $\vec{x}$ contains measures for the $N$ features we use to represent that scan and is derived from our input data. In the most basic case, we could use the entire set of voxels belonging to a scan, resulting in a feature vector containing potentially (hundreds of) thousands of features.
 In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \textit{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples.
 
 So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$ by only using voxels belonging to a specific region of interest (ROI). However, this requires us to known which regions are actually of interest \textit{a priori}.
 - ROIs, means, stddev, skew, kurtosis?
 
-
 - same for each algorithm:
-    - supervised learning
-        - feature selection
-            - ROI vs Whole Brain
-        - classification / discrimination / scoring function
-    - naive bayes
+    - What features did we select?
+    - How did we train?
+    - How did we test?
+        - How did we calculate performance?
+- algorithms:
+    - gaussian naive-bayes (gnb)
+        - pca + gnb
     - multivariate
-    - multi-voxel pattern analysis
-    - pca
+    - svm
 
 \section{Experimental Results}
 \label{sec:results}
