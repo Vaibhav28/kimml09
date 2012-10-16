@@ -24,12 +24,12 @@ import scipy.stats as sis
 #       sio.loadmat('../matlab/data6-avg-roi-norm'),
 # ]
 data = [
-        sio.loadmat('../matlab/data1-avg-roi-norm'),
-        sio.loadmat('../matlab/data2-avg-roi-norm'),
-        sio.loadmat('../matlab/data3-avg-roi-norm'),
-        sio.loadmat('../matlab/data4-avg-roi-norm'),
-        sio.loadmat('../matlab/data5-avg-roi-norm'),
-        sio.loadmat('../matlab/data6-avg-roi-norm'),
+        sio.loadmat('../matlab/data1-selectroi-norm'),
+        sio.loadmat('../matlab/data2-selectroi-norm'),
+        sio.loadmat('../matlab/data3-selectroi-norm'),
+        sio.loadmat('../matlab/data4-selectroi-norm'),
+        sio.loadmat('../matlab/data5-selectroi-norm'),
+        sio.loadmat('../matlab/data6-selectroi-norm'),
 ]
 
 
@@ -56,7 +56,7 @@ for iteration in range(0, 6):
 
     #determine the scans
     firstRange = range(10, 20)
-    secondRange = range(27, 37)
+    secondRange = range(22, 32)
     scans = firstRange + secondRange
 
     #import data into arrr and excl
