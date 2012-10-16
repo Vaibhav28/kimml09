@@ -81,7 +81,7 @@
 
 %% Abstract section.
 \abstract{
-Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict what stimulus a subject is looking at, based on the brain activity during that time.
+Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict the cognitive state of a subject, based on its brain activity during that time.
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -99,22 +99,41 @@ Functional magnetic resonance imaging (fMRI) is a brain mapping technique that a
 %% ``\begin{document}'' command. It prepares and prints the title block.
 %% the only exception to this rule is the \firstsection command
 \firstsection{Introduction}
+\label{sec:introduction}
 \maketitle
 %% Now the actual contents of first section
+Traditionally, it has been a challenge to relate between a simple cognitive state (such as `looking at a triangle`) and the corresponding activity of the brain \cite{Pone0001394}. This correspondence may even vary from subject to subject, making the challenge even bigger. Since the introduction of fMRI scans, researchers have been able to acquire detailed measurements of brain activity, allowing for machine learning methods to be applied for the detection of patterns in fMRI data.
+
 - basic terms introduced (fmri, classification, ...)
 - related work and results
+- briefly build up to state of the art, mention methods we tried?
 - state of the art: multivariate pattern analysis (\cite{Haxby2012852})
-- structure of rest of the paper
+
+In the rest of this paper, we will discuss a number of machine learning techniques and their ability to classify our test data. In section~\ref{sec:methods} we will discuss the setup of our experiments and the analysis performed on our data. After that, in sections~\ref{sec:results} and ~\ref{sec:discussion}, we will present the results from these experiments and discuss them. We conclude this paper with a discussion on possible improvements and suggest some additional experiments that could be done.
+
+
 \section{Application}
+\label{sec:application}
+
+
+What can we do with it now?
+
+- classification problem
 - prediction
 - cognitive state
 \section{Methods}
-- supervised learning
-- naive bayes
-- multivariate
-- pca
+\label{sec:methods}
 - comparison
 - classifying subtrials vs trials (ie 54 vs 27)
+- analysis / tools (python etc)
+
+- same for each algorithm:
+    - supervised learning
+        - feature selection
+        - classification / discrimination / scoring function
+    - naive bayes
+    - multivariate
+    - pca
 
 \subsection{Data acquisition and dimensions}
 The dataset used for our experiments was originally collected by Marcel Just et al. from Carnegie Mellon University's Center for Cognitive Brain Imaging and published as the StarPlus fMRI dataset. This set consists of fMRI data for 6 subjects that was obtained while having each subject participate in a number of trials.
@@ -124,8 +143,14 @@ The entire dataset consist of voxel data and metadata providing information abou
 
 In total, we have data available for approximately 4000 voxels per scan, 54 scans per trial, 40 trials per subject, 6 subjects.
 
+Here we will need a nice picture, perhaps a pagewide one with labels of data for 1 trial?
+
 \section{Experimental Results}
+\label{sec:results}
+- raw results per algorithm
+
 \section{Discussion / Conclusion}
+\label{sec:discussion}
 
 \bibliographystyle{abbrv}
 %%use following if all content of bibtex file should be shown
