@@ -24,7 +24,7 @@ for iteration in range(0, 6):
 
     #determine the scans
     firstRange = range(10, 20)
-    secondRange = range(27, 37)
+    secondRange = range(22, 32)
     scans = firstRange + secondRange
 
     #import data into arrr and excl
