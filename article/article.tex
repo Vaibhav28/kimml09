@@ -81,7 +81,7 @@
 
 %% Abstract section.
 \abstract{
-Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict the cognitive state of a subject, based on its brain activity during that time.
+Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict the cognitive state of subjects, based on their brain activity during that time.
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -102,7 +102,7 @@ Functional magnetic resonance imaging (fMRI) is a brain mapping technique that a
 \label{sec:introduction}
 \maketitle
 %% Now the actual contents of first section
-Traditionally, it has been a challenge to relate between a simple cognitive state (such as `looking at a triangle`) and the corresponding activity of the brain \cite{Pone0001394}. This correspondence may even vary from subject to subject, making the challenge even bigger. Since the introduction of fMRI scans, researchers have been able to acquire detailed measurements of brain activity, allowing for machine learning methods to be applied for the detection of patterns in fMRI data.
+Traditionally, it has been a challenge to relate between a simple cognitive state (such as `looking at a triangle`) and the corresponding activity of the brain \cite{Pone0001394}. This correspondence may even vary from subject to subject, making the challenge even harder. Since the introduction of fMRI, researchers have been able to acquire detailed measurements of brain activity, allowing for machine learning methods to be applied for the detection of patterns in fMRI data.
 
 - basic terms introduced (fmri, classification, ...)
 - related work and results
@@ -141,7 +141,7 @@ The dataset used for our experiments was originally collected by Marcel Just et 
 In these trials, subjects were presented with a stimulus on a computer screen. This stimulus was either a picture or a sentence. After a period of time, the stimulus would be replaced with a stimulus of the opposite type (i.e. picture with sentence and vice versa) after which the subject would indicate by pressing a button whether the sentence correctly described the picture. At the end of each trial, approximately 54 fMRI scans have be taken with an interval of 500ms.
 The entire dataset consist of voxel data and metadata providing information about the dataset. Included in this information is not only the trial and scan each voxel belongs to, but also the type of the trial (picture first or sentence first). This makes the dataset suitable for classification using supervised learning.
 
-In total, we have data available for approximately 4000 voxels per scan, 54 scans per trial, 40 trials per subject, 6 subjects.
+In total, we have data available for approximately 4800 voxels per scan, 54 scans per trial, 40 trials per subject, 6 subjects.
 
 Here we will need a nice picture, perhaps a pagewide one with labels of data for 1 trial?
 
