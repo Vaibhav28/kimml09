@@ -68,7 +68,7 @@
 \item
   Robin Mills is with University of Groningen, E-mail: .
 \item
-  Tijn Schouten is University of Groningen, E-mail: t.m.schouten.2@student.rug.nl.
+  Tijn Schouten is with University of Groningen, E-mail: t.m.schouten.2@student.rug.nl.
 \item
   Spyros Ioakeimidis  is with University of Groningen, E-mail: spyrosikmd@gmail.com.
 }
@@ -107,7 +107,7 @@ Traditionally, it has been a challenge to relate between a simple cognitive stat
 - basic terms introduced (fmri, classification, ...)
 - related work and results
 - briefly build up to state of the art, mention methods we tried?
-- state of the art: multivariate pattern analysis (\cite{Haxby2012852})
+- state of the art: probably multivariate pattern analysis! (\cite{Haxby2012852})
 
 In the rest of this paper, we will discuss a number of machine learning techniques and their ability to classify our test data. In section~\ref{sec:methods} we will discuss the setup of our experiments and the analysis performed on our data. After that, in sections~\ref{sec:results} and ~\ref{sec:discussion}, we will present the results from these experiments and discuss them. We conclude this paper with a discussion on possible improvements and suggest some additional experiments that could be done.
 
@@ -123,17 +123,18 @@ What can we do with it now?
 - cognitive state
 \section{Methods}
 \label{sec:methods}
+General approach consisting of three steps, plus basic data acquisition and preprocessing.
+\begin{enumerate}
+  \item Feature selection
+  \item Training
+  \item Testing
+\end{enumerate}
+
+
+
 - comparison
 - classifying subtrials vs trials (ie 54 vs 27)
 - analysis / tools (python etc)
-
-- same for each algorithm:
-    - supervised learning
-        - feature selection
-        - classification / discrimination / scoring function
-    - naive bayes
-    - multivariate
-    - pca
 
 \subsection{Data acquisition and dimensions}
 The dataset used for our experiments was originally collected by Marcel Just et al. from Carnegie Mellon University's Center for Cognitive Brain Imaging and published as the StarPlus fMRI dataset. This set consists of fMRI data for 6 subjects that was obtained while having each subject participate in a number of trials.
@@ -141,9 +142,28 @@ The dataset used for our experiments was originally collected by Marcel Just et 
 In these trials, subjects were presented with a stimulus on a computer screen. This stimulus was either a picture or a sentence. After a period of time, the stimulus would be replaced with a stimulus of the opposite type (i.e. picture with sentence and vice versa) after which the subject would indicate by pressing a button whether the sentence correctly described the picture. At the end of each trial, approximately 54 fMRI scans have be taken with an interval of 500ms.
 The entire dataset consist of voxel data and metadata providing information about the dataset. Included in this information is not only the trial and scan each voxel belongs to, but also the type of the trial (picture first or sentence first). This makes the dataset suitable for classification using supervised learning.
 
-In total, we have data available for approximately 4000 voxels per scan, 54 scans per trial, 40 trials per subject, 6 subjects.
+In total, we have data available for approximately 4000 voxels per scan, 54 scans per trial, 40 trials per subject, 6 subjects. Voxels have been grouped into 25 regions of interest (see \textit{Feature selection}) that may be of use for analysis.
 
 Here we will need a nice picture, perhaps a pagewide one with labels of data for 1 trial?
+
+\subsection{Feature selection}
+%Useful background info: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
+Typical input for the machine learning algorithms discussed in this paper consists of a number of feature vectors, one for each fMRI scan. Such a feature vector $\vec{x}$ contains measures for the $N$ features we use to represent that scan and is derived from our input data. In the most basic case, we could use the entire set of voxels belonging to a scan, resulting in a feature vector containing potentially (hundreds of) thousands of features.
+In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \textit{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples.
+
+So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$ by only using voxels belonging to a specific region of interest (ROI). However, this requires us to known which regions are actually of interest \textit{a priori}.
+- ROIs, means, stddev, skew, kurtosis?
+
+- same for each algorithm:
+    - What features did we select?
+    - How did we train?
+    - How did we test?
+        - How did we calculate performance?
+- algorithms:
+    - gaussian naive-bayes (gnb)
+        - pca + gnb
+    - multivariate
+    - svm
 
 \section{Experimental Results}
 \label{sec:results}
