@@ -1,3 +1,14 @@
+%% This paper describes the results of the Machine Learning practical
+%% project. It should be approximately 8 pages long and contain the
+%% following sections:
+%%
+%% 1) Title, authors, abstract
+%% 2) Introduction
+%% 3) Application
+%% 4) Methods
+%% 5) Experimental Results
+%% 6) Discussion / Conclusion
+%% References
 \documentclass[preprint,journal]{vgtc}
 \let\ifpdf\relax
 %% Uncomment one of the lines above depending on where your paper is
@@ -53,11 +64,11 @@
 \author{Mattijs Meiboom, Robin Mills, Tijn Schouten, Spyros Ioakeimidis}
 \authorfooter{
 \item
-  Mattijs Meiboom is with University of Groningen, E-mail: m.meiboom@student.rug.nl .
+  Mattijs Meiboom is with University of Groningen, E-mail: m.meiboom@student.rug.nl.
 \item
   Robin Mills is with University of Groningen, E-mail: .
 \item
-  Tijn Schouten is University of Groningen, E-mail: .
+  Tijn Schouten is University of Groningen, E-mail: t.m.schouten.2@student.rug.nl.
 \item
   Spyros Ioakeimidis  is with University of Groningen, E-mail: spyrosikmd@gmail.com.
 }
@@ -70,29 +81,51 @@
 
 %% Abstract section.
 \abstract{
- This is the abstract section...
+Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict what stimulus a subject is looking at, based on the brain activity during that time.
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
-\keywords{}
-
+\keywords{fMRI, Machine learning, Classification.}
 
 %% Copyright space is enabled by default as required by guidelines.
 %% It is disabled by the 'review' option or via the following command:
- \nocopyrightspace
+\nocopyrightspace
 
 
 \begin{document}
 
 %% The ``\maketitle'' command must be the first command after the
 %% ``\begin{document}'' command. It prepares and prints the title block.
-
 %% the only exception to this rule is the \firstsection command
 \firstsection{Introduction}
-
 \maketitle
+%% Now the actual contents of first section
+- basic terms introduced (fmri, classification, ...)
+- related work and results
+- state of the art: multivariate pattern analysis (\cite{Haxby2012852})
+- structure of rest of the paper
+\section{Application}
+- prediction
+- cognitive state
+\section{Methods}
+- supervised learning
+- naive bayes
+- multivariate
+- pca
+- comparison
+- classifying subtrials vs trials (ie 54 vs 27)
 
+\subsection{Data acquisition and dimensions}
+The dataset used for our experiments was originally collected by Marcel Just et al. from Carnegie Mellon University's Center for Cognitive Brain Imaging and published as the StarPlus fMRI dataset. This set consists of fMRI data for 6 subjects that was obtained while having each subject participate in a number of trials.
+
+In these trials, subjects were presented with a stimulus on a computer screen. This stimulus was either a picture or a sentence. After a period of time, the stimulus would be replaced with a stimulus of the opposite type (i.e. picture with sentence and vice versa) after which the subject would indicate by pressing a button whether the sentence correctly described the picture. At the end of each trial, approximately 54 fMRI scans have be taken with an interval of 500ms.
+The entire dataset consist of voxel data and metadata providing information about the dataset. Included in this information is not only the trial and scan each voxel belongs to, but also the type of the trial (picture first or sentence first). This makes the dataset suitable for classification using supervised learning.
+
+In total, we have data available for approximately 4000 voxels per scan, 54 scans per trial, 40 trials per subject, 6 subjects.
+
+\section{Experimental Results}
+\section{Discussion / Conclusion}
 
 \bibliographystyle{abbrv}
 %%use following if all content of bibtex file should be shown
