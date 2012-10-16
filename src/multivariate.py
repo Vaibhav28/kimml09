@@ -94,39 +94,39 @@ for iteration in range(0, 6):
 
                     if scan < 10:
                         #for picture. mat_cov = covariance matrix, mat_det = determinant, mat_inv = inverse matrix, mat_x vector of test input, mat_xminmu = (x-mu)
-                        mat_mean=np.subtract(np.matrix(arrr[scan][0]), np.mean(np.matrix(arrr[scan][0]), axis=0))
-                        mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][0]))
-                        mat_det= np.linalg.det(mat_cov)
-                        mat_inv= mat_cov.I
-                        mat_x= np.matrix(excl[scan][ps])[trial,0:25]
-                        mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][0]), axis=0)
+                        mat_mean = np.subtract(np.matrix(arrr[scan][0]), np.mean(np.matrix(arrr[scan][0]), axis=0))
+                        mat_cov = np.dot(np.transpose(mat_mean), mat_mean) / len((arrr[scan][0]))
+                        mat_det = np.linalg.det(mat_cov)
+                        mat_inv = mat_cov.I
+                        mat_x = np.matrix(excl[scan][ps])[trial, 0:25]
+                        mat_xminmu = np.matrix(excl[scan][ps])[trial, 0:25] - np.mean(np.matrix(arrr[scan][0]), axis=0)
                         #multivariate equation
-                        logprob_perscan_pic[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
+                        logprob_perscan_pic[scan] = m.log(2 * m.pi) - 0.5 * m.log(mat_det) - 0.5 * mat_xminmu * mat_inv * np.transpose(mat_xminmu)
                         #for sentence
-                        mat_mean=np.subtract(np.matrix(arrr[scan][1]), np.mean(np.matrix(arrr[scan][1]), axis=0))
-                        mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][1]))
-                        mat_det= np.linalg.det(mat_cov)
-                        mat_inv= mat_cov.I
-                        mat_x= np.matrix(excl[scan][ps])[trial,0:25]
-                        mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][1]), axis=0)
-                        logprob_perscan_sent[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
+                        mat_mean = np.subtract(np.matrix(arrr[scan][1]), np.mean(np.matrix(arrr[scan][1]), axis=0))
+                        mat_cov = np.dot(np.transpose(mat_mean), mat_mean) / len((arrr[scan][1]))
+                        mat_det = np.linalg.det(mat_cov)
+                        mat_inv = mat_cov.I
+                        mat_x = np.matrix(excl[scan][ps])[trial, 0:25]
+                        mat_xminmu = np.matrix(excl[scan][ps])[trial, 0:25] - np.mean(np.matrix(arrr[scan][1]), axis=0)
+                        logprob_perscan_sent[scan] = m.log(2 * m.pi) - 0.5 * m.log(mat_det) - 0.5 * mat_xminmu * mat_inv * np.transpose(mat_xminmu)
                     else:
                         #for picture
-                        mat_mean=np.subtract(np.matrix(arrr[scan][1]), np.mean(np.matrix(arrr[scan][1]), axis=0))
-                        mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][1]))
-                        mat_det= np.linalg.det(mat_cov)
-                        mat_inv= mat_cov.I
-                        mat_x= np.matrix(excl[scan][ps])[trial,0:25]
-                        mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][1]), axis=0)
-                        logprob_perscan_pic[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
+                        mat_mean = np.subtract(np.matrix(arrr[scan][1]), np.mean(np.matrix(arrr[scan][1]), axis=0))
+                        mat_cov = np.dot(np.transpose(mat_mean), mat_mean) / len((arrr[scan][1]))
+                        mat_det = np.linalg.det(mat_cov)
+                        mat_inv = mat_cov.I
+                        mat_x = np.matrix(excl[scan][ps])[trial, 0:25]
+                        mat_xminmu = np.matrix(excl[scan][ps])[trial, 0:25] - np.mean(np.matrix(arrr[scan][1]), axis=0)
+                        logprob_perscan_pic[scan] = m.log(2 * m.pi) - 0.5 * m.log(mat_det) - 0.5 * mat_xminmu * mat_inv * np.transpose(mat_xminmu)
                         #for sentence
-                        mat_mean=np.subtract(np.matrix(arrr[scan][0]), np.mean(np.matrix(arrr[scan][0]), axis=0))
-                        mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][0]))
-                        mat_det= np.linalg.det(mat_cov)
-                        mat_inv= mat_cov.I
-                        mat_x= np.matrix(excl[scan][ps])[trial,0:25]
-                        mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][0]), axis=0)
-                        logprob_perscan_sent[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
+                        mat_mean = np.subtract(np.matrix(arrr[scan][0]), np.mean(np.matrix(arrr[scan][0]), axis=0))
+                        mat_cov = np.dot(np.transpose(mat_mean), mat_mean) / len((arrr[scan][0]))
+                        mat_det = np.linalg.det(mat_cov)
+                        mat_inv = mat_cov.I
+                        mat_x = np.matrix(excl[scan][ps])[trial, 0:25]
+                        mat_xminmu = np.matrix(excl[scan][ps])[trial, 0:25] - np.mean(np.matrix(arrr[scan][0]), axis=0)
+                        logprob_perscan_sent[scan] = m.log(2 * m.pi) - 0.5 * m.log(mat_det) - 0.5 * mat_xminmu * mat_inv * np.transpose(mat_xminmu)
 
             print ps, trial
 
@@ -135,13 +135,13 @@ for iteration in range(0, 6):
             print 'picture % (10-20) = ', np.sum(logprob_perscan_pic[10:20])
             print 'sentence % (10-20) = ', np.sum(logprob_perscan_sent[10:20])
             # add to correct if correct
-            if (np.sum(logprob_perscan_pic[0:10])>np.sum(logprob_perscan_sent[0:10]) and ps ==0):
+            if (np.sum(logprob_perscan_pic[0:10]) > np.sum(logprob_perscan_sent[0:10]) and ps == 0):
                 correct_per_subject1 = correct_per_subject1 + 1
-            if (np.sum(logprob_perscan_pic[10:20])>np.sum(logprob_perscan_sent[10:20])and ps==1):
+            if (np.sum(logprob_perscan_pic[10:20]) > np.sum(logprob_perscan_sent[10:20])and ps == 1):
                 correct_per_subject2 = correct_per_subject2 + 1
-            if (np.sum(logprob_perscan_pic[10:20])<np.sum(logprob_perscan_sent[10:20]) and ps==0):
+            if (np.sum(logprob_perscan_pic[10:20]) < np.sum(logprob_perscan_sent[10:20]) and ps == 0):
                 correct_per_subject3 = correct_per_subject3 + 1
-            if (np.sum(logprob_perscan_pic[0:10])<np.sum(logprob_perscan_sent[0:10])and ps==1):
+            if (np.sum(logprob_perscan_pic[0:10]) < np.sum(logprob_perscan_sent[0:10])and ps == 1):
                 correct_per_subject4 = correct_per_subject4 + 1
     # add to total
     correcttotal1 = correcttotal1 + correct_per_subject1
@@ -151,6 +151,5 @@ for iteration in range(0, 6):
 
 
 # print accuracy
-print 'picture % (1-10) = ',correcttotal1/(6.0*20),'sentence % (1-10) = ',correcttotal4/(6.0*20),'picture % (10-20) = ',correcttotal2/(6.0*20),'sentence % (10-20) = ',correcttotal3/(6.0*20)
-print 'Total accuracy: ',(correcttotal1+correcttotal2+correcttotal3+correcttotal4)/(6.0*80)
-
+print 'picture % (1-10) = ', correcttotal1 / (6.0 * 20), 'sentence % (1-10) = ', correcttotal4 / (6.0 * 20), 'picture % (10-20) = ', correcttotal2 / (6.0 * 20), 'sentence % (10-20) = ', correcttotal3 / (6.0 * 20)
+print 'Total accuracy: ', (correcttotal1 + correcttotal2 + correcttotal3 + correcttotal4) / (6.0 * 80)
