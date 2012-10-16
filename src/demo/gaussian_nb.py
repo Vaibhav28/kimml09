@@ -25,15 +25,10 @@ def get_valid_trial_indexes(subject, ntrials):
     return [index for index in range(ntrials)
             if subject['info'][0]['cond'][index] > 1]
 
-def get_valid_voxel_indexes(subject, nvoxels):
-    '''Returns the valid indexes of voxels for a subject according to rois.'''
-    return [index for index in range(nvoxels)
-            if subject['meta']['colToROI'][0][0][index] in ROIS]
-
 def get_voxels_of_same_scan(subject, trial_index, scan_index):
-        '''Returns the voxel vector data for the trial with index trial_index
-        and scan with index scan_index.'''
-        return subject['data'][trial_index][0][scan_index]
+    '''Returns the voxel vector data for the trial with index trial_index
+    and scan with index scan_index.'''
+    return subject['data'][trial_index][0][scan_index]
 
 def get_first_stimulus_class(subject, trial_index):
     '''Returns the first stimulus class of a trial with index trial_index. This will
@@ -41,7 +36,7 @@ def get_first_stimulus_class(subject, trial_index):
     the subject saw a sentence first and then a picture.'''
     return subject['info'][0][trial_index]['firstStimulus'][0]
 
-def extract_features(subject, valid_trial_indexes, valid_voxel_indexes):
+def extract_features(subject, valid_trial_indexes):
     ''''''
     features_p = []
     features_s = []
@@ -73,9 +68,7 @@ def main(subjects, c_subject):
         # 1) Feature extraction on training data
         ntrials = get_number_of_trials(subject)
         valid_trial_indexes = get_valid_trial_indexes(subject, ntrials)
-        nvoxels = get_number_of_voxels(subject)
-        valid_voxel_indexes = get_valid_voxel_indexes(subject, nvoxels)
-        features_p, features_s = extract_features(subject, valid_trial_indexes, valid_voxel_indexes)
+        features_p, features_s = extract_features(subject, valid_trial_indexes)
         features_p = np.array(features_p)
         features_s = np.array(features_s)
         # 2) Fit data to naive bayes classifier
@@ -87,9 +80,7 @@ def main(subjects, c_subject):
     # 1) Feature extraction on classification data
     c_ntrials = get_number_of_trials(c_subject)
     c_valid_trial_indexes = get_valid_trial_indexes(c_subject, c_ntrials)
-    c_nvoxels = get_number_of_voxels(c_subject)
-    c_valid_voxel_indexes = get_valid_voxel_indexes(c_subject, c_nvoxels)
-    c_features_p, c_features_s = extract_features(c_subject, c_valid_trial_indexes, c_valid_voxel_indexes)
+    c_features_p, c_features_s = extract_features(c_subject, c_valid_trial_indexes)
     c_features_p = np.array(c_features_p)
     c_features_s = np.array(c_features_s)
     # 2) Prediction
@@ -100,15 +91,16 @@ def main(subjects, c_subject):
         prediction = nb.predict(X[i])
         if prediction == Y[i]:
             correct += 1
-    print (correct / len(X)) * 100, "%"
-
+    return ((correct / len(X)) * 100)
+    
 if __name__ == "__main__":
-    subjects = [
-        sio.loadmat('../../matlab/data1-norm-roi.mat'),
-        sio.loadmat('../../matlab/data2-norm-roi.mat'),
-        sio.loadmat('../../matlab/data3-norm-roi.mat'),
-        sio.loadmat('../../matlab/data4-norm-roi.mat'),
-        sio.loadmat('../../matlab/data5-norm-roi.mat'),
-    ]
-    c_subject = sio.loadmat('../../matlab/data6-norm-roi.mat')
-    main(subjects, c_subject)
+    total_result = 0
+    for excl_index in range(6):
+        subjects = [(sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (index + 1))) for index in range(6) if index is not excl_index]
+        print "CLassification excluding subject %d" % (excl_index + 1)
+        c_subject = sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (excl_index + 1))
+        result = main(subjects, c_subject)
+        total_result += result
+        print "Result: %s %%" % result
+    print "Total result: %s %%" % (total_result / 6)
+
