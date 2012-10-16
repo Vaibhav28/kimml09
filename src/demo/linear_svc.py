@@ -100,15 +100,15 @@ def main(subjects, c_subject):
         prediction = nb.predict(X[i])
         if prediction == Y[i]:
             correct += 1
-    print (correct / len(X)) * 100, "%"
+    return ((correct / len(X)) * 100)
 
 if __name__ == "__main__":
-    subjects = [
-        sio.loadmat('../../matlab/data1-norm-roi.mat'),
-        sio.loadmat('../../matlab/data2-norm-roi.mat'),
-        sio.loadmat('../../matlab/data3-norm-roi.mat'),
-        sio.loadmat('../../matlab/data4-norm-roi.mat'),
-        sio.loadmat('../../matlab/data5-norm-roi.mat'),
-    ]
-    c_subject = sio.loadmat('../../matlab/data6-norm-roi.mat')
-    main(subjects, c_subject)
+    total_result = 0
+    for excl_index in range(6):
+        subjects = [(sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (index + 1))) for index in range(6) if index is not excl_index]
+        print "CLassification excluding subject %d" % (excl_index + 1)
+        c_subject = sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (excl_index + 1))
+        result = main(subjects, c_subject)
+        total_result += result
+        print "Result: %s %%" % result
+    print "Total result: %s %%" % (total_result / 6)
