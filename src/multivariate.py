@@ -6,19 +6,37 @@ import math as m
 import scipy.stats as sis
 
 # load the matlab files
-file = [
-	'C:\Users\Robin\Documents\Machine Learning\data1-norm-roi'
-	,'C:\Users\Robin\Documents\Machine Learning\data2-norm-roi'
-	,'C:\Users\Robin\Documents\Machine Learning\data3-norm-roi'
-	,'C:\Users\Robin\Documents\Machine Learning\data4-norm-roi'
-	,'C:\Users\Robin\Documents\Machine Learning\data5-norm-roi'
-	,'C:\Users\Robin\Documents\Machine Learning\data6-norm-roi'
+# file = [
+# 	'C:\Users\Robin\Documents\Machine Learning\data1-norm-roi'
+# 	,'C:\Users\Robin\Documents\Machine Learning\data2-norm-roi'
+# 	,'C:\Users\Robin\Documents\Machine Learning\data3-norm-roi'
+# 	,'C:\Users\Robin\Documents\Machine Learning\data4-norm-roi'
+# 	,'C:\Users\Robin\Documents\Machine Learning\data5-norm-roi'
+# 	,'C:\Users\Robin\Documents\Machine Learning\data6-norm-roi'
+# ]
+
+# data = [
+# 		sio.loadmat('../matlab/data1-avg-roi-norm'),
+# 	    sio.loadmat('../matlab/data2-avg-roi-norm'),
+# 	    sio.loadmat('../matlab/data3-avg-roi-norm'),
+# 	    sio.loadmat('../matlab/data4-avg-roi-norm'),
+# 	    sio.loadmat('../matlab/data5-avg-roi-norm'),
+# 	    sio.loadmat('../matlab/data6-avg-roi-norm'),
+# ]
+data = [
+        sio.loadmat('../matlab/data1-avg-roi-norm'),
+        sio.loadmat('../matlab/data2-avg-roi-norm'),
+        sio.loadmat('../matlab/data3-avg-roi-norm'),
+        sio.loadmat('../matlab/data4-avg-roi-norm'),
+        sio.loadmat('../matlab/data5-avg-roi-norm'),
+        sio.loadmat('../matlab/data6-avg-roi-norm'),
 ]
 
+
 #place in scipy format
-data = range(0,6)
-for n in range(0,6):
-	data[n] = sio.loadmat(file[n])
+#data = range(0,6)
+#for n in range(0,6):
+#	data[n] = sio.loadmat(file[n])
 
 # make variables
 correcttotal1 = 0
@@ -81,37 +99,35 @@ for iteration in range(0, 6):
 						mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][0]))
 						mat_det= np.linalg.det(mat_cov)
 						mat_inv= mat_cov.I
-						mat_x= np.matrix(excl[scan][ps])[trial,0:7]
-						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:7]-np.mean(np.matrix(arrr[scan][0]), axis=0)
+						mat_x= np.matrix(excl[scan][ps])[trial,0:25]
+						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][0]), axis=0)
 						#multivariate equation
-						logprob_perscan_pic[scan] = -(7/2)*m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
-
+						logprob_perscan_pic[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
 						#for sentence
 						mat_mean=np.subtract(np.matrix(arrr[scan][1]), np.mean(np.matrix(arrr[scan][1]), axis=0))
 						mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][1]))
 						mat_det= np.linalg.det(mat_cov)
 						mat_inv= mat_cov.I
-						mat_x= np.matrix(excl[scan][ps])[trial,0:7]
-						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:7]-np.mean(np.matrix(arrr[scan][1]), axis=0)
-						logprob_perscan_sent[scan] = -(7/2)*m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
+						mat_x= np.matrix(excl[scan][ps])[trial,0:25]
+						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][1]), axis=0)
+						logprob_perscan_sent[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
 					else:
 						#for picture
 						mat_mean=np.subtract(np.matrix(arrr[scan][1]), np.mean(np.matrix(arrr[scan][1]), axis=0))
 						mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][1]))
 						mat_det= np.linalg.det(mat_cov)
 						mat_inv= mat_cov.I
-						mat_x= np.matrix(excl[scan][ps])[trial,0:7]
-						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:7]-np.mean(np.matrix(arrr[scan][1]), axis=0)
-						logprob_perscan_pic[scan] = -(7/2)*m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
-
+						mat_x= np.matrix(excl[scan][ps])[trial,0:25]
+						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][1]), axis=0)
+						logprob_perscan_pic[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
 						#for sentence
 						mat_mean=np.subtract(np.matrix(arrr[scan][0]), np.mean(np.matrix(arrr[scan][0]), axis=0))
 						mat_cov=np.dot(np.transpose(mat_mean),mat_mean)/len((arrr[scan][0]))
 						mat_det= np.linalg.det(mat_cov)
 						mat_inv= mat_cov.I
-						mat_x= np.matrix(excl[scan][ps])[trial,0:7]
-						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:7]-np.mean(np.matrix(arrr[scan][0]), axis=0)
-						logprob_perscan_sent[scan] = -(7/2)*m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
+						mat_x= np.matrix(excl[scan][ps])[trial,0:25]
+						mat_xminmu= np.matrix(excl[scan][ps])[trial,0:25]-np.mean(np.matrix(arrr[scan][0]), axis=0)
+						logprob_perscan_sent[scan] = m.log(2*m.pi)-0.5*m.log(mat_det)-0.5*mat_xminmu*mat_inv*np.transpose(mat_xminmu)
 
 			print ps, trial
 
