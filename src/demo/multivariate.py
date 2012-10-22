@@ -2,9 +2,10 @@
 import scipy.io as sio
 import numpy as np
 import math as m
+from settings import FILES
 
 # load the matlab files
-data = [sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (index + 1)) for index in range(6)]
+data = [sio.loadmat(FILES['NormAvgROI'] % (index + 1)) for index in range(6)]
 
 # make variables
 correcttotal1 = 0

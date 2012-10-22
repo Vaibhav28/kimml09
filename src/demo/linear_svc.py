@@ -5,10 +5,11 @@ from scipy import mean as smean
 from functions import *
 from sklearn.svm import LinearSVC
 from math import fsum
+from settings import FILES
 
 # Data
 print "Loading subjects..."
-subjects = [sio.loadmat('../../matlab/demo/data%d-select-norm-avgroi.mat' % (index + 1)) for index in range(6)]
+subjects = [sio.loadmat(FILES['NormAvgROI'] % (index + 1)) for index in range(6)]
 print "Loaded subjects!"
 
 # Configuration

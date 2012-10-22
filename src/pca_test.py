@@ -10,7 +10,7 @@ from sklearn.naive_bayes import GaussianNB
 ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
 FIRST_STIMULUS_SCAN_INDEXES = range(10, 20)
 SECOND_STIMULUS_SCAN_INDEXES = range(27, 37)
-COMPONENTS = 200
+COMPONENTS = 1
 
 def get_number_of_trials(subject):
     ''''''
@@ -127,12 +127,12 @@ def main(subjects, c_subject):
 
 if __name__ == "__main__":
     subjects = [
-        sio.loadmat('../matlab/data-starplus-04799-v7.mat'),
-        sio.loadmat('../matlab/data-starplus-04820-v7.mat'),
-        sio.loadmat('../matlab/data-starplus-04847-v7.mat'),
-        sio.loadmat('../matlab/data-starplus-05675-v7.mat'),
-        sio.loadmat('../matlab/data-starplus-05680-v7.mat'),
+        sio.loadmat('../matlab/data1-original.mat'),
+        sio.loadmat('../matlab/data2-original.mat'),
+        sio.loadmat('../matlab/data3-original.mat'),
+        sio.loadmat('../matlab/data4-original.mat'),
+        sio.loadmat('../matlab/data5-original.mat'),
         # sio.loadmat('../matlab/data-starplus-05710-v7.mat'),
     ]
-    c_subject = sio.loadmat('../matlab/data-starplus-05710-v7.mat')
+    c_subject = sio.loadmat('../matlab/data6-original.mat')
     main(subjects, c_subject)
