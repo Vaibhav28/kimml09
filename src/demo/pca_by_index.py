@@ -20,12 +20,13 @@ SECOND_STIMULUS_SCAN_INDICES = range(27, 37)
 COMPONENTS = 148
 
 # Rois are ignored if filter coords is false
-#ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
-ROIS = []
+ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
+#ROIS = []
 
 FLAG_PCA = True
 FLAG_NORM = False
-FLAG_FILTER_COORDS = True
+FLAG_FILTER_COORDS = False
+FLAG_FILTER_INDICES = True
 
 # If true, average the prediction per set of scans
 FLAG_PER_SCAN = False
@@ -48,7 +49,7 @@ PCA ALGORITHM
 5) Use one part for training
 6) Use the other part for testing
 '''
-# 1: Get list of coordinates
+# 1: Get list of all indices
 validCoords = []
 trials = getValidTrialIndices(subjects[0])
 if FLAG_FILTER_COORDS:
@@ -63,7 +64,24 @@ if FLAG_FILTER_COORDS:
         print "No valid coordinates present"
         quit()
 
+if FLAG_FILTER_INDICES:
+    '''
+    Take all voxels that are present for each subject
+    '''
+    lengths = []
+    for subject in subjects:
+        lengths.append(len(subject['meta']['colToROI'][0][0]))
+    voxel_indices = range(1, min(lengths))
+    print lengths
+    # Filter ROIS
+    if len(ROIS) > 0:
+        roi_indices = []
+        for index in voxel_indices:
+            if subjects[0]['meta']['colToROI'][0][0][index - 1] in ROIS:
+                roi_indices.append(index)
+        voxel_indices = roi_indices
 
+print len(voxel_indices)
 # 2: Construct Matrix based on those coordinates
 scans = []
 labels = []
@@ -72,7 +90,6 @@ for subject_index, subject in enumerate(subjects):
     if not FLAG_FILTER_COORDS:
         validCoords = getCoordinatesForSubject(subject, [])
 
-    voxel_indices = getVoxelsForCoordinates(subject, validCoords)
     print "Appending scans for subject %s" % subject_index
     for trial_index in trials:
         for scan_index in FIRST_STIMULUS_SCAN_INDICES:

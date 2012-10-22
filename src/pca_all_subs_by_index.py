@@ -12,12 +12,12 @@ from math import fsum
 print "Loading subjects..."
 
 subjects = [
-    sio.loadmat('../matlab/data-starplus-04799-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-04820-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-04847-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05675-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05680-v7.mat'),
-    sio.loadmat('../matlab/data-starplus-05710-v7.mat')
+    sio.loadmat('demo/matlab/data1-original.mat'),
+    sio.loadmat('demo/matlab/data2-original.mat'),
+    sio.loadmat('demo/matlab/data3-original.mat'),
+    sio.loadmat('demo/matlab/data4-original.mat'),
+    sio.loadmat('demo/matlab/data5-original.mat'),
+    sio.loadmat('demo/matlab/data6-original.mat')
 ]
 # subjects = [
 #     sio.loadmat('../matlab/matlab_avergage_rois_04799.mat'),
@@ -32,11 +32,11 @@ print "Loaded subjects!"
 # Configuration
 FIRST_STIMULUS_SCAN_INDICES = range(10, 20)
 SECOND_STIMULUS_SCAN_INDICES = range(27, 37)
-COMPONENTS = 250
+COMPONENTS = 148
 
 # Rois are ignored if filter coords is false
-ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
-#ROIS = []
+#ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
+ROIS = []
 
 FLAG_PCA = True
 FLAG_NORM = False
@@ -87,7 +87,7 @@ if FLAG_FILTER_INDICES:
     for subject in subjects:
         lengths.append(len(subject['meta']['colToROI'][0][0]))
     voxel_indices = range(1, min(lengths))
-
+    print lengths
     # Filter ROIS
     if len(ROIS) > 0:
         roi_indices = []
@@ -96,6 +96,7 @@ if FLAG_FILTER_INDICES:
                 roi_indices.append(index)
         voxel_indices = roi_indices
 
+print len(voxel_indices)
 # 2: Construct Matrix based on those coordinates
 scans = []
 labels = []
@@ -129,7 +130,7 @@ original_scans = scans
 vec_x = []
 vec_y = []
 
-for n in range(1, COMPONENTS):
+for n in range(COMPONENTS, COMPONENTS + 1):
     scans = applyPCA(original_scans, n + 1)
     #print "Reduced input data to %s components using PCA" % (len(scans[0]))
     #print "Explained variance is %s" % scans_reduced.explained_variance

@@ -24,8 +24,8 @@ print "Loaded subjects!"
 
 # Configuration
 FIRST_STIMULUS_SCAN_INDICES = range(10, 20)
-SECOND_STIMULUS_SCAN_INDICES = range(27, 37)
-COMPONENTS = 500
+SECOND_STIMULUS_SCAN_INDICES = range(22, 32)
+COMPONENTS = 148
 
 # Rois are ignored if filter coords is false
 #ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
@@ -106,7 +106,7 @@ original_scans = scans
 vec_x = []
 vec_y = []
 
-for n in range(COMPONENTS - 50, COMPONENTS + 50):
+for n in range(COMPONENTS, COMPONENTS):
     scans = applyPCA(original_scans, n + 1)
     #print "Reduced input data to %s components using PCA" % (len(scans[0]))
     #print "Explained variance is %s" % scans_reduced.explained_variance
