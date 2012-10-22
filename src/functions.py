@@ -73,7 +73,7 @@ def getVoxelsForScan(subject, trial_index, scan_index, voxel_indices):
         if voxel_indices:
             voxels = []
             for voxel_index in voxel_indices:
-                voxels.append(subject['data'][trial_index][0][scan_index][voxel_index])
+                voxels.append(subject['data'][trial_index][0][scan_index][voxel_index - 1])
             return voxels
 
         return subject['data'][trial_index][0][scan_index]
@@ -104,5 +104,5 @@ def applyPCA(features, components):
     pcanode.train(features)
     pcanode.stop_training()
 
-    print "Explained variance: %s" % pcanode.explained_variance
+    #print "Explained variance: %s" % pcanode.explained_variance
     return pcanode(features)
