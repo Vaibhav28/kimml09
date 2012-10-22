@@ -1,3 +1,23 @@
+'''
+Classification of trials using PCA (principal component analysis) as a
+dimension reduction technique.
+
+Input:      Original voxel data, with a dimensionality of ~4900 voxels per scans_per_subject
+Training:   PCA reduction, followed by GaussianNB
+Scoring:    Per group of scans (belonging to the same subtrial), the prediction for each scan
+            is combined for an overall judgement.
+
+Notes:      ROI filter can be applied if you do not like the computational intensity of PCA
+            on the whole set of voxels. This will however reduce the generalization performance
+            of the classifier.
+
+Algorithm:  - get voxel indices
+            - construct voxel matrices (containing both training data and test data)
+            - apply PCA to voxel matrix
+            - split matrix into training and testing data
+            - train classifier
+            - test classifier
+'''
 from __future__ import division
 import scipy.io as sio
 import pylab
@@ -6,50 +26,27 @@ from scipy import mean as smean
 from functions import *
 from settings import FILES
 from sklearn.naive_bayes import GaussianNB
-#from sklearn.preprocessing import normalize
-from math import fsum
 
-# Data
-print "Loading subjects..."
+# Load the dataset
 subjects = [sio.loadmat(FILES['Orig'] % (index + 1)) for index in range(6)]
-print "Loaded subjects!"
 
-# Configuration
+# Configuration of the classifier. Please indicate the scangroups and the range
+# of PCA components to try.
+# If desired, the list ROIS can contain strings to filter the voxels on, or
+# leave empty for all ROIS.
 FIRST_STIMULUS_SCAN_INDICES = range(10, 20)
 SECOND_STIMULUS_SCAN_INDICES = range(27, 37)
 COMPONENTS = 148
-
-# Rois are ignored if filter coords is false
 ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
-#ROIS = []
 
+# Some flags for testing, probably no need to change this
 FLAG_PCA = True
 FLAG_NORM = False
 FLAG_FILTER_COORDS = False
 FLAG_FILTER_INDICES = True
-
-# If true, average the prediction per set of scans
 FLAG_PER_SCAN = False
 
-# Just some debugging output
-# for coord in validCoords:
-#     print "Regions for coord (%s,%s,%s)" % (coord[0], coord[1], coord[2])
-#     for subject in subjects:
-#         voxel_index = subject['meta']['coordToCol'][0][0][coord[0]][coord[1]][coord[2]]
-#         print subject['meta']['colToROI'][0][0][voxel_index - 1]
-
-'''
-PCA ALGORITHM
-1) Apply filtering on voxels (for each subject)
-2) Construct data matrix for PCA:
-- each row is a scan from the range of applicable scans (split for type of trial - PS, SP, PS+SP?)
-- each column is a value for a certain coordinate
-3) PCA
-4) Split matrix based on subject
-5) Use one part for training
-6) Use the other part for testing
-'''
-# 1: Get list of all indices
+# #1: Determine valid voxel indices
 validCoords = []
 trials = getValidTrialIndices(subjects[0])
 if FLAG_FILTER_COORDS:
@@ -81,7 +78,6 @@ if FLAG_FILTER_INDICES:
                 roi_indices.append(index)
         voxel_indices = roi_indices
 
-print len(voxel_indices)
 # 2: Construct Matrix based on those coordinates
 scans = []
 labels = []
