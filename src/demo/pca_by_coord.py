@@ -10,16 +10,7 @@ from math import fsum
 
 # Data
 print "Loading subjects..."
-
-subjects = [
-    sio.loadmat('../../matlab/data-starplus-04799-v7.mat'),
-    sio.loadmat('../../matlab/data-starplus-04820-v7.mat'),
-    sio.loadmat('../../matlab/data-starplus-04847-v7.mat'),
-    sio.loadmat('../../matlab/data-starplus-05675-v7.mat'),
-    sio.loadmat('../../matlab/data-starplus-05680-v7.mat'),
-    sio.loadmat('../../matlab/data-starplus-05710-v7.mat')
-]
-
+subjects = [sio.loadmat(FILES['NormPerVoxAvgROI'] % (index + 1)) for index in range(6)]
 print "Loaded subjects!"
 
 # Configuration
