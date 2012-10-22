@@ -9,7 +9,7 @@ from settings import FILES
 
 # Data
 print "Loading subjects..."
-subjects = [sio.loadmat(FILES['NormAvgROI'] % (index + 1)) for index in range(6)]
+subjects = [sio.loadmat(FILES['NormPerVoxAvgROI'] % (index + 1)) for index in range(6)]
 print "Loaded subjects!"
 
 # Configuration
