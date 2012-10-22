@@ -21,23 +21,28 @@ Demo contents
     => Partially because CALC region has an empty intersect?
     => Instead of PCA we choose to generalize ROI features, then no need for PCA since nr comps is low already
 
+    => Then by index instead of coordinate (those were very limited). Now we have ~4900 comps before PCA
+    => Yields up to 61.45% (see graph) for 148 components.
+
+
 - GNB
-
-
-
-
 
 - Multivariate
 
-
-
-
-
 - Support Vector Machine
 
-
-
-
-
-
 Presentation contents
+
+
+
+Matlab movies:
+
+   load('data-starplus-04799-v7');
+   alltrials= 1:meta.ntrials
+   ts= [info.actionAnswer]==0
+   trialsOfInterest=alltrials(ts)
+   [i,d,m]=transformIDM_avgTrials(info,data,meta,trialsOfInterest);
+
+   M1 = animate16Trial(i,d,m,1);
+
+   M2 = animateTrial(i,d,m,1,5);

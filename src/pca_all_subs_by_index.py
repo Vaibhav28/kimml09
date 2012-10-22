@@ -32,15 +32,16 @@ print "Loaded subjects!"
 # Configuration
 FIRST_STIMULUS_SCAN_INDICES = range(10, 20)
 SECOND_STIMULUS_SCAN_INDICES = range(27, 37)
-COMPONENTS = 500
+COMPONENTS = 250
 
 # Rois are ignored if filter coords is false
-#ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
-ROIS = []
+ROIS = ['CALC', 'LIPL', 'LT', 'LTRIA', 'LOPER', 'LIPS', 'LDLPFC']
+#ROIS = []
 
 FLAG_PCA = True
 FLAG_NORM = False
-FLAG_FILTER_COORDS = True
+FLAG_FILTER_COORDS = False
+FLAG_FILTER_INDICES = True
 
 # If true, average the prediction per set of scans
 FLAG_PER_SCAN = False
@@ -63,7 +64,7 @@ PCA ALGORITHM
 5) Use one part for training
 6) Use the other part for testing
 '''
-# 1: Get list of coordinates
+# 1: Get list of all indices
 validCoords = []
 trials = getValidTrialIndices(subjects[0])
 if FLAG_FILTER_COORDS:
@@ -78,6 +79,22 @@ if FLAG_FILTER_COORDS:
         print "No valid coordinates present"
         quit()
 
+if FLAG_FILTER_INDICES:
+    '''
+    Take all voxels that are present for each subject
+    '''
+    lengths = []
+    for subject in subjects:
+        lengths.append(len(subject['meta']['colToROI'][0][0]))
+    voxel_indices = range(1, min(lengths))
+
+    # Filter ROIS
+    if len(ROIS) > 0:
+        roi_indices = []
+        for index in voxel_indices:
+            if subjects[0]['meta']['colToROI'][0][0][index - 1] in ROIS:
+                roi_indices.append(index)
+        voxel_indices = roi_indices
 
 # 2: Construct Matrix based on those coordinates
 scans = []
@@ -87,7 +104,6 @@ for subject_index, subject in enumerate(subjects):
     if not FLAG_FILTER_COORDS:
         validCoords = getCoordinatesForSubject(subject, [])
 
-    voxel_indices = getVoxelsForCoordinates(subject, validCoords)
     print "Appending scans for subject %s" % subject_index
     for trial_index in trials:
         for scan_index in FIRST_STIMULUS_SCAN_INDICES:
@@ -113,7 +129,7 @@ original_scans = scans
 vec_x = []
 vec_y = []
 
-for n in range(COMPONENTS - 50, COMPONENTS + 50):
+for n in range(1, COMPONENTS):
     scans = applyPCA(original_scans, n + 1)
     #print "Reduced input data to %s components using PCA" % (len(scans[0]))
     #print "Explained variance is %s" % scans_reduced.explained_variance
