@@ -67,6 +67,112 @@
 			<key>Class</key>
 			<string>LineGraphic</string>
 			<key>ID</key>
+			<integer>49</integer>
+			<key>Points</key>
+			<array>
+				<string>{477.5, 233}</string>
+				<string>{477.5, 246}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
+					<key>HeadArrow</key>
+					<string>0</string>
+					<key>Legacy</key>
+					<true/>
+					<key>LineType</key>
+					<integer>1</integer>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>ID</key>
+			<integer>48</integer>
+			<key>Points</key>
+			<array>
+				<string>{305, 233}</string>
+				<string>{305, 246}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
+					<key>HeadArrow</key>
+					<string>0</string>
+					<key>Legacy</key>
+					<true/>
+					<key>LineType</key>
+					<integer>1</integer>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>ID</key>
 			<integer>47</integer>
 			<key>Points</key>
 			<array>
@@ -77,6 +183,34 @@
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -102,6 +236,34 @@
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -122,13 +284,41 @@
 			<integer>45</integer>
 			<key>Points</key>
 			<array>
-				<string>{562, 233}</string>
-				<string>{562, 246}</string>
+				<string>{554, 233}</string>
+				<string>{554, 246}</string>
 			</array>
 			<key>Style</key>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -147,13 +337,41 @@
 			<integer>44</integer>
 			<key>Points</key>
 			<array>
-				<string>{221, 233}</string>
-				<string>{221, 246}</string>
+				<string>{227, 233}</string>
+				<string>{227, 246}</string>
 			</array>
 			<key>Style</key>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -172,13 +390,41 @@
 			<integer>42</integer>
 			<key>Points</key>
 			<array>
-				<string>{496, 233}</string>
-				<string>{496, 246}</string>
+				<string>{504, 233}</string>
+				<string>{504, 246}</string>
 			</array>
 			<key>Style</key>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -204,6 +450,34 @@
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -222,13 +496,41 @@
 			<integer>40</integer>
 			<key>Points</key>
 			<array>
-				<string>{460, 233}</string>
-				<string>{460, 246}</string>
+				<string>{451, 233}</string>
+				<string>{451, 246}</string>
 			</array>
 			<key>Style</key>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -254,6 +556,34 @@
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -272,13 +602,41 @@
 			<integer>38</integer>
 			<key>Points</key>
 			<array>
-				<string>{325, 233}</string>
-				<string>{325, 246}</string>
+				<string>{331, 233}</string>
+				<string>{331, 246}</string>
 			</array>
 			<key>Style</key>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -304,6 +662,34 @@
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -322,13 +708,41 @@
 			<integer>36</integer>
 			<key>Points</key>
 			<array>
-				<string>{289, 233}</string>
-				<string>{289, 246}</string>
+				<string>{279, 233}</string>
+				<string>{279, 246}</string>
 			</array>
 			<key>Style</key>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -354,6 +768,34 @@
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>0</string>
 					<key>Legacy</key>
@@ -688,6 +1130,34 @@ below the circle}</string>
 			<dict>
 				<key>stroke</key>
 				<dict>
+					<key>Color</key>
+					<dict>
+						<key>archive</key>
+						<data>
+						YnBsaXN0MDDUAQIDBAUGHyBYJHZl
+						cnNpb25YJG9iamVjdHNZJGFyY2hp
+						dmVyVCR0b3ASAAGGoKUHCBEVHFUk
+						bnVsbNQJCgsMDQ4PEFdOU1doaXRl
+						XE5TQ29sb3JTcGFjZV8QEk5TQ3Vz
+						dG9tQ29sb3JTcGFjZVYkY2xhc3NC
+						MQAQA4ACgATSEgwTFFROU0lEEAKA
+						A9IWFxgZWiRjbGFzc25hbWVYJGNs
+						YXNzZXNcTlNDb2xvclNwYWNlohob
+						XE5TQ29sb3JTcGFjZVhOU09iamVj
+						dNIWFx0eV05TQ29sb3KiHRtfEA9O
+						U0tleWVkQXJjaGl2ZXLRISJUcm9v
+						dIABCBEaIy0yNz1DTFRhdn2AgoSG
+						i5CSlJmkrbq9ytPY4OP1+P0AAAAA
+						AAABAQAAAAAAAAAjAAAAAAAAAAAA
+						AAAAAAAA/w==
+						</data>
+						<key>b</key>
+						<string>1</string>
+						<key>g</key>
+						<string>1</string>
+						<key>r</key>
+						<string>1</string>
+					</dict>
 					<key>HeadArrow</key>
 					<string>FilledArrow</string>
 					<key>Legacy</key>
@@ -747,7 +1217,7 @@ below the circle}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-10-23 10:01:41 +0000</string>
+	<string>2012-10-23 12:49:59 +0000</string>
 	<key>Modifier</key>
 	<string>Spyros Ioakeimidis</string>
 	<key>NotesVisible</key>
@@ -832,6 +1302,8 @@ below the circle}</string>
 				<string>Canvas 1</string>
 			</dict>
 		</array>
+		<key>Frame</key>
+		<string>{{-1440, 108}, {1440, 900}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -844,6 +1316,8 @@ below the circle}</string>
 		<true/>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
+		<key>VisibleRegion</key>
+		<string>{{-250, -112}, {1305, 761}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
