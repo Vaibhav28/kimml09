@@ -5,7 +5,7 @@ import math as m
 from settings import FILES
 
 # load the matlab files
-data = [sio.loadmat(FILES['NormAvgROI'] % (index + 1)) for index in range(6)]
+data = [sio.loadmat(FILES['AvgROI'] % (index + 1)) for index in range(6)]
 
 # make variables
 correcttotal1 = 0
@@ -106,6 +106,7 @@ for iteration in range(0, 6):
                 correct_per_subject3 = correct_per_subject3 + 1
             if (np.sum(logprob_perscan_pic[0:10]) < np.sum(logprob_perscan_sent[0:10])and ps == 1):
                 correct_per_subject4 = correct_per_subject4 + 1
+
     # add to total
     correcttotal1 = correcttotal1 + correct_per_subject1
     correcttotal2 = correcttotal2 + correct_per_subject2
@@ -113,5 +114,8 @@ for iteration in range(0, 6):
     correcttotal4 = correcttotal4 + correct_per_subject4
 
 # print accuracy
-print 'picture % (1-10) = ', correcttotal1 / (6.0 * 20), 'sentence % (1-10) = ', correcttotal4 / (6.0 * 20), 'picture % (10-20) = ', correcttotal2 / (6.0 * 20), 'sentence % (10-20) = ', correcttotal3 / (6.0 * 20)
+total_picture = (((correcttotal1 / (6.0 * 20)) + (correcttotal2 / (6.0 * 20))) / 2) * 100
+total_sentence = (((correcttotal3 / (6.0 * 20)) + (correcttotal4 / (6.0 * 20))) / 2) * 100
+print 'Picture: %s %%' % total_picture
+print 'Sentence: %s %%' % total_sentence 
 print 'Total accuracy: %s %%' % (((correcttotal1 + correcttotal2 + correcttotal3 + correcttotal4) / (6.0 * 80)) * 100)
