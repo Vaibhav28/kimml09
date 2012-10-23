@@ -1,6 +1,6 @@
 from __future__ import division
 import scipy.io as sio
-import pylab
+# import pylab
 from scipy import std as sstd
 from scipy import mean as smean
 from functions import *
@@ -11,7 +11,7 @@ from math import fsum
 
 # Data
 print "Loading subjects..."
-subjects = [sio.loadmat(FILES['Orig'] % (index + 1)) for index in range(6)]
+subjects = [sio.loadmat(ORIG_FILES['Orig'] % (index + 1)) for index in range(6)]
 print "Loaded subjects!"
 
 # Configuration
@@ -177,10 +177,10 @@ for n in range(COMPONENTS, COMPONENTS + 1):
 
 
 # Plot?
-pylab.plot(vec_x, vec_y)
-pylab.xlabel('Number of components')
-pylab.ylabel('Accuracy (%)')
-pylab.title('PCA training results for different amounts of components')
-pylab.grid(True)
-pylab.savefig('pca_plot')
-pylab.show()
+# pylab.plot(vec_x, vec_y)
+# pylab.xlabel('Number of components')
+# pylab.ylabel('Accuracy (%)')
+# pylab.title('PCA training results for different amounts of components')
+# pylab.grid(True)
+# pylab.savefig('pca_plot')
+# pylab.show()
