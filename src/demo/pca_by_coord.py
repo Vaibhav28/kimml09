@@ -4,7 +4,7 @@ import scipy.io as sio
 from scipy import std as sstd
 from scipy import mean as smean
 from functions import *
-from settings import FILES
+from settings import ORIG_FILES
 from sklearn.naive_bayes import GaussianNB
 #from sklearn.preprocessing import normalize
 from math import fsum
