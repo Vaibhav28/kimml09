@@ -63,29 +63,29 @@ def getCoordinatesForSubject(subject, rois):
 
 
 def getVoxelsForScan(subject, trial_index, scan_index, voxel_indices):
-        '''
-        Returns the voxel vector data for the trial with index trial_index
-        and scan with index scan_index.
+    '''
+    Returns the voxel vector data for the trial with index trial_index
+    and scan with index scan_index.
 
-        Optionally, a list of voxel_indices can be used to further filter the
-        result.
-        '''
-        if voxel_indices:
-            voxels = []
-            for voxel_index in voxel_indices:
-                voxels.append(subject['data'][trial_index][0][scan_index][voxel_index - 1])
-            return voxels
+    Optionally, a list of voxel_indices can be used to further filter the
+    result.
+    '''
+    if voxel_indices:
+        voxels = []
+        for voxel_index in voxel_indices:
+            voxels.append(subject['data'][trial_index][0][scan_index][voxel_index - 1])
+        return voxels
 
-        return subject['data'][trial_index][0][scan_index]
+    return subject['data'][trial_index][0][scan_index]
 
 
 def getValidTrialIndices(subject):
-        '''
-        Returns the valid indices of trials for a subject according to condition.
-        We care only about conditions with value 2 or 3.
-        '''
-        return [index for index in range(subject['meta']['ntrials'])
-                if subject['info'][0]['cond'][index] > 1]
+    '''
+    Returns the valid indices of trials for a subject according to condition.
+    We care only about conditions with value 2 or 3.
+    '''
+    return [index for index in range(subject['meta']['ntrials'])
+            if subject['info'][0]['cond'][index] > 1]
 
 
 def getVoxelsForCoordinates(subject, coords):
