@@ -465,7 +465,7 @@ e-mail to: tvcg@computer.org .
   \setlength{\bibspacing}{\z@}
   \renewenvironment{thebibliography}[1]
        {\section*{\refname}%
-        \scriptsize%
+        \footnotesize%
         \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
         \list{\@biblabel{\@arabic\c@enumiv}}%
              {\settowidth\labelwidth{\@biblabel{#1}}%
