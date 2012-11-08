@@ -580,7 +580,7 @@ e-mail to: tvcg@computer.org .
         \end{center} \par%
     \fi
     \ifvgtcjournal%
-        {\scriptsize\sffamily%\renewcommand{\baselinestretch}{1.1}
+        {\footnotesize\sffamily%\renewcommand{\baselinestretch}{1.1}
         \leftskip = 0.33in \rightskip = \leftskip%
         \ifx\vgtc@abstxt\vgtc@empty \else%
              \begingroup%
