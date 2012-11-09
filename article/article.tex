@@ -181,17 +181,16 @@ So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$
 \section{Experimental Results}
 \label{sec:results}
 
-As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the original data and then mean and standard deviation was applied to them as a selection method. 
+As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
 
-Columns depict the used classifiers. For the classifiers depicted with (*), we used different structure for the data that we fit to them (take example from section where the selection is introduced). 
+Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}. The table reveals the following general results:
 
-
-
-%explain the symbols on the table, explain what rows (feature selection methods) are and what columns are (different classifiers and some of them with different structure on the data)
+\begin{itemize}
+	\item Classifiers performance do not differ significantly between them.
+	\item Classifiers performance differ significantly from 50\%.
+\end{itemize}
 
 %first column naive bayes with pca 148 components, others common feature selection methods as described in Section~\ref{sec:featureSelection}
-
-%* means different structure of the data
 
 
 
@@ -207,7 +206,7 @@ Columns depict the used classifiers. For the classifiers depicted with (*), we u
 \centering
 {\small
 \begin{tabular}{c|c|c|c|c}
-& \textbf{Naive Bayes} & \textbf{Linear SVC} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
+& \textbf{Naive Bayes} & \textbf{Linear SVM} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
 PCA & 61.46 &  - & - & - \\
 M ROIs & 70.21 & 72.5 & 74.79 & 76.67 \\
 Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
