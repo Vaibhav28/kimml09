@@ -181,7 +181,9 @@ So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$
 \section{Experimental Results}
 \label{sec:results}
 
-As a comparison measure, we used the performance of the classifiers on predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods. The letter \emph{M} denotes Columns depict the used classifiers. For the classifiers depicted with (*), we used different structure for the data that we fit to them (take example from section where the selection is introduced). 
+As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the original data and then mean and standard deviation was applied to them as a selection method. 
+
+Columns depict the used classifiers. For the classifiers depicted with (*), we used different structure for the data that we fit to them (take example from section where the selection is introduced). 
 
 
 
@@ -207,12 +209,12 @@ As a comparison measure, we used the performance of the classifiers on predictin
 \begin{tabular}{c|c|c|c|c}
 & \textbf{Naive Bayes} & \textbf{Linear SVC} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
 PCA & 61.46 &  - & - & - \\
-M-ROIs & 70.21 & 72.5 & 74.79 & 76.67 \\
-Norm-M-ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
-Norm-M-SD-ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
-Norm/Vox-M-ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
+M ROIs & 70.21 & 72.5 & 74.79 & 76.67 \\
+Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
+Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
+Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
 \end{tabular}}
-\caption{Performance results (in \%) of the three classifiers for different methods for feature selection and structure.}
+\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure.}
 \label{tab:results}
 \end{table*}
 
