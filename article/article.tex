@@ -193,8 +193,6 @@ So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$
 \section{Experimental Results}
 \label{sec:results}
 
-As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
-
 \begin{table*}[htpb]
 \centering
 {\small
@@ -209,6 +207,10 @@ Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
 \caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure.}
 \label{tab:results}
 \end{table*}
+
+As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
+
+
 
 Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}. The table reveals the following general results:
 
