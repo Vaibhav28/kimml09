@@ -169,9 +169,6 @@ ROI mapping. ROI mapping is a form of feature selection, wherein only a subset o
 Principal Component Analysis (PCA). As feature extraction method, we applied PCA. Ideally, the input vectors of the PCA should be the standardized Talairach coordinates, because we are conducting between-subject classification. As this coordinate system appeared to be inaccurate for this dataset, we were forced to use the voxel indices. The problem is that indices of different subjects may not map well onto each other, due to differences in brain size and shape. As a result, the accuracy of the PCA is reduced.   
 
 
-So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$ by only using voxels belonging to a specific region of interest (ROI). However, this requires us to known which regions are actually of interest \textit{a priori}.
-- ROIs, means, stddev, skew, kurtosis?
-
 \subsection{Classifiers}
 
 
