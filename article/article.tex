@@ -204,28 +204,23 @@ Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
 Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
 Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
 \end{tabular}}
-\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure.}
+\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}}
 \label{tab:results}
 \end{table*}
 
-As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
+As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
 
 
 
-Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}. The table reveals the following general results:
+Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}.
 
-\begin{itemize}
-	\item Classifiers performance do not differ significantly between them. Except from the case that PCA is used, the difference in performance between the classifiers for the rest of the cases is not more than 10\%.
-	\item Classifiers performance differ significantly from 50\%.
-\end{itemize}
+When PCA is used for feature extraction, the performance of Naive Bayes is lower than when other feature selection methods are used. 
 
-Moreover, it is observed that the Multivariate case has the best performance between. When PCA is used for feature extraction, the performance of Naive Bayes is lower than when other feature selection methods are used. 
-
-We can also distinguish the fact that when different structure is used for the fitting data, the performance increases, though not significantly. For example, in the case of the Naive Bayes classifier when different structure is used, its performance increases approximately 4\%.
+We can also distinguish the fact that when different structure is used for the data, the performance increases, though not significantly. For example, in the case of the Naive Bayes classifier when different structure is used, its performance increases approximately 4\%.
 
 Comparing classifiers when the same structure is used, it is observed that Linear SVM performs better than Naive Bayes. The same remains true when comparing the Multivariate case with Naive Bayes. The former one has better performance.
 
-%mention confidence interval (how much percent sure we are that the actual accuracy of the classifier is between these regions)
+%mention confidence interval (how much percent sure we are that the actual accuracy of the classifier is between these regions) exact binomial test
 
 
 \section{Discussion / Conclusion}
