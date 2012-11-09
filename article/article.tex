@@ -80,8 +80,7 @@
 
 
 %% Abstract section.
-\abstract{
-Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict the cognitive state of subjects, based on their brain activity during that time.
+\abstract{Functional magnetic resonance imaging (fMRI) is a brain mapping technique that allows researchers to measure activity in a subject's brain. This technique is typically used to determine which areas of the brain are involved in performing a certain task. Using this knowledge, we may also be able to determine what task was performed by looking at fMRI data. In this paper, we will discuss the use of machine learning algorithms for the classification of fMRI data. By using classifiers we will try to predict the cognitive state of subjects, based on their brain activity during that time.
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -193,7 +192,39 @@ So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$
 
 \section{Experimental Results}
 \label{sec:results}
-- raw results per algorithm
+
+As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
+
+\begin{table*}[htpb]
+\centering
+{\small
+\begin{tabular}{c|c|c|c|c}
+& \textbf{Naive Bayes} & \textbf{Linear SVM} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
+PCA & 61.46 &  - & - & - \\
+M ROIs & 70.21 & 72.5 & 74.79 & 76.67 \\
+Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
+Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
+Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
+\end{tabular}}
+\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure.}
+\label{tab:results}
+\end{table*}
+
+Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}. The table reveals the following general results:
+
+\begin{itemize}
+	\item Classifiers performance do not differ significantly between them. Except from the case that PCA is used, the difference in performance between the classifiers for the rest of the cases is not more than 10\%.
+	\item Classifiers performance differ significantly from 50\%.
+\end{itemize}
+
+Moreover, it is observed that the Multivariate case has the best performance between. When PCA is used for feature extraction, the performance of Naive Bayes is lower than when other feature selection methods are used. 
+
+We can also distinguish the fact that when different structure is used for the fitting data, the performance increases, though not significantly. For example, in the case of the Naive Bayes classifier when different structure is used, its performance increases approximately 4\%.
+
+Comparing classifiers when the same structure is used, it is observed that Linear SVM performs better than Naive Bayes. The same remains true when comparing the Multivariate case with Naive Bayes. The former one has better performance.
+
+%mention confidence interval (how much percent sure we are that the actual accuracy of the classifier is between these regions)
+
 
 \section{Discussion / Conclusion}
 \label{sec:discussion}
