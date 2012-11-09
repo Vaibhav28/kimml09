@@ -183,26 +183,7 @@ So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$
 
 As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods, where \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
 
-Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}. The table reveals the following general results:
-
-\begin{itemize}
-	\item Classifiers performance do not differ significantly between them.
-	\item Classifiers performance differ significantly from 50\%.
-\end{itemize}
-
-%first column naive bayes with pca 148 components, others common feature selection methods as described in Section~\ref{sec:featureSelection}
-
-
-
-%classifiers performance do not differ significantly
-
-%because even PCA has accuracy 61.5\% we can be sure that all the classifiers differ significantly from 50\%
-
-%mention confidence interval (how much percent sure we are that the actual accuracy of the classifier is between these regions)
-
-
-
-\begin{table*}[htdp]
+\begin{table*}[htpb]
 \centering
 {\small
 \begin{tabular}{c|c|c|c|c}
@@ -216,6 +197,23 @@ Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
 \caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure.}
 \label{tab:results}
 \end{table*}
+
+Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}. The table reveals the following general results:
+
+\begin{itemize}
+	\item Classifiers performance do not differ significantly between them. (explain)
+	\item Classifiers performance differ significantly from 50\%.
+\end{itemize}
+
+Moreover, it is observed that the Multivariate case has the best performance between all classifiers (why?). When PCA is used for feature extraction, the performance of Naive Bayes is lower than when other feature selection methods are used (why?). 
+
+We can also distinguish the fact that when different structure is used for the fitting data, the performance increases, though not significantly. This is observed in the case of the Naive Bayes classifier. When different structure is used, its performance increases approximately 4\%.
+
+
+%mention confidence interval (how much percent sure we are that the actual accuracy of the classifier is between these regions)
+
+
+
 
 \section{Discussion / Conclusion}
 \label{sec:discussion}
