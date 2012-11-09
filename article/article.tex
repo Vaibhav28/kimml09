@@ -158,14 +158,14 @@ Here we will need a nice picture, perhaps a pagewide one with labels of data for
 
 \subsection{Preprocessing}
 
-\subsection{Feature selection}
+\subsection{Dimensionality Reduction}
 %Useful background info: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
 Typical input for the machine learning algorithms discussed in this paper consists of a number of feature vectors, one for each fMRI scan. Such a feature vector $\vec{x}$ contains measures for the $N$ features we use to represent that scan and is derived from our input data. In the most basic case, we could use the entire set of voxels belonging to a scan, resulting in a feature vector containing potentially (hundreds of) thousands of features.
 In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \textit{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples.
 
 To reducde the dimensionality of the input, two different methods are used.
 
-ROI mapping. 
+ROI mapping. As described in the introduction, ROIs are anatomically defined brain areas classified as relevant by an expert in the field. To reduce the number of features, average voxel values within this regions are taken as input features. As other higher-order features such as the standard deviation, kurtosis and skewness within ROIs did not increase predictability, these were not utilized.
 
 Principal Component Analysis (PCA).
 
@@ -174,6 +174,8 @@ So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$
 - ROIs, means, stddev, skew, kurtosis?
 
 \subsection{Classifiers}
+
+
 
 - same for each algorithm:
     - What features did we select?
