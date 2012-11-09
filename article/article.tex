@@ -161,15 +161,24 @@ In total, we have data available for approximately 4800 voxels per scan, 54 scan
 
 Here we will need a nice picture, perhaps a pagewide one with labels of data for 1 trial?
 
+\subsection{Preprocessing}
+
 \subsection{Feature selection}
 %Useful background info: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
 Typical input for the machine learning algorithms discussed in this paper consists of a number of feature vectors, one for each fMRI scan. Such a feature vector $\vec{x}$ contains measures for the $N$ features we use to represent that scan and is derived from our input data. In the most basic case, we could use the entire set of voxels belonging to a scan, resulting in a feature vector containing potentially (hundreds of) thousands of features.
 In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \textit{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples.
 
 To reducde the dimensionality of the input, two different methods are used.
+
 ROI mapping. 
+
+Principal Component Analysis (PCA).
+
+
 So how do we cope with this problem? On common solution is to reduce $|\vec{x}|$ by only using voxels belonging to a specific region of interest (ROI). However, this requires us to known which regions are actually of interest \textit{a priori}.
 - ROIs, means, stddev, skew, kurtosis?
+
+\subsection{Classifiers}
 
 - same for each algorithm:
     - What features did we select?
