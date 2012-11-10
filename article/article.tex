@@ -162,6 +162,7 @@ Here we will need a nice picture, perhaps a pagewide one with labels of data for
 \subsection{Preprocessing}
 
 \subsection{Dimensionality Reduction}
+\label{sec:dimensionalityReduction}
 %Useful background info: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
 Typical input for the machine learning algorithms discussed in this paper consists of a number of feature vectors, one for each fMRI scan. Such a feature vector $\vec{x}$ contains measures for the $N$ features we use to represent that scan and is derived from our input data. In the most basic case, we could use the entire set of voxels belonging to a scan, resulting in a feature vector containing potentially (hundreds of) thousands of features.
 In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \textit{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples.
@@ -214,17 +215,15 @@ Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
 Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
 Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
 \end{tabular}}
-\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, and \emph{SD} for \emph{Standard Deviation}}
+\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, \emph{SD} for \emph{Standard Deviation}, and \emph{Norm/Vox} for \emph{Normalisation per Voxel index}.}
 \label{tab:results}
 \end{table*}
 
-As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that the subject was in. Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods. For instance, \emph{Norm-M-SD ROIs} denotes that normalisation was used in the voxels belonging to the selected ROIs over the mean and standard deviation.
+As a comparison measure, we used the performance of the classifiers for predicting the cognitive state that a subject was in. The predictive performance of Naive Bayes, Linear SVM, and Multivariate was compared. We observed that different feature selection and extraction methods, as well as different structure on the data affects the predictive performance of the classifiers.
 
+ Table~\ref{tab:results} illustrates the overall performance of the three classifiers. Rows indicate various feature selection methods. We applied PCA to the original data, while the rest methods were applied to the data belonging to the selected ROIs (cf.~Section~\ref{sec:dimensionalityReduction}). For instance, \emph{Norm/Vox-M-SD ROIs} indicates that we normalised over the voxel values of the same voxel index using the mean and standard deviation, while \emph{Norm-M-SD ROIs} indicates that we normalised over the voxel values of the same scan index using the mean and standard deviation. Columns depict the used classifiers. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}.
 
-
-Columns depict the used classifiers---Naive Bayes, Linear SVM, and Multivariate. For the classifiers depicted with *, we used different structure for the data that we fit to them, as described in Section~\ref{}.
-
-When PCA is used for feature extraction, the performance of Naive Bayes is lower than when other feature selection methods are used. 
+When PCA is used for feature extraction, the performance of Naive Bayes is significantly lower than when other feature selection methods are used. By using an exact binomial test we found out the confidence interval of this result 
 
 We can also distinguish the fact that when different structure is used for the data, the performance increases, though not significantly. For example, in the case of the Naive Bayes classifier when different structure is used, its performance increases approximately 4\%.
 
@@ -238,6 +237,6 @@ Comparing classifiers when the same structure is used, it is observed that Linea
 
 \bibliographystyle{abbrv}
 %%use following if all content of bibtex file should be shown
-\nocite{*}
+%\nocite{*}
 \bibliography{references}
 \end{document}
