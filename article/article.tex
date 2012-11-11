@@ -136,20 +136,19 @@ relationships between stimuli'' (pattern characterization)~\cite{pereira2009mach
 
 \section{Methods}
 \label{sec:methods}
-General approach consisting of three steps, plus basic data acquisition and preprocessing.
+The general approach for applying machine learning techniques to fMRI data consists of the following steps:
 \begin{enumerate}
-  \item Feature selection
+  \item Preprocessing
+  \item Dimensionality reduction
   \item Training
   \item Testing
 \end{enumerate}
+The choices made in each of the steps affect the classifier accuracy. For a complete picture of the classification accuracies, we therefore try several methods at each step. In the following sections, these methods will be described.
 
 
-
-- comparison
-- classifying subtrials vs trials (ie 54 vs 27)
 - analysis / tools (python etc)
 
-\subsection{Data acquisition and dimensions}
+\subsection{Data Acquisition and Dimensions}
 The dataset used for our experiments was originally collected by Marcel Just et al. from Carnegie Mellon University's Center for Cognitive Brain Imaging and published as the StarPlus fMRI dataset. This set consists of fMRI data for 6 subjects that was obtained while having each subject participate in a number of trials.
 
 In some of these trials (baseline trials), no stimulus was presented and participants were instructed to remain inert. In other trials, subjects were presented with a sequence of two stimuli on a computer screen. The first stimulus was either a picture or a sentence lasting 4 seconds, followed by a blank screen of 4 seconds. After the blank screen, the opposite type of stimulus was presented for 4 seconds, followed by a blank screen of 15 seconds, during which the subject would indicate by pressing a button whether the sentence correctly described the picture. During each trial, approximately 54 fMRI scans have been taken with an interval of 500ms. In total, 14 trials were baseline trials, while half of the remaining trials had a picture as first stimulus and the other half a sentence.  
