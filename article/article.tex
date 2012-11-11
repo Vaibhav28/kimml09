@@ -140,17 +140,15 @@ In \emph{pattern characterization}, the question of \emph{how} class information
 
 \section{Methods}
 \label{sec:methods}
-The general approach for applying machine learning techniques to fMRI data consists of the following steps:
+We now continue by discussing the methods applied in our research. The general approach taken for each of the algorithms discussed consists of the following steps:
 \begin{enumerate}
   \item Preprocessing
   \item Dimensionality reduction
   \item Training
   \item Testing
 \end{enumerate}
-The choices made in each of the steps affect the classifier accuracy. For a complete picture of the classification accuracies, we therefore try several methods at each step. In the following sections, these methods will be described.
-
-
-- analysis / tools (python etc)
+Preprocessing was done to transform the dataset into a format suitable for input into the classification algorithm. Dimensionality reduction was a direct result of the large dimensionality of the dataset and may consist of both feature extraction as well as feature selection. Finally, the approach taken to training and testing the classifier deals with preventing overfitting the classifier to training data and verifying accuracy for cross-subject classification. The choices made in each of these steps may affect classifier accuracy, so to obain a complete understanding of classification accuracies we have tried several methods at each step. In the following sections, these methods will be described in more detail.\\
+The implementation of the algorithms was done using Python combined with modules tailored to mathematics (NumPy, SciPy) and machine learning (ScikitLearn). The original dataset was made available as a MatLab file and we used preprocessing in MatLab to create a number of files containing modified versions of this data, such as normalization and ROI grouping (see section~\ref{preprocessing}). The source code for the algorithms is available from the authors on request.
 
 \subsection{Data Acquisition and Dimensions}
 The dataset used for our experiments was originally collected by Marcel Just et al. from Carnegie Mellon University's Center for Cognitive Brain Imaging and published as the StarPlus fMRI dataset. This set consists of fMRI data for 6 subjects that was obtained while having each subject participate in a number of trials.
@@ -163,6 +161,7 @@ In total, we have data available for approximately 4800 voxels per scan, 54 scan
 Here we will need a nice picture, perhaps a pagewide one with labels of data for 1 trial?
 
 \subsection{Preprocessing}
+\label{ssec:preprocessing}
 
 \subsection{Dimensionality Reduction}
 \label{sec:dimensionalityReduction}
