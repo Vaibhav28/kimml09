@@ -205,12 +205,27 @@ where $C_i$ denotes the probability of the class---sentence or picture. Two appr
 
 \begin{equation}
 \label{eq:maxLikelihood}
-\operatorname{arg\,max}_i \sum_{t=1}^{N}{\log{P(C_{i}|X)}}
+\operatorname{arg\,max}_i \sum_{t=1}^{N}{\log{P(C_{i}|x^{t})}}
 \end{equation}
 
 where $t$ denotes the scan index. The advantage of the first method is that fewer parameters need to be estimated with greater amount of examples. It thus reduces the space and time complexity, and variance of the model. However, because it is likely that the assumptions of equal means and standard deviations for each scan do not hold, the second approach may decrease the inductive bias and enhance the accuracy.
 
-\textbf{\emph{Linear Support Vector Machine (LSVM).}} The LSVM is a discriminant based approach to classification. For an elaborate description see \cite{bk:2004aplay}. For each selected scan belonging to a stimulus, the LSVM classifies it as either a picture or a sentence. The final classification of the stimulus is  
+\textbf{\emph{Linear Support Vector Machine (LSVM).}} The LSVM is a discriminant based approach to classification. For an elaborate description see \cite{bk:2004aplay}. For each selected scan belonging to a stimulus, the LSVM classifies it as either a picture or a sentence. The final classification of the stimulus is:
+
+\begin{equation}
+\label{eq:argmaxsvm}
+\operatorname{arg\,max}_i \sum_{t=1}^{N}{b_{i}^{t}}
+\end{equation}
+
+where $t$ denotes the scan index and $b$ is given by:
+
+\begin{equation}
+b_{i} = \left\{
+\begin{array}{l l}
+1 \quad \text{if $C_{i}$ is classified}\\
+0 \quad \text{otherwise}\\
+\end{array} \right.
+\end{equation}
 
 \textbf{\emph{Multivariate Gaussian (MVG).}} In MVG, independence between feature vectors is not assumed. Instead, the mutivariate distribution is used to estimate the probability of the classes, with the covariance matrix and the means as parameters. Again, the increase in parameters to be estimated compared to GNB (the correlations) may decrease generality, while also decreasing inductive bias.
 
