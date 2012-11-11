@@ -131,7 +131,9 @@ The studies mentioned before all depend on the question of whether fMRI data car
 information (pattern discrimination) and exploiting this information to perform classification. However, researchers have indicated at least two other basic questions to which classifiers can be applied, being ``where or when
 is class information represented?'' (pattern localization) and ``how is
 class information encoded'' or ``how does its encoding relate to known
-relationships between stimuli'' (pattern characterization)~\cite{pereira2009machine}. While the main focus of this paper is on the application of machine learning techniques in pattern discrimination, we will briefly discuss these two other applications.
+relationships between stimuli'' (pattern characterization)~\cite{pereira2009machine}. While the main focus of this paper is on the application of machine learning techniques in pattern discrimination, we will briefly discuss these two other applications.\\
+
+Given a classifier that is able to discriminate on a dataset and identify a certain cognitive state, we may ask ourselves which parts of the brain contain the information leading to this identification. \emph{Pattern localization} addresses this problem by selecting the voxels that contribute the strongest and most reliably to the classification. Surprisingly, when taking the intersection of selected voxels across multiple subjects (for example, when performing cross-validation), this intersection is only a fairly small subset of voxels~\cite{pereira2009machine}. 
 
 
 \section{Methods}
