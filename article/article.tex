@@ -35,6 +35,7 @@
 \usepackage{mathptmx}
 \usepackage{graphicx,xcolor,booktabs, tabularx, amsmath}
 \usepackage{times}
+\usepackage{breqn}
 \newcommand{\todo}[1]{\textbf{\textcolor{blue}{Todo: #1 }}}
 %% We encourage the use of mathptmx for consistent usage of times font
 %% throughout the proceedings. However, if you encounter conflicts
@@ -227,22 +228,13 @@ b_{i} = \left\{
 \end{array} \right.
 \end{equation}
 
-\textbf{\emph{Multivariate Gaussian (MVG).}} In MVG, independence between feature vectors is not assumed. Instead, the mutivariate distribution is used to estimate the probability of the classes, with the covariance matrix and the means as parameters. Again, the increase in parameters to be estimated compared to GNB (the correlations) may decrease generality, while also decreasing inductive bias.
+\textbf{\emph{Multivariate Gaussian (MVG).}} In MVG, independence between feature vectors is not assumed. Instead, the multivariate distribution is used to estimate the probability of the classes, with the covariance matrix and the means as parameters. Again, the increase in parameters to be estimated compared to GNB (the correlations) may decrease generality, while also decreasing inductive bias.
 
 
-- same for each algorithm:
-    - What features did we select?
-    - How did we train?
-    - How did we test?
-        - How did we calculate performance?
-- algorithms:
-    - gaussian naive-bayes (gnb)
-        - pca + gnb
-    - multivariate
-    - svm
-    - why multivariate is not a priori better than naive: less assumption, higher generalizability, better estimation parameters. 
-
-
+\begin{dmath}
+\label{eq:multivariate}
+g_{i}(\mathbf{x}) = -\frac{d}{2}\log{2\pi}-\frac{1}{2}\log{|\Sigma_{i}|}-\frac{1}{2}(\mathbf{x}-\mu_{i})^{T}\Sigma_{i}^{-1}(\textbf{x}-\mu_{i})+\log{P(C_{i})}
+\end{dmath}
 
 \section{Experimental Results}
 \label{sec:results}
