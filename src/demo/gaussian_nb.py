@@ -153,5 +153,7 @@ for datafile in FILES:
             total_correct += correct
             total_scans += count
 
+    print total_correct
+    print total_scans
     print "Final result: %s%%" % ((total_correct / total_scans) * 100)
     print
