@@ -185,6 +185,8 @@ for n in range(COMPONENTS, COMPONENTS + 1):
             total_scans += count
 
     vec_x.append(n)
+    print total_correct
+    print total_scans
     vec_y.append((total_correct / total_scans) * 100)
     print "%s,%s%%" % (n, (total_correct / total_scans) * 100)
 
