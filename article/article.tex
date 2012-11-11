@@ -235,7 +235,7 @@ b_{i} = \left\{
 g_{i}(\mathbf{x}) = -\frac{d}{2}\log{2\pi}-\frac{1}{2}\log{|\Sigma_{i}|}-\frac{1}{2}(\mathbf{x}-\mu_{i})^{T}\Sigma_{i}^{-1}(\textbf{x}-\mu_{i})+\log{P(C_{i})}
 \end{dmath}
 
-where $d$ denotes the dimensionality of $x$ and $\Sigma$ denotes the covariance matrix. The parameters are estimated per scan and the decision method is similar to GNB. The increase in parameters to be estimated compared to GNB (the correlations) may decrease generalization, while also decreasing inductive bias.
+where $g_{i}(\mathbf{x})$ denotes the log-probability of a class, $d$ denotes the dimensionality of $x$ and $\Sigma$ denotes the covariance matrix. The parameters are estimated per scan and the decision method is similar to GNB. The increase in parameters to be estimated compared to GNB (the correlations) may decrease generalization, while also decreasing inductive bias.
 
 
 
