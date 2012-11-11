@@ -246,13 +246,15 @@ where $g_{i}(\mathbf{x})$ denotes the log-probability of a class, $d$ denotes th
 \begin{table*}[htpb]
 \centering
 {\small
-\begin{tabular}{c|c|c|c|c}
-& \textbf{Naive Bayes} & \textbf{Linear SVM} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Extraction/Selection Method} & \textbf{Naive Bayes} & \textbf{Linear SVM} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
 PCA & 61.46 &  - & - & - \\
 M ROIs & 70.21 & 72.5 & 74.79 & 76.67 \\
 Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
 Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
 Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
+\hline
 \end{tabular}}
 \caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, \emph{SD} for \emph{Standard Deviation}, and \emph{Norm/Vox} for \emph{Normalisation per Voxel index}.}
 \label{tab:results}
