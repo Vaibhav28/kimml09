@@ -179,7 +179,7 @@ In the case that we have a very large dimension of features combined with only a
 \begin{figure}
 	\centering
 	\includegraphics[width=90mm]{figures/scan_hemodynamic_BOLD_roi}
-  	\caption{Haemodynamic BOLD response for ROI "CALC". The red line depicts a sentence-picture trial (S-P) and the blue line depicts a picture-sentence trial (P-S). Average Bold activity for all subjects is plotted against the scan number. The coloured regions depict an interval of 1 standard deviation.}
+  	\caption{Haemodynamic response for ROI "CALC". The red line depicts a sentence-picture trial (S-P) and the blue line depicts a picture-sentence trial (P-S). Average BOLD signal for all subjects is plotted against the scan number. The coloured regions depict the mean BOLD signal +/- 1 standard deviation.}
   	\label{fig:boldroi}
 \end{figure}
 
@@ -246,13 +246,15 @@ where $g_{i}(\mathbf{x})$ denotes the log-probability of a class, $d$ denotes th
 \begin{table*}[htpb]
 \centering
 {\small
-\begin{tabular}{c|c|c|c|c}
-& \textbf{Naive Bayes} & \textbf{Linear SVM} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Dimensionality Reduction Method} & \textbf{Naive Bayes} & \textbf{Linear SVM} & \textbf{Naive Bayes*} & \textbf{Multivariate*} \\ \hline
 PCA & 61.46 &  - & - & - \\
 M ROIs & 70.21 & 72.5 & 74.79 & 76.67 \\
 Norm-M ROIs & 71.67 & 71.25 & 75.83 & 77.08 \\
 Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
 Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
+\hline
 \end{tabular}}
 \caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, \emph{SD} for \emph{Standard Deviation}, and \emph{Norm/Vox} for \emph{Normalisation per Voxel index}.}
 \label{tab:results}
@@ -269,7 +271,7 @@ From Table~\ref{tab:results} we can distinguish the fact that when PCA is used f
 \begin{figure}
 	\centering
 	\includegraphics[width=90mm]{figures/pca_plot_by_index.png}
-  	\caption{Classification accuracy of GNB after performing PCA with a varying amount of components.}
+  	\caption{Classification accuracy of GNB after performing PCA with an increasing number of components.}
   	\label{fig:pca_components}
 \end{figure}
 
