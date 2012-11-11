@@ -227,13 +227,16 @@ b_{i} = \left\{
 \end{array} \right.
 \end{equation}
 
-\textbf{\emph{Multivariate Gaussian (MVG).}} In MVG, independence between feature vectors is not assumed. Instead, the multivariate distribution is used to estimate the probability of the classes, with the covariance matrix and the means as parameters. Again, the increase in parameters to be estimated compared to GNB (the correlations) may decrease generality, while also decreasing inductive bias.
-
-
+\textbf{\emph{Multivariate Gaussian (MVG).}} In MVG, independence between feature vectors is not assumed. Instead, the multivariate distribution is used to estimate the probability of the classes, with the covariance matrix and the means as parameters. The log-probability of a class becomes:
 \begin{dmath}
 \label{eq:multivariate}
 g_{i}(\mathbf{x}) = -\frac{d}{2}\log{2\pi}-\frac{1}{2}\log{|\Sigma_{i}|}-\frac{1}{2}(\mathbf{x}-\mu_{i})^{T}\Sigma_{i}^{-1}(\textbf{x}-\mu_{i})+\log{P(C_{i})}
 \end{dmath}
+
+where $d$ denotes the dimensionality of $x$ and $\Sigma$ denotes the covariance matrix. The parameters are estimated per scan and the decision method is similar to GNB. The increase in parameters to be estimated compared to GNB (the correlations) may decrease generality, while also decreasing inductive bias.
+
+
+
 
 \section{Experimental Results}
 \label{sec:results}
