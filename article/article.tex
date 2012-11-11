@@ -256,7 +256,7 @@ Norm-M-SD ROIs & 65.63 & 69.79 & 69.38 & 65.0 \\
 Norm/Vox-M ROIs & 73.13 & 76.67 & 76.88 & 79.58 \\
 \hline
 \end{tabular}}
-\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, \emph{SD} for \emph{Standard Deviation}, and \emph{Norm/Vox} for \emph{Normalisation per Voxel index}.}
+\caption{Performance results (in \%) of the three classifiers on different methods for feature selection and structure. \emph{M} stands for \emph{Mean}, \emph{Norm} for \emph{Normalisation}, \emph{SD} for \emph{Standard Deviation}, and \emph{Norm/Vox} for \emph{Normalisation per Voxel index}. Columns marked with an asterisk used the total log-likelihood as a decision function (see section~\ref{sec:trainingMethodsAndClassifiers}).}
 \label{tab:results}
 \end{table*}
 
@@ -277,9 +277,9 @@ From Table~\ref{tab:results} we can distinguish the fact that when PCA is used f
 
 Comparing classifiers when the same data structure is used, we can distinguish the fact that MVG performs better than GNB. Also that LSVM performs better than GNB, though not significantly. The confidence interval of GNB is 95\% $CI: 68.9-77.0$ and of LSVM is 95\% $CI: 72.6-80.4$, which suggests that their performances do not differ significantly.
 
-Moreover, when different method for structuring the data is used the performance increases, though not significantly. This can be seen by comparing the performance of GNB when different method for structuring the data is used. In the first case it is 73.13\% while in the second case is 76.88\%. The confidence interval in the first case is 95\% $CI: 68.9 - 77.0$ and in the second case is 95\% $CI: 72.8 - 80.6$.
+Moreover, when a different method for structuring the data is used the performance increases, though not significantly. This can be seen by comparing the performance of GNB on different datasets. In the first case performance is 73.13\% while in the second case it is 76.88\%. The confidence interval in the first case is 95\% $CI: 68.9 - 77.0$ and in the second case is 95\% $CI: 72.8 - 80.6$.
 
-Finally, we can distinguish the fact that MVG outperforms all the other classifiers, though we did not try a different data structure in the case of LSVM. However, we still do not expect that the performance of LSVM will be higher that this of MVG. The confidence interval of MVG is 95\% $CI: 75.7-83.1$.
+Finally, we can distinguish the fact that MVG outperforms all the other classifiers, though we did not try a different decision function in the case of LSVM. However, we still do not expect that the performance of LSVM will be higher than that of MVG. The confidence interval of MVG is 95\% $CI: 75.7-83.1$.
 
 \section{Discussion / Conclusion}
 \label{sec:discussion}
