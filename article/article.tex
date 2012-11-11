@@ -264,7 +264,14 @@ Table~\ref{tab:results} illustrates the overall performance of the three classif
 
 Furthermore, to test the significance of the differences in performance between the different methods we performed an exact binomial test in each case, from which we obtained the confidence interval. The results were rounded to one decimal point. For the rest of this section and to explain some of the results we are looking only at the case when \emph{Norm/Vox-M-SD ROIs} is used as a feature selection method.
 
-From Table~\ref{tab:results} we can distinguish the fact that when PCA is used for feature extraction, the performance of GNB is lower than when other feature selection methods are used. The confidence interval of the predictive performance of GNB when PCA is used is 95\% $CI: 56.9 - 65.8$ which suggests that...
+From Table~\ref{tab:results} we can distinguish the fact that when PCA is used for feature extraction, the performance of GNB is lower than when other feature selection methods are used. The confidence interval of the predictive performance of GNB when PCA is used is 95\% $CI: 56.9 - 65.8$ which is significantly worse than other dimension reduction techniques. This suggests that maximizing the variance of the data does not maximize information. Another explanation could be that the data is not suited to be aligned by voxel index (see section~\ref{sec:dimensionalityReduction}). The performance listed in Table~\ref{tab:results} is for PCA using 149 components. This value was found by performing classification with a varying amount of components, the results for which are listed in figure~\ref{fig:pca_components}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=90mm]{figures/pca_plot_by_index.png}
+  	\caption{Classification accuracy of GNB after performing PCA with a varying amount of components.}
+  	\label{fig:pca_components}
+\end{figure}
 
 Comparing classifiers when the same data structure is used, we can distinguish the fact that MVG performs better than GNB. Also that LSVM performs better than GNB, though not significantly. The confidence interval of GNB is 95\% $CI: 68.9-77.0$ and of LSVM is 95\% $CI: 72.6-80.4$, which suggests that their performances do not differ significantly.
 
