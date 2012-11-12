@@ -62,7 +62,7 @@
 %% This is how authors are specified in the journal style
 
 %% indicate IEEE Member or Student Member in form indicated below
-\author{Mattijs Meiboom, Robin Mills, Tijn Schouten, Spyros Ioakeimidis}
+\author{Mattijs Meiboom, Robin Mills, Spyros Ioakeimidis, Tijn Schouten}
 \authorfooter{
 \item
   Mattijs Meiboom is with University of Groningen, E-mail: m.meiboom@student.rug.nl.
@@ -300,16 +300,18 @@ Finally, when classifying per scan and combining these classifications into a si
 \section{Discussion / Conclusion}
 \label{sec:discussion}
 
-In this paper we have replicated earlier findings of decoding the cognitive states of looking at sentences or pictures from fMRI data. Specifically, by observing the patterns of activity for a group of subjects, we are able to predict with above-chance accuracy what the cognitive state of an unseen subject is. This shows that machine learning algorithms can be employed to capture useful information from noisy data, and generalise this information between subjects.
+In this paper we have replicated earlier findings of decoding the cognitive states of looking at sentences or pictures from fMRI data. Specifically, by observing the patterns of activity for a group of subjects, we are able to predict with above-chance accuracy what the cognitive state of an unseen subject is. This shows that machine learning algorithms can be employed to capture useful information from noisy data, and generalize this information between subjects.
 
 To compare our results with other related studies, Wang et al. \cite{wa:2003betw} used GNB and Support Vector Machine (SVM) as cross-subject classifiers in a sentence versus picture study. When using the averaging technique (averaging all voxels in an ROI into a supervoxel) and normalization, GNB yielded a predictive performance of 74.3\%, and SVM 75.3\%. Our results denote a higher performance, where using normalization GNB yielded a performance of 76.67\% and LSVM 76.88\%. 
 
+
+
 We found that even though all of our classification procedures yielded well above chance-level classification performance, the difference between the classifiers was seldomly significant. Still, we consistently found that the Multivariate Gaussian (MVG) classifier outperformed the Gaussian Naive Bayes (GNB) classifier and Linear Support Vector Machine (LSVM). This finding suggests that the interactions between different brain areas contain information about the cognitive state, and that this functional connectivity generalises to an extent to different subjects.
+
 
 Still, the uncertainty in our predictions are relatively high, with maximum classification performance reaching close to 80\% accuracy for only two classes. The noisy nature of the fMRI data therefore makes it very difficult to draw hard conclusions when decoding a single cognitive state from a brain scan. This is something to be considered before employing fMRI as a diagnostic tool, or as evidence in court.
 
-Overall we can say that machine learning provides a feasible way of extracting useful information from fMRI data. Furthermore, it avoids a strict multiple comparisons correction that is required in null hypothesis testing by using cross-validation. Also, the identification of patterns of activity associated with tasks is encouraged, rather than attempting to identifying brain regions that are involved in tasks. In doing this, much can be learned about how information is represented and processed in the brain.
-
+Overall we can say that machine learning provides a feasible way of extracting useful information from fMRI data. Furthermore, it avoids a strict multiple comparisons correction that is required in null hypothesis testing by using cross-validation. Also, the identification of patterns of activity associated with tasks is encouraged, rather than attempting to identify brain regions that are involved in tasks. In doing this, much can be learned about how information is represented and processed in the brain.
 
 \bibliographystyle{abbrv}
 %%use following if all content of bibtex file should be shown
