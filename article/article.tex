@@ -101,13 +101,15 @@ Functional magnetic resonance imaging (fMRI) is a brain mapping technique that a
 %% the only exception to this rule is the \firstsection command
 \firstsection{Introduction}
 \label{sec:introduction}
+
 \maketitle
+
 %% Now the actual contents of first section
 Human functional brain mapping is a field of study that has grown strongly in the past decades. This is not a surprise, because it is one of the few ways to look at brain activity of a living animal. There are several techniques available to scan for brain activity in a living human. Of these techniques, functional magnetic resonance imaging (fMRI) has become more and more popular because it has a very good spatial resolution (contrary to MEG/EEG), and it is non-invasive (contrary to PET). Brain activity is inferred from differences in the ratio between oxygenated and deoxygenated blood; when brain activity occurs, more oxygenated blood will flow to a brain region, and this change is detected by a machine. This is called the blood oxygen level dependent (BOLD) response \cite{sm:2012fMRI}.
 
 The fMRI scanner measures the activity in three-dimensional pixels called voxels, which are about 3 x 3 x 3 mm in size, and a brain scan is made somewhere between every 500ms and every few seconds. Before analysing the acquired data, it is usually pre-processed to account for head movements by participants in the scanner and to make between-subjects comparisons possible \cite{sl:2009rl}.
 
-Traditionally, data from each voxel, or from a group of voxels, are analyzed with analysis of variance. Voxels are usually convoluted with a haemodynamic response function in an attempt to infer the spiking neural activity from the slowly building and dropping BOLD response \cite{he:2002na} (cf.~Figure~\ref{fig:bold_response}). In this setup, experimental conditions are the independent variables and a general linear model is fitted to each voxel, or group of voxels. By using this technique, voxels or brain areas can be identified that differ in their average BOLD response across conditions.
+Traditionally, data from each voxel, or from a group of voxels, are analyzed with analysis of variance. Voxels are usually convoluted with a hemodynamic response function in an attempt to infer the spiking neural activity from the slowly building and dropping BOLD response \cite{he:2002na} (cf.~Figure~\ref{fig:bold_response}). In this setup, experimental conditions are the independent variables and a general linear model is fitted to each voxel, or group of voxels. By using this technique, voxels or brain areas can be identified that differ in their average BOLD response across conditions.
 
 Recent studies indicate that this approach may have some serious limitations. One study used a dataset of 1326 subjects, which is much higher than the usual 15 to 25 subjects found in fMRI studies \cite{thy:2012very}. This study explored what happened to a simple contrast between BOLD signal while watching faces and baseline activity, when increasing the number of subjects included in the analysis. They found that, as the number of analyzed subjects increased, an increasing number of brain areas that extended well beyond the expected visual- and face recognition areas showed significant deviation from baseline. Another study, using only three subjects, repeated a simple letter/number discrimination task and visual stimulation. The notable part is that this very simple experiment was run 100 times for each subject, again resulting in exceptionally high signal-to-noise ratio compared to conventional fMRI experiments. In this study the authors again found widespread significant BOLD-responses \cite{go:2012whole}. These findings suggest that significant deviations from baseline activity do not necessarily indicate any special involvement in the performed task, because almost the entire brain will show significant deviations given a high enough signal-to-noise ratio. These findings are perhaps not surprising, because everything we know about the brain indicates that it is best seen as a network with countless connections to other parts of the brain. Therefore, it makes sense to also analyze signals from the brain as a pattern of information coming from the entire brain, rather than attempting to link specific brain areas to experimental conditions.
 
@@ -177,8 +179,10 @@ As a first step, we applied row normalization by setting the mean activation val
 \subsection{Dimensionality Reduction}
 \label{sec:dimensionalityReduction}
 %Useful background info: http://www.brainvoyager.com/bvqx/doc/UsersGuide/WebHelp/Content/MVPATools/MVPA_Basic_Concepts.htm
+
 Typical input for the machine learning algorithms discussed in this paper consists of a number of feature vectors, one for each fMRI scan. Such a feature vector $\vec{x}$ contains measures for the $N$ features we use to represent that scan and is derived from our input data. In the most basic case, we could use the entire set of voxels belonging to a scan, resulting in a feature vector containing potentially (hundreds of) thousands of features.
-In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \textit{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples. To reduce the dimensionality of the input, several different methods were used.
+
+In the case that we have a very large dimension of features combined with only a limited amount of scans, our classifier may have difficulty learning the right classification function. This problem is formally known as the \emph{Hughes effect}\cite{Hughes1054102} which states that the predictive power of a machine learning algorithm decreases as the dimensionality increases with a fixed number of training examples. To reduce the dimensionality of the input, several different methods were used.
 
 \begin{figure}
 	\centering
@@ -187,13 +191,12 @@ In the case that we have a very large dimension of features combined with only a
   	\label{fig:fd}
 \end{figure}
 
-\textbf{\emph{ROI mapping.}} ROI mapping is a form of feature selection, wherein only a subset of the N-dimensional input space is used. As described in the introduction, ROIs are anatomically defined brain areas classified as relevant by an expert in the field. We used 7 of the 25 defined ROIs, labeled  'CALC' 'LIPL' 'LT' 'LTRIA' 'LOPER' 'LIPS' and  'LDLPFC' (see Figure~\ref{fig:fd}). These ROIs have previously been found to be most relevant in discriminating between the cognitive states of looking at sentences or pictures \cite{wa:2003betw}. To further reduce the number of features, average voxel values within these regions are taken as new input features. As with preprocessing, other higher-order features such as the standard deviation, kurtosis and skewness within ROIs did not increase predictability and were not included in the subsequent analysis. The disadvantage of using ROIs is that they require \textit{a priori} knowledge. When this knowledge is inaccurate, classification accuracy may not be optimal.
+\textbf{\emph{ROI mapping.}} ROI mapping is a form of feature selection, wherein only a subset of the N-dimensional input space is used. As described in the Section~\ref{sec:introduction}, ROIs are anatomically defined brain areas classified as relevant by an expert in the field. We used 7 of the 25 defined ROIs, labeled  'CALC' 'LIPL' 'LT' 'LTRIA' 'LOPER' 'LIPS' and  'LDLPFC' (cf.~Figure~\ref{fig:fd}). These ROIs have previously been found to be most relevant in discriminating between the cognitive states of looking at sentences or pictures \cite{wa:2003betw}. To further reduce the number of features, average voxel values within these regions are taken as new input features. As with preprocessing, other higher-order features such as the standard deviation, kurtosis, and skewness within ROIs did not increase predictability and were not included in the subsequent analysis. The disadvantage of using ROIs is that they require \emph{a priori} knowledge. When this knowledge is inaccurate, classification accuracy may not be optimal.
 
+\textbf{\emph{Principal Component Analysis (PCA).}} As feature extraction method, we applied PCA. Ideally, the input vectors of the PCA should be the standardized Talairach coordinates, because we are conducting between-subject classification. As this coordinate system appeared to be inaccurate for this dataset, we were forced to use the voxel indices. The problem is that indices of different subjects may not map well onto each other, due to differences in brain size and shape. As a result, the accuracy of the PCA may be greatly reduced.
 
+\textbf{\emph{Temporal dimensionality reduction.}} The BOLD response peaks at approximately 5 seconds after a stimulus is presented (cf.~Figure~\ref{fig:bold_response}). This means that the first scans after a stimulus may not represent activity related to this stimulus and should not be used for classification. To examine which scans provide maximal class information, we plotted the average BOLD activity per scan for all trials of all subjects, given a trial type and ROI. As illustrated in Figure~\ref{fig:boldroi}, scans 10 to 20 provide maximal information for the first stimulus, while scans 23 to 33 provide maximal information for the second stimulus. The other scans were excluded.
 
-\textbf{\emph{Principal Component Analysis (PCA).}} As feature extraction method, we applied PCA. Ideally, the input vectors of the PCA should be the standardized Talairach coordinates, because we are conducting between-subject classification. As this coordinate system appeared to be inaccurate for this dataset, we were forced to use the voxel indices. The problem is that indices of different subjects may not map well onto each other, due to differences in brain size and shape. As a result, the accuracy of the PCA may be greatly reduced.   
-
-\textbf{\emph{Temporal dimensionality reduction.}} The BOLD response peaks at approximately 5 seconds after a stimulus is presented (see Fig. 1). This means that the first scans after a stimulus may not represent activity related to this stimulus and should not be used for classification. To examine which scans provide maximal class information, we plotted the average BOLD activity per scan for all trials of all subjects, given a trial type and ROI. As can be seen in Figure~\ref{fig:boldroi}, scans 10 to 20 provide maximal information for the first stimulus, while scans 23 to 33 provide maximal information for the second stimulus. The other scans were excluded.      
 \begin{figure}
 	\centering
 	\includegraphics[width=90mm]{figures/scan_hemodynamic_BOLD_roi}
@@ -204,8 +207,7 @@ In the case that we have a very large dimension of features combined with only a
 \subsection{Training Method and Classifiers}
 \label{sec:trainingMethodsAndClassifiers}
 
-For each classifier, a ``leave one (subject) out" cross validation procedure was used to avoid overfitting. For $N=6$ iterations, $N-1$ subjects functioned as training set, while the remaining subject served as validation set. The classifier accuracy is the average accuracy over all iterations. 
-We compared the following classifiers:\\
+For each classifier, a ``leave one (subject) out" cross validation procedure was used to avoid overfitting. For $N=6$ iterations, $N-1$ subjects functioned as training set, while the remaining subject served as validation set. The classifier accuracy is the average accuracy over all iterations. We compared the following classifiers:\\
 
 \textbf{\emph{Gaussian Naive Bayes (GNB).}} This classifier builds a generative model underlying a class, by estimating the means and the standard deviations of the input features from the training set \cite{bk:2004aplay}. It assumes a Gaussian distribution (cf.~Eq.~\ref{eq:gaussianDistribution}) and independent input features.
 
@@ -221,7 +223,7 @@ where $\mu$ denotes the mean and $\sigma$ the standard deviation. Bayes rule is 
 P(C_{i}|X) = \frac{p(X|C_{i})P(C_{i})}{P(X)}
 \end{equation}
 
-where $C_i$ denotes the probability of the class---sentence or picture. Two approaches were used to estimate the parameters of the model. In the first method, averages of the selected scans belonging to a stimulus were used to estimate the parameters, while in the second method, the parameters were estimated for each scan separately. In both methods the decision of the classifier is given by Eq.~\ref{eq:maxLikelihood}, which is the maximum likelihood of the two classes over all scans.
+where $C_i$ denotes the probability of the class (picture or sentence). Two approaches were used to estimate the parameters of the model. In the first method, averages of the selected scans belonging to a stimulus were used to estimate the parameters, while in the second method, the parameters were estimated for each scan separately. In both methods the decision of the classifier is given by Eq.~\ref{eq:maxLikelihood}, which is the maximum likelihood of the two classes over all scans.
 
 \begin{equation}
 \label{eq:maxLikelihood}
@@ -230,7 +232,7 @@ where $C_i$ denotes the probability of the class---sentence or picture. Two appr
 
 where $t$ denotes the scan index. The advantage of the first method is that fewer parameters need to be estimated with greater amount of examples. It thus reduces the space and time complexity, and variance of the model. However, because it is likely that the assumptions of equal means and standard deviations for each scan do not hold, the second approach may decrease the inductive bias and enhance the accuracy.
 
-\textbf{\emph{Linear Support Vector Machine (LSVM).}} The LSVM is a discriminant based approach to classification. For an elaborate description see \cite{bk:2004aplay}. For each selected scan belonging to a stimulus, the LSVM classifies it as either a picture or a sentence. The final classification of the stimulus is:
+\textbf{\emph{Linear Support Vector Machine (LSVM).}} The LSVM is a discriminant based approach to classification. For an elaborate description see Chapter 10 of \cite{bk:2004aplay}. For each selected scan belonging to a stimulus, the LSVM classifies it as either a picture or a sentence. The final classification of the stimulus is:
 
 \begin{equation}
 \label{eq:argmaxsvm}
@@ -248,15 +250,13 @@ b_{i} = \left\{
 \end{equation}
 
 \textbf{\emph{Multivariate Gaussian (MVG).}} In MVG, independence between feature vectors is not assumed. Instead, the multivariate distribution is used to estimate the probability of the classes, with the covariance matrix and the means as parameters. The log-probability of a class becomes:
+
 \begin{dmath}
 \label{eq:multivariate}
 g_{i}(\mathbf{x}) = -\frac{d}{2}\log{2\pi}-\frac{1}{2}\log{|\Sigma_{i}|}-\frac{1}{2}(\mathbf{x}-\mu_{i})^{T}\Sigma_{i}^{-1}(\textbf{x}-\mu_{i})+\log{P(C_{i})}
 \end{dmath}
 
 where $g_{i}(\mathbf{x})$ denotes the log-probability of a class, $d$ denotes the dimensionality of $x$ and $\Sigma$ denotes the covariance matrix. The parameters are estimated per scan and the decision method is similar to GNB. The increase in parameters to be estimated compared to GNB (the correlations) may decrease generalization, while also decreasing inductive bias.
-
-
-
 
 \section{Experimental Results}
 \label{sec:results}
